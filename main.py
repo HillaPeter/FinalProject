@@ -79,5 +79,73 @@ plt.show()
 # dfop1 = feather.read_dataframe("/tmp/pycharm_project_723/dfOp.feather")
 # dfReOp1 = feather.read_dataframe("/tmp/pycharm_project_723/dfReOp.feather")
 
+######mortality
+MortaltyOp = dfOp.groupby("SiteID")["Mortalty"].count().reset_index(name='Mortalty_SiteID_op')
+MortaltyReOp = dfReOp.groupby("SiteID")["Mortalty"].count().reset_index(name='Mortalty_SiteID_reOp')
+result2 = pd.merge(MortaltyOp, MortaltyReOp, on='SiteID', how='left')
+# result.merge(result2, on='SiteID')
+df=pd.merge(result, result2, on='SiteID')
+df["totalOp"] = result["countReOp"]+ result["countOp"]
+df.to_csv("/tmp/pycharm_project_355/mortalty.csv")
+
+
+
+# df=pd.read_csv("mortalty.csv")
+#reOp
+
+df['mortalPerReOp']=(df['Mortalty_SiteID_reOp']/df['countReOp'])*100
+df['prop']=df['countReOp/countOp']
+
+#1
+df.plot(kind='scatter', x='totalOp', y='mortalPerReOp', title="Mortality of reOp - total Ops")
+plt.show()
+
+#2
+df.plot(kind='scatter', x='countReOp', y='mortalPerReOp', title="Mortality of reOp - reOps")
+plt.show()
+
+#3
+df.plot(kind='scatter', x='countReOp/countOp', y='mortalPerReOp', title="Mortality of reOp - reOp/(reOp+Ops)")
+plt.show()
+
+###oP
+#1
+df['mortalPerOp']=(df['Mortalty_SiteID_op']/df['countOp'])*100
+df.plot(kind='scatter', x='totalOp', y='mortalPerOp', title="Mortality of op - total Ops")
+plt.show()
+
+#2
+df.plot(kind='scatter', x='countOp', y='mortalPerOp', title="Mortality of op - ops")
+plt.show()
+
+#3
+df.plot(kind='scatter', x='countReOp/countOp', y='mortalPerOp', title="Mortality of op - reOp/(reOp+Ops)")
+plt.show()
+
+
+#spearman
+print("spearman")
+#reOp
+print(df.mortalPerReOp.corr(df.totalOp, method="spearman"))
+print(df.mortalPerReOp.corr(df.countReOp, method="spearman"))
+print(df.mortalPerReOp.corr(df.prop, method="spearman"))
+
+#op
+print(df.mortalPerOp.corr(df.totalOp, method="spearman"))
+print(df.mortalPerOp.corr(df.countOp, method="spearman"))
+print(df.mortalPerOp.corr(df.prop, method="spearman"))
+
+
+#pearson
+print("pearson")
+#reOp
+print(df.mortalPerReOp.corr(df.totalOp, method="pearson"))
+print(df.mortalPerReOp.corr(df.countReOp, method="pearson"))
+print(df.mortalPerReOp.corr(df.prop, method="pearson"))
+
+#op
+print(df.mortalPerOp.corr(df.totalOp, method="pearson"))
+print(df.mortalPerOp.corr(df.countOp, method="pearson"))
+print(df.mortalPerOp.corr(df.prop, method="pearson"))
 
 
