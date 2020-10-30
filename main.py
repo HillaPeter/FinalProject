@@ -218,4 +218,4 @@ print(df.mortalPerOp.corr(df.countOpr, method="pearson"))
 print(df.mortalPerOp.corr(df.countFirst, method="pearson"))
 print(df.mortalPerOp.corr(df.prop, method="pearson"))
 
-scipy.stats.linregress(xy)
+
