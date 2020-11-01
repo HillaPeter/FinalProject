@@ -98,30 +98,25 @@ ageReOp = dfReOp.groupby("SiteID")["Age"].mean().reset_index(name='Mean_Age_reOp
 resultAge = pd.merge(ageOp, ageReOp, on='SiteID', how='left')
 dfAge=pd.merge(result, resultAge, on='SiteID')
 
-# ##gender
-# tmpMaleDf=dfOp[dfOp['Gender'] == 1]
-# print(tmpMaleDf)
-# tmpFemaleDf=dfOp[dfOp['Gender'] == 2]
-# resultGender = pd.merge(tmpMaleDf, tmpFemaleDf, on='SiteID', how='left')
-# dfGender=pd.merge(dfAge, resultGender, on='SiteID')
-#
 
-maleOp = dfOp.groupby("SiteID")["Gender"].count().reset_index(name='Male_op')
-maleReOp = dfReOp.groupby("SiteID")["Gender"].count().reset_index(name='Male_reOp')
-resultMale = pd.merge(maleOp, maleReOp, on='SiteID', how='left')
-dfMale=pd.merge(dfAge, resultMale, on='SiteID')
-
-femaleOp = dfOp.groupby("SiteID")["Gender"].count().reset_index(name='Female_op')
-femaleReOp = dfReOp.groupby("SiteID")["Gender"].count().reset_index(name='Female_reOp')
-resultFemale= pd.merge(femaleOp, femaleReOp, on='SiteID', how='left')
-dfFemale=pd.merge(dfMale, resultFemale, on='SiteID')
+genderOp = pd.get_dummies(dfOp["Gender"]).rename(columns=lambda x: 'opGender_' + str(x))
+dfOp=dfOp.join(genderOp)
+genderReOp = pd.get_dummies(dfReOp["Gender"]).rename(columns=lambda x: 'reOpGender_' + str(x))
+dfReOp=dfReOp.join(genderReOp)
+genderOp_grouped_male = (dfOp.groupby("SiteID")["opGender_1.0"]).sum().reset_index(name='male_Op')
+genderOp_grouped_female = (dfOp.groupby("SiteID")["opGender_2.0"]).sum().reset_index(name='female_Op')
+dfMale=pd.merge(genderOp_grouped_male, genderOp_grouped_female, on='SiteID')
+genderReOp_grouped_male = (dfReOp.groupby("SiteID")["reOpGender_1.0"]).sum().reset_index(name='male_reOp')
+genderReOp_grouped_female = (dfReOp.groupby("SiteID")["reOpGender_2.0"]).sum().reset_index(name='female_reOp')
+dfFemale=pd.merge(genderReOp_grouped_male, genderReOp_grouped_female, on='SiteID')
+dfGender=pd.merge(dfMale, dfFemale, on='SiteID')
 
 
 ##FHCAD - family history of disease
 FHCADOp = dfOp.groupby("SiteID")["FHCAD"].count().reset_index(name='FHCAD_op')
 FHCADReOp = dfReOp.groupby("SiteID")["FHCAD"].count().reset_index(name='FHCAD_reOp')
 resultFHCAD = pd.merge(FHCADOp, FHCADReOp, on='SiteID', how='left')
-dfFHCAD =pd.merge(dfFemale, resultFHCAD, on='SiteID')
+dfFHCAD =pd.merge(dfGender, resultFHCAD, on='SiteID')
 
 ##Hypertn - blood preasure
 HypertnOp = dfOp.groupby("SiteID")["Hypertn"].count().reset_index(name='Hypertn_op')
