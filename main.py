@@ -115,45 +115,49 @@ dfMerge=pd.merge(dfAge,dfGender, on='SiteID')
 
 
 ##FHCAD - family history of disease
-FHCADOp = dfOp.groupby("SiteID")["FHCAD"].count().reset_index(name='FHCAD_op')
-FHCADReOp = dfReOp.groupby("SiteID")["FHCAD"].count().reset_index(name='FHCAD_reOp')
+FHCADOp = dfOp.groupby('SiteID')['FHCAD'].apply(lambda x: (x== 1 ).sum()).reset_index(name='FHCAD_op')
+FHCADReOp =dfReOp.groupby('SiteID')['FHCAD'].apply(lambda x: (x== 1 ).sum()).reset_index(name='FHCAD_reOp')
 resultFHCAD = pd.merge(FHCADOp, FHCADReOp, on='SiteID', how='left')
 dfFHCAD =pd.merge(dfMerge, resultFHCAD, on='SiteID')
 
 
 ##Hypertn - blood preasure
-HypertnOp = dfOp.groupby("SiteID")["Hypertn"].count().reset_index(name='Hypertn_op')
-HypertnReOp = dfReOp.groupby("SiteID")["Hypertn"].count().reset_index(name='Hypertn_reOp')
+HypertnOp = dfOp.groupby("SiteID")["Hypertn"].apply(lambda x: (x== 1 ).sum()).reset_index(name='Hypertn_op')
+HypertnReOp = dfReOp.groupby("SiteID")["Hypertn"].apply(lambda x: (x== 1 ).sum()).reset_index(name='Hypertn_reOp')
 resultHypertn = pd.merge(HypertnOp, HypertnReOp, on='SiteID', how='left')
 dfHypertn =pd.merge(dfFHCAD, resultHypertn, on='SiteID')
 
 ##Diabetes
-DiabetesOp = dfOp.groupby("SiteID")["Diabetes"].count().reset_index(name='Diabetes_op')
-DiabetesReOp = dfReOp.groupby("SiteID")["Diabetes"].count().reset_index(name='Diabetes_reOp')
+DiabetesOp =  dfOp.groupby('SiteID')['Diabetes'].apply(lambda x: (x== 1 ).sum()).reset_index(name='Diabetes_op')
+DiabetesReOp = dfReOp.groupby('SiteID')['Diabetes'].apply(lambda x: (x== 1 ).sum()).reset_index(name='Diabetes_reOp')
 resultDiabetes = pd.merge(DiabetesOp, DiabetesReOp, on='SiteID', how='left')
 dfDiabetes =pd.merge(dfHypertn, resultDiabetes, on='SiteID')
 
 ##Dyslip
-DyslipOp = dfOp.groupby("SiteID")["Dyslip"].count().reset_index(name='Dyslip_op')
-DyslipReOp = dfReOp.groupby("SiteID")["Dyslip"].count().reset_index(name='Dyslip_reOp')
+DyslipOp = dfOp.groupby("SiteID")["Dyslip"].apply(lambda x: (x== 1 ).sum()).reset_index(name='Dyslip_op')
+DyslipReOp = dfReOp.groupby("SiteID")["Dyslip"].apply(lambda x: (x== 1 ).sum()).reset_index(name='Dyslip_reOp')
 resultDyslip = pd.merge(DyslipOp, DyslipReOp, on='SiteID', how='left')
 dfDyslip =pd.merge(dfDiabetes, resultDyslip, on='SiteID')
 
 ##TobaccoUse
-TobaccoUseOp = dfOp.groupby("SiteID")["TobaccoUse"].count().reset_index(name='TobaccoUse_op')
-TobaccoUseReOp = dfReOp.groupby("SiteID")["TobaccoUse"].count().reset_index(name='TobaccoUse_reOp')
-resultTobaccoUse = pd.merge(TobaccoUseOp, TobaccoUseReOp, on='SiteID', how='left')
-dfTobaccoUse =pd.merge(dfDyslip, resultTobaccoUse, on='SiteID')
+smokeEveryDayOp = dfOp.groupby("SiteID")["TobaccoUse"].apply(lambda x: ((x>= 2) & (x<6) ).sum()).reset_index(name='smoke_op')
+smokeEveryDayReOp = dfReOp.groupby("SiteID")["TobaccoUse"].apply(lambda x: ((x>= 2) & (x<6) ).sum()).reset_index(name='smoke_reOp')
+resultSmoke = pd.merge(smokeEveryDayOp, smokeEveryDayReOp, on='SiteID', how='left')
+
+
+# dfTobaccoUse =pd.merge(resultsmokeEveryDay, resultnonSmoke, on='SiteID')
+
+dfTobaccoUseResult =pd.merge(dfDyslip, resultSmoke, on='SiteID')
 
 ##Cancer
-CancerOp = dfOp.groupby("SiteID")["Cancer"].count().reset_index(name='Cancer_op')
-CancerReOp = dfReOp.groupby("SiteID")["Cancer"].count().reset_index(name='Cancer_reOp')
+CancerOp = dfOp.groupby("SiteID")["Cancer"].apply(lambda x: (x== 1 ).sum()).reset_index(name='Cancer_op')
+CancerReOp = dfReOp.groupby("SiteID")["Cancer"].apply(lambda x: (x== 1 ).sum()).reset_index(name='Cancer_reOp')
 resultCancer = pd.merge(CancerOp, CancerReOp, on='SiteID', how='left')
-dfCancer =pd.merge(dfTobaccoUse, resultCancer, on='SiteID')
+dfCancer =pd.merge(dfTobaccoUseResult, resultCancer, on='SiteID')
 
 ##PVD
-PVDOp = dfOp.groupby("SiteID")["PVD"].count().reset_index(name='PVD_op')
-PVDReOp = dfReOp.groupby("SiteID")["PVD"].count().reset_index(name='PVD_reOp')
+PVDOp = dfOp.groupby("SiteID")["PVD"].apply(lambda x: (x== 1 ).sum()).reset_index(name='PVD_op')
+PVDReOp = dfReOp.groupby("SiteID")["PVD"].apply(lambda x: (x== 1 ).sum()).reset_index(name='PVD_reOp')
 resultPVD = pd.merge(PVDOp, PVDReOp, on='SiteID', how='left')
 dfPVD =pd.merge(dfCancer, resultPVD, on='SiteID')
 
