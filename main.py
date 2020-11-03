@@ -120,6 +120,7 @@ FHCADReOp = dfReOp.groupby("SiteID")["FHCAD"].count().reset_index(name='FHCAD_re
 resultFHCAD = pd.merge(FHCADOp, FHCADReOp, on='SiteID', how='left')
 dfFHCAD =pd.merge(dfMerge, resultFHCAD, on='SiteID')
 
+print
 ##Hypertn - blood preasure
 HypertnOp = dfOp.groupby("SiteID")["Hypertn"].count().reset_index(name='Hypertn_op')
 HypertnReOp = dfReOp.groupby("SiteID")["Hypertn"].count().reset_index(name='Hypertn_reOp')
