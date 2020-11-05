@@ -80,13 +80,13 @@ plt.show()
 # dfReOp1 = feather.read_dataframe("/tmp/pycharm_project_723/dfReOp.feather")
 
 ######mortality
-MortaltyOp = dfOp.groupby("SiteID")["Mortalty"].count().reset_index(name='Mortalty_SiteID_op')
-MortaltyReOp = dfReOp.groupby("SiteID")["Mortalty"].count().reset_index(name='Mortalty_SiteID_reOp')
+MortaltyOp = dfOp.groupby('SiteID')['Mortalty'].apply(lambda x: (x== 1 ).sum()).reset_index(name='Mortalty_SiteID_op')
+MortaltyReOp = dfOp.groupby('SiteID')['Mortalty'].apply(lambda x: (x== 1 ).sum()).reset_index(name='Mortalty_SiteID_reOp')
 result2 = pd.merge(MortaltyOp, MortaltyReOp, on='SiteID', how='left')
 # result.merge(result2, on='SiteID')
 df=pd.merge(result, result2, on='SiteID')
 df["countOpr"] = result["countReOp"]+ result["countFirst"]
-df.to_csv("/tmp/pycharm_project_723/mortalty.csv")
+df.to_csv("/tmp/pycharm_project_957/mortalty.csv")
 
 
 
@@ -161,7 +161,7 @@ PVDReOp = dfReOp.groupby("SiteID")["PVD"].apply(lambda x: (x== 1 ).sum()).reset_
 resultPVD = pd.merge(PVDOp, PVDReOp, on='SiteID', how='left')
 dfPVD =pd.merge(dfCancer, resultPVD, on='SiteID')
 
-dfPVD.to_csv("/tmp/pycharm_project_723/riskFactors.csv")
+dfPVD.to_csv("/tmp/pycharm_project_957/riskFactors.csv")
 # df=pd.read_csv("mortalty.csv")
 #reOp
 
