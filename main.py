@@ -1,40 +1,13 @@
-# #import modin.pandas as pd
-# import pandas as pd
-# import matplotlib.pyplot as plt
-# import asyncio
-#
-#
-# ###################
-# async def readData(path, nameIndex):
-#   data = await pd.read_csv(path)
-#   groupData = data.groupby("SiteID")["SiteID"].count().reset_index(name=nameIndex)
-#   return groupData
-#
-# async def main():
-#   values = await asyncio.gather(readData("/mnt/nadavrap-students/STS/data/Shapira_1st-Op_6_9_20_.csv", 'countOp'), readData("/mnt/nadavrap-students/STS/data/Shapira_reOp_6_9_20_.csv", 'countReOp'))
-#   groupOp = values[0]
-#   groupReOp = values[1]
-#   #Full data
-#   #groupOp = readData("/mnt/nadavrap-students/STS/data/Shapira_1st-Op_6_9_20_.csv", 'countOp')
-#   #ReOp data
-#   #groupReOp = readData("/mnt/nadavrap-students/STS/data/Shapira_reOp_6_9_20_.csv", 'countReOp')
-#
-#   ##merge two dataframes into one and gets the ratio between them
-#   result = pd.merge(groupOp, groupReOp, on='SiteID', how='left')
-#   result=result.dropna()
-#   result["countReOp/countOp"] =  (result["countReOp"] / result["countOp"]) *100
-#
-#   #draw a plot
-#   ax = result.plot.bar(x='SiteID', y='countReOp/countOp', rot=0)
-#   plt.show()
-#
-# asyncio.run(main())
-
-
 import pandas as pd
 import matplotlib.pyplot as plt
 
 ###################
+yaara="723"
+daniel = "957"
+hilla="355"
+generic_path = "/tmp/pycharm_project_"+yaara+"/"
+
+
 
 #Full data
 dfOp = pd.read_csv("/mnt/nadavrap-students/STS/data/Shapira_1st-Op_6_9_20_.csv")
@@ -46,6 +19,7 @@ plt.title("Histogram of count Operation")
 plt.xlabel('number of Operations')
 plt.ylabel('count of SiteId')
 plt.show()
+plt.savefig('Histogram of count Operation.png')
 
 #ReOp data
 dfReOp = pd.read_csv("/mnt/nadavrap-students/STS/data/Shapira_reOp_6_9_20_.csv")
@@ -57,13 +31,14 @@ plt.title("Histogram of count ReOperation")
 plt.xlabel('number of ReOperations')
 plt.ylabel('count of SiteId')
 plt.show()
+plt.savefig('Histogram of count ReOperation.png')
 
 ##merge two dataframes into one and gets the ratio between them
 result = pd.merge(groupOp, groupReOp, on='SiteID', how='left')
 result['countReOp'].fillna(0, inplace=True)
 result["countReOp/countFirst+countReOp"] =  (result["countReOp"] /(result["countReOp"]+ result["countFirst"])) *100
 result['countReOp/countFirst+countReOp'].fillna(0, inplace=True)
-# result.to_csv("/tmp/pycharm_project_355/result.csv")
+result.to_csv(generic_path+"result.csv")
 #draw a plot
 z = result['countReOp/countFirst+countReOp']
 plt.hist(z, bins=40)
@@ -71,6 +46,7 @@ plt.title("Histogram of  ReOperation vs Operation")
 plt.xlabel('% of ReOperation of Operation')
 plt.ylabel('count of SiteId')
 plt.show()
+plt.savefig('Histogram of ReOperation vs Operation.png')
 
 ########### nadav recomend ###############
 # import feather
@@ -81,12 +57,12 @@ plt.show()
 
 ######mortality
 MortaltyOp = dfOp.groupby('SiteID')['Mortalty'].apply(lambda x: (x== 1 ).sum()).reset_index(name='Mortalty_SiteID_op')
-MortaltyReOp = dfOp.groupby('SiteID')['Mortalty'].apply(lambda x: (x== 1 ).sum()).reset_index(name='Mortalty_SiteID_reOp')
+MortaltyReOp = dfReOp.groupby('SiteID')['Mortalty'].apply(lambda x: (x== 1 ).sum()).reset_index(name='Mortalty_SiteID_reOp')
 result2 = pd.merge(MortaltyOp, MortaltyReOp, on='SiteID', how='left')
 # result.merge(result2, on='SiteID')
 df=pd.merge(result, result2, on='SiteID')
 df["countOpr"] = result["countReOp"]+ result["countFirst"]
-df.to_csv("/tmp/pycharm_project_957/mortalty.csv")
+df.to_csv(generic_path+"mortalty.csv")
 
 
 
@@ -161,7 +137,7 @@ PVDReOp = dfReOp.groupby("SiteID")["PVD"].apply(lambda x: (x== 1 ).sum()).reset_
 resultPVD = pd.merge(PVDOp, PVDReOp, on='SiteID', how='left')
 dfPVD =pd.merge(dfCancer, resultPVD, on='SiteID')
 
-dfPVD.to_csv("/tmp/pycharm_project_957/riskFactors.csv")
+dfPVD.to_csv(generic_path+"riskFactors.csv")
 # df=pd.read_csv("mortalty.csv")
 #reOp
 
@@ -171,38 +147,45 @@ df['prop']=df['countReOp/countFirst+countReOp']
 #1
 df.plot(kind='scatter', x='countOpr', y='mortalPerReOp', title="Mortality of reOp - total Ops")
 plt.show()
+plt.savefig('Mortality of reOp - total Ops.png')
 
 #2
 df.plot(kind='scatter', x='countReOp', y='mortalPerReOp', title="Mortality of reOp - reOps")
 plt.show()
+plt.savefig('Mortality of reOp - reOps.png')
 
 #3
 df.plot(kind='scatter', x='countReOp/countFirst+countReOp', y='mortalPerReOp', title="Mortality of reOp - reOp/(reOp+Ops)")
 plt.show()
+plt.savefig('Mortality of reOp - reOp_reOp+Ops.png')
 
 ###oP
 #1
 df['mortalPerOp']=(df['Mortalty_SiteID_op']/df['countFirst'])*100
 df.plot(kind='scatter', x='countOpr', y='mortalPerOp', title="Mortality of op - total Ops")
 plt.show()
+plt.savefig('Mortality of op - total Ops.png')
 
 #2
 df.plot(kind='scatter', x='countFirst', y='mortalPerOp', title="Mortality of op - ops")
 plt.show()
+plt.savefig('Mortality of op - ops.png')
 
 #3
 df.plot(kind='scatter', x='countReOp/countFirst+countReOp', y='mortalPerOp', title="Mortality of op - reOp/(reOp+Ops)")
 plt.show()
-
+plt.savefig('Mortality of op - reOp_reOp+Ops.png')
 
 #spearman
 print("spearman")
+print("Reop:")
 #reOp
 print(df.mortalPerReOp.corr(df.countOpr, method="spearman"))
 print(df.mortalPerReOp.corr(df.countReOp, method="spearman"))
 print(df.mortalPerReOp.corr(df.prop, method="spearman"))
 
 #op
+print("First op:")
 print(df.mortalPerOp.corr(df.countOpr, method="spearman"))
 print(df.mortalPerOp.corr(df.countFirst, method="spearman"))
 print(df.mortalPerOp.corr(df.prop, method="spearman"))
@@ -211,17 +194,17 @@ print(df.mortalPerOp.corr(df.prop, method="spearman"))
 #pearson
 print("pearson")
 #reOp
+print("Reop:")
 print(df.mortalPerReOp.corr(df.countOpr, method="pearson"))
 print(df.mortalPerReOp.corr(df.countReOp, method="pearson"))
 print(df.mortalPerReOp.corr(df.prop, method="pearson"))
 
 #op
+print("First op:")
 print(df.mortalPerOp.corr(df.countOpr, method="pearson"))
 print(df.mortalPerOp.corr(df.countFirst, method="pearson"))
 print(df.mortalPerOp.corr(df.prop, method="pearson"))
 
-
-import pandas as pd
 from sklearn import linear_model
 import statsmodels.api as sm
 
@@ -251,8 +234,8 @@ perOp = {
     'PVD_op': (df['PVD_op']/df['countFirst_x']) * 100,
     }
 
-dfOp = pd.DataFrame(perOp, columns = ['SiteID','Mortalty_SiteID_op','Mean_Age_op', 'female_Op','male_Op','FHCAD_op','Hypertn_op','Diabetes_op','Dyslip_op','smoke_op','Cancer_op','PVD_op'])
-#dfOp.to_csv("opPercentage.csv", index=False)
+dfOp = pd.DataFrame(perOp, columns=['SiteID','Mortalty_SiteID_op','Mean_Age_op', 'female_Op','male_Op','FHCAD_op','Hypertn_op','Diabetes_op','Dyslip_op','smoke_op','Cancer_op','PVD_op'])
+dfOp.to_csv(generic_path+"opPercentage.csv", index=False)
 
 
 perReOp = {
@@ -272,7 +255,7 @@ perReOp = {
 
 
 dfReOp = pd.DataFrame(perReOp, columns = ['SiteID','Mortalty_SiteID_reOp','Mean_Age_reOp', 'female_reOp','male_reOp','FHCAD_reOp','Hypertn_reOp','Diabetes_reOp','Dyslip_reOp','smoke_reOp','Cancer_reOp','PVD_reOp'])
-#dfReOp.to_csv("reOpPercentage.csv", index=False)
+dfReOp.to_csv("reOpPercentage.csv", index=False)
 
 #op!
 print()
