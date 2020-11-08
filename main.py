@@ -1,11 +1,14 @@
 import pandas as pd
 import matplotlib.pyplot as plt
-
+import scipy.stats
+from sklearn import linear_model
+import statsmodels.api as sm
+from scipy import stats
 ###################
 yaara="723"
 daniel = "957"
 hilla="355"
-generic_path = "/tmp/pycharm_project_"+yaara+"/"
+generic_path = "/tmp/pycharm_project_"+hilla+"/"
 
 
 
@@ -119,10 +122,6 @@ dfDyslip =pd.merge(dfDiabetes, resultDyslip, on='SiteID')
 smokeEveryDayOp = dfOp.groupby("SiteID")["TobaccoUse"].apply(lambda x: ((x>= 2) & (x<6) ).sum()).reset_index(name='smoke_op')
 smokeEveryDayReOp = dfReOp.groupby("SiteID")["TobaccoUse"].apply(lambda x: ((x>= 2) & (x<6) ).sum()).reset_index(name='smoke_reOp')
 resultSmoke = pd.merge(smokeEveryDayOp, smokeEveryDayReOp, on='SiteID', how='left')
-
-
-# dfTobaccoUse =pd.merge(resultsmokeEveryDay, resultnonSmoke, on='SiteID')
-
 dfTobaccoUseResult =pd.merge(dfDyslip, resultSmoke, on='SiteID')
 
 ##Cancer
@@ -176,40 +175,42 @@ df.plot(kind='scatter', x='countReOp/countFirst+countReOp', y='mortalPerOp', tit
 plt.show()
 plt.savefig('Mortality of op - reOp_reOp+Ops.png')
 
+df_mortality=pd.read_csv("mortalty.csv")
+df_mortality['Mortalty_SiteID_reOp']=df_mortality['Mortalty_SiteID_reOp'].fillna(0)
+df_mortality['prop']=df_mortality['countReOp']/df_mortality['countOpr']
+
 #spearman
 print("spearman")
 print("Reop:")
-#reOp
-print(df.mortalPerReOp.corr(df.countOpr, method="spearman"))
-print(df.mortalPerReOp.corr(df.countReOp, method="spearman"))
-print(df.mortalPerReOp.corr(df.prop, method="spearman"))
-
+print("pvalue ReOp all ops(include reOps) ",stats.spearmanr(a=df_mortality['Mortalty_SiteID_reOp'],b=df_mortality['countOpr'],nan_policy='omit')[1])
+print("pvalue ReOp only reOps ",stats.spearmanr(a=df_mortality['countFirst'],b=df_mortality['countOpr'],nan_policy='omit')[1])
+print("pvalue ReOp prop re/total " ,stats.spearmanr(a=df_mortality['Mortalty_SiteID_reOp'],b=df_mortality['prop'],nan_policy='omit')[1])
+print()
 #op
 print("First op:")
-print(df.mortalPerOp.corr(df.countOpr, method="spearman"))
-print(df.mortalPerOp.corr(df.countFirst, method="spearman"))
-print(df.mortalPerOp.corr(df.prop, method="spearman"))
-
+print("pvalue FirstOp all ops(include reOps) ",stats.spearmanr(a=df_mortality['Mortalty_SiteID_op'],b=df_mortality['countOpr'],nan_policy='omit')[1])
+print("pvalue FirstOp only Ops ",stats.spearmanr(a=df_mortality['Mortalty_SiteID_op'],b=df_mortality['countFirst'],nan_policy='omit')[1])
+print("pvalue FirstOp prop re/total " , stats.spearmanr(a=df_mortality['Mortalty_SiteID_op'],b=df_mortality['prop'],nan_policy='omit')[1])
+print("")
 
 #pearson
 print("pearson")
 #reOp
 print("Reop:")
-print(df.mortalPerReOp.corr(df.countOpr, method="pearson"))
-print(df.mortalPerReOp.corr(df.countReOp, method="pearson"))
-print(df.mortalPerReOp.corr(df.prop, method="pearson"))
+print("pvalue ReOp all ops(include reOps) ",stats.pearsonr(x=df_mortality['Mortalty_SiteID_reOp'],y=df_mortality['countOpr'])[1])
+print("pvalue ReOp only reOps ",stats.pearsonr(df_mortality['Mortalty_SiteID_reOp'],df_mortality['countFirst'])[1])
+print("pvalue ReOp prop re/total " ,stats.pearsonr(df_mortality['Mortalty_SiteID_reOp'],df_mortality['prop'])[1])
 
 #op
 print("First op:")
-print(df.mortalPerOp.corr(df.countOpr, method="pearson"))
-print(df.mortalPerOp.corr(df.countFirst, method="pearson"))
-print(df.mortalPerOp.corr(df.prop, method="pearson"))
+print("pvalue FirstOp all ops(include reOps) ",stats.pearsonr(x=df_mortality['Mortalty_SiteID_op'],y=df_mortality['countOpr'])[1])
+print("pvalue FirstOp only reOps ",stats.pearsonr(df_mortality['Mortalty_SiteID_op'],df_mortality['countFirst'])[1])
+print("pvalue FirstOp prop re/total ",stats.pearsonr(df_mortality['Mortalty_SiteID_op'],df_mortality['prop'])[1])
 
-from sklearn import linear_model
-import statsmodels.api as sm
+
 
 df_risk=pd.read_csv("riskFactors.csv")
-df_mortality=pd.read_csv("mortalty.csv")
+
 
 df= pd.merge(df_risk,df_mortality, on='SiteID')
 
