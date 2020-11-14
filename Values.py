@@ -104,7 +104,7 @@ def group_by_mean(group_by_value,column_name,name):
     df_merge_4=pd.merge(df_merge_3,df_2018_2019_gb, on=group_by_value)
 
     cols = df_merge_4.columns.difference([group_by_value])
-    df_merge_4[name] = df_merge_4.loc[:,cols].sum(axis=1)
+    df_merge_4[name] = df_merge_4.loc[:,cols].mean(axis=1)
 
     df_new=pd.DataFrame()
     df_new[group_by_value] = df_merge_4[group_by_value]
@@ -146,11 +146,11 @@ for val in values:
     df_fhcad=group_by_sum(val,'fhcad',1)
     df_merge_3=pd.merge(df_merge_2,df_fhcad,on=val)
 
-    # df_weightkg=group_by_mean(val,'weightkg','mean_weightkg')
-    # df_merge_4=pd.merge(df_merge_3,df_weightkg,on=val)
+    df_weightkg=group_by_mean(val,'weightkg','mean_weightkg')
+    df_merge_4=pd.merge(df_merge_3,df_weightkg,on=val)
 
     df_diabetes=group_by_sum(val,'diabetes',1)
-    df_merge_5=pd.merge(df_merge_3,df_diabetes,on=val)
+    df_merge_5=pd.merge(df_merge_4,df_diabetes,on=val)
 
     df_predmort=group_by_mean(val,'predmort','mean_predmort')
     df_merge_6=pd.merge(df_merge_5,df_predmort,on=val)
