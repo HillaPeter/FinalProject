@@ -6,7 +6,11 @@ df_2010_2011 = pd.read_csv("/mnt/nadavrap-students/STS/data/data_Shapira_2020091
 df_2012_2013 = pd.read_csv("/mnt/nadavrap-students/STS/data/data_Shapira_20200911_2012_2013.csv")
 df_2014_2015 = pd.read_csv("/mnt/nadavrap-students/STS/data/data_Shapira_20200911_2014_2015.csv")
 df_2016_2017 = pd.read_csv("/mnt/nadavrap-students/STS/data/data_Shapira_20200911_2016_2017.csv")
-# df_2018_2019 = pd.read_csv("/mnt/nadavrap-students/STS/data/data_Shapira_20200911_2018_2019.csv")
+df_2018_2019 = pd.read_csv("/mnt/nadavrap-students/STS/data/data_Shapira_20200911_2018_2019.csv")
+
+# #tmpHilla=df_2018_2019.columns
+# tmpHilla=pd.DataFrame(df_2018_2019.columns.values.tolist())
+# tmpHilla.to_csv("/tmp/pycharm_project_355/columns.csv")
 
 my_list = df_2010_2011.columns.values.tolist()
 print (my_list)
@@ -18,6 +22,9 @@ my_list = df_2014_2015.columns.values.tolist()
 print (my_list)
 print()
 my_list = df_2016_2017.columns.values.tolist()
+print (my_list)
+print()
+my_list = df_2018_2019.columns.values.tolist()
 print (my_list)
 print()
 
@@ -38,6 +45,8 @@ df_2014 = df_2014_2015.groupby('siteid')['surgyear'].apply(lambda x: (x== 2014 )
 df_2015 = df_2014_2015.groupby('siteid')['surgyear'].apply(lambda x: (x== 2015 ).sum()).reset_index(name='2015')
 df_2016 = df_2016_2017.groupby('siteid')['surgyear'].apply(lambda x: (x== 2016 ).sum()).reset_index(name='2016')
 df_2017 = df_2016_2017.groupby('siteid')['surgyear'].apply(lambda x: (x== 2017 ).sum()).reset_index(name='2017')
+df_2018 = df_2018_2019.groupby('siteid')['surgyear'].apply(lambda x: (x== 2018 ).sum()).reset_index(name='2018')
+df_2019 = df_2018_2019.groupby('siteid')['surgyear'].apply(lambda x: (x== 2019 ).sum()).reset_index(name='2019')
 
 
 df1 =pd.merge(df_2010, df_2011, on='siteid')
@@ -46,7 +55,9 @@ df3 =pd.merge(df2, df_2013, on='siteid')
 df4 =pd.merge(df3, df_2014, on='siteid')
 df5 =pd.merge(df4, df_2015, on='siteid')
 df6 =pd.merge(df5, df_2016, on='siteid')
-df_sum_all_Years =pd.merge(df6, df_2017, on='siteid')
+df7 =pd.merge(df6, df_2017, on='siteid')
+df8 =pd.merge(df7, df_2018, on='siteid')
+df_sum_all_Years =pd.merge(df8, df_2019, on='siteid')
 
 cols = df_sum_all_Years.columns.difference(['siteid'])
 df_sum_all_Years['Distinct_years'] = df_sum_all_Years[cols].gt(0).sum(axis=1)

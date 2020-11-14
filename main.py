@@ -65,6 +65,7 @@ result2 = pd.merge(MortaltyOp, MortaltyReOp, on='SiteID', how='left')
 # result.merge(result2, on='SiteID')
 df=pd.merge(result, result2, on='SiteID')
 df["countOpr"] = result["countReOp"]+ result["countFirst"]
+countOpr=df['countOpr']
 df.to_csv(generic_path+"mortalty.csv")
 
 
@@ -140,44 +141,48 @@ dfPVD.to_csv(generic_path+"riskFactors.csv")
 # df=pd.read_csv("mortalty.csv")
 #reOp
 
-df['mortalPerReOp']=(df['Mortalty_SiteID_reOp']/df['countReOp'])*100
-df['prop']=df['countReOp/countFirst+countReOp']
+# df['mortalPerReOp']=(df['Mortalty_SiteID_reOp']/df['countReOp'])*100
+#df['prop']=df['countReOp/countFirst+countReOp']
+# mortalPerReOp=df['mortalPerReOp']
+# mortalPerOp=df['mortalPerOp']
+
+df_mortality=pd.read_csv("mortalty.csv")
+df_mortality['Mortalty_SiteID_reOp']=df_mortality['Mortalty_SiteID_reOp'].fillna(0)
+df_mortality['prop']=df_mortality['countReOp']/df_mortality['countOpr']
+
 
 #1
-df.plot(kind='scatter', x='countOpr', y='mortalPerReOp', title="Mortality of reOp - total Ops")
+df_mortality.plot(kind='scatter', x='countOpr', y='Mortalty_SiteID_reOp', title="Mortality of reOp - total Ops")
 plt.show()
 plt.savefig('Mortality of reOp - total Ops.png')
 
 #2
-df.plot(kind='scatter', x='countReOp', y='mortalPerReOp', title="Mortality of reOp - reOps")
+df_mortality.plot(kind='scatter', x='countReOp', y='Mortalty_SiteID_reOp', title="Mortality of reOp - reOps")
 plt.show()
 plt.savefig('Mortality of reOp - reOps.png')
 
 #3
-df.plot(kind='scatter', x='countReOp/countFirst+countReOp', y='mortalPerReOp', title="Mortality of reOp - reOp/(reOp+Ops)")
+df_mortality.plot(kind='scatter', x='prop', y='Mortalty_SiteID_reOp', title="Mortality of reOp - reOp/(reOp+Ops)")
 plt.show()
 plt.savefig('Mortality of reOp - reOp_reOp+Ops.png')
 
 ###oP
 #1
-df['mortalPerOp']=(df['Mortalty_SiteID_op']/df['countFirst'])*100
-df.plot(kind='scatter', x='countOpr', y='mortalPerOp', title="Mortality of op - total Ops")
+# df['mortalPerOp']=(df['Mortalty_SiteID_op']/df['countFirst'])*100
+df_mortality.plot(kind='scatter', x='countOpr', y='Mortalty_SiteID_op', title="Mortality of op - total Ops")
 plt.show()
 plt.savefig('Mortality of op - total Ops.png')
 
 #2
-df.plot(kind='scatter', x='countFirst', y='mortalPerOp', title="Mortality of op - ops")
+df_mortality.plot(kind='scatter', x='countFirst', y='Mortalty_SiteID_op', title="Mortality of op - ops")
 plt.show()
 plt.savefig('Mortality of op - ops.png')
 
 #3
-df.plot(kind='scatter', x='countReOp/countFirst+countReOp', y='mortalPerOp', title="Mortality of op - reOp/(reOp+Ops)")
+df_mortality.plot(kind='scatter', x='prop', y='Mortalty_SiteID_op', title="Mortality of op - reOp/(reOp+Ops)")
 plt.show()
 plt.savefig('Mortality of op - reOp_reOp+Ops.png')
 
-df_mortality=pd.read_csv("mortalty.csv")
-df_mortality['Mortalty_SiteID_reOp']=df_mortality['Mortalty_SiteID_reOp'].fillna(0)
-df_mortality['prop']=df_mortality['countReOp']/df_mortality['countOpr']
 
 #spearman
 print("spearman")
