@@ -132,9 +132,8 @@ def group_by_sum_2_values(group_by_value,column_name,lambda_val_start,lambda_val
     df_new[column_name] = df_merge_4[column_name]
 
     return df_new
-## TODO: gender
-# def gender():
-values=['siteid','surgid']
+
+values=['siteid','surgid','hospid']
 
 for val in values:
     df_mortality= group_by_sum(val,'mt30stat',2)
@@ -147,11 +146,11 @@ for val in values:
     df_fhcad=group_by_sum(val,'fhcad',1)
     df_merge_3=pd.merge(df_merge_2,df_fhcad,on=val)
 
-    df_weightkg=group_by_mean(val,'weightkg','mean_weightkg')
-    df_merge_4=pd.merge(df_merge_3,df_weightkg,on=val)
+    # df_weightkg=group_by_mean(val,'weightkg','mean_weightkg')
+    # df_merge_4=pd.merge(df_merge_3,df_weightkg,on=val)
 
     df_diabetes=group_by_sum(val,'diabetes',1)
-    df_merge_5=pd.merge(df_merge_4,df_diabetes,on=val)
+    df_merge_5=pd.merge(df_merge_3,df_diabetes,on=val)
 
     df_predmort=group_by_mean(val,'predmort','mean_predmort')
     df_merge_6=pd.merge(df_merge_5,df_predmort,on=val)
@@ -183,6 +182,16 @@ for val in values:
     df_alcohol=group_by_sum(val,'alcohol',1)
     df_merge_14=pd.merge(df_merge_13,df_alcohol,on=val)
 
-    df_merge_14.to_csv(path+val+"_new_data.csv")
+    df_female = group_by_sum(val,'gender', 2)
+    df_merge_15 = pd.merge(df_merge_14, df_female, on=val)
+
+    df_male = group_by_sum(val, 'gender', 1)
+    df_merge_16 = pd.merge(df_merge_15, df_male, on=val)
+
+    df_merge_16['female']=df_merge_16['gender_x']
+    df_merge_16['male']=df_merge_16['gender_y']
+    df_merge_16.drop(['gender_x', 'gender_y'], inplace=True, axis=1)
+
+    df_merge_16.to_csv(path+val+"_new_data.csv")
 
 #surgid
