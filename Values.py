@@ -92,23 +92,37 @@ def group_by_count(group_by_value,name):
     return df_new
 
 def group_by_mean(group_by_value,column_name,name):
-    df_2010_2011_gb = df_2010_2011.groupby(group_by_value)[column_name].mean().reset_index(name=name)
-    df_2012_2013_gb = df_2012_2013.groupby(group_by_value)[column_name].mean().reset_index(name=name)
-    df_2014_2015_gb = df_2014_2015.groupby(group_by_value)[column_name].mean().reset_index(name=name)
-    df_2016_2017_gb = df_2016_2017.groupby(group_by_value)[column_name].mean().reset_index(name=name)
-    df_2018_2019_gb = df_2018_2019.groupby(group_by_value)[column_name].mean().reset_index(name=name)
+    df_2010_2011_gb_sum = df_2010_2011.groupby(group_by_value)[column_name].sum().reset_index(name=name)
+    df_2010_2011_gb_count = df_2010_2011.groupby(group_by_value)[column_name].count().reset_index(name=name)
+    df_2012_2013_gb_sum = df_2012_2013.groupby(group_by_value)[column_name].sum().reset_index(name=name)
+    df_2012_2013_gb_count = df_2012_2013.groupby(group_by_value)[column_name].count().reset_index(name=name)
+    df_2014_2015_gb_sum = df_2014_2015.groupby(group_by_value)[column_name].sum().reset_index(name=name)
+    df_2014_2015_gb_count = df_2014_2015.groupby(group_by_value)[column_name].count().reset_index(name=name)
+    df_2016_2017_gb_sum = df_2016_2017.groupby(group_by_value)[column_name].sum().reset_index(name=name)
+    df_2016_2017_gb_count = df_2016_2017.groupby(group_by_value)[column_name].count().reset_index(name=name)
+    df_2018_2019_gb_sum = df_2018_2019.groupby(group_by_value)[column_name].sum().reset_index(name=name)
+    df_2018_2019_gb_count = df_2018_2019.groupby(group_by_value)[column_name].count().reset_index(name=name)
 
-    df_merge_1=pd.merge(df_2010_2011_gb,df_2012_2013_gb, on=group_by_value)
-    df_merge_2=pd.merge(df_merge_1,df_2014_2015_gb, on=group_by_value)
-    df_merge_3=pd.merge(df_merge_2,df_2016_2017_gb, on=group_by_value)
-    df_merge_4=pd.merge(df_merge_3,df_2018_2019_gb, on=group_by_value)
+    df_merge_1_sum=pd.merge(df_2010_2011_gb_sum,df_2012_2013_gb_sum, on=group_by_value)
+    df_merge_2_sum=pd.merge(df_merge_1_sum,df_2014_2015_gb_sum, on=group_by_value)
+    df_merge_3_sum=pd.merge(df_merge_2_sum,df_2016_2017_gb_sum, on=group_by_value)
+    df_merge_4_sum=pd.merge(df_merge_3_sum,df_2018_2019_gb_sum, on=group_by_value)
 
-    cols = df_merge_4.columns.difference([group_by_value])
-    df_merge_4[name] = df_merge_4.loc[:,cols].sum(axis=1)
+    df_merge_1_count = pd.merge(df_2010_2011_gb_count, df_2012_2013_gb_count, on=group_by_value)
+    df_merge_2_count = pd.merge(df_merge_1_count, df_2014_2015_gb_count, on=group_by_value)
+    df_merge_3_count = pd.merge(df_merge_2_count, df_2016_2017_gb_count, on=group_by_value)
+    df_merge_4_count = pd.merge(df_merge_3_count, df_2018_2019_gb_count, on=group_by_value)
+
+
+    cols_sum = df_merge_4_sum.columns.difference([group_by_value])
+    df_merge_4_sum[name] = df_merge_4_sum.loc[:,cols_sum].sum(axis=1)
+
+    cols_count = df_merge_4_count.columns.difference([group_by_value])
+    df_merge_4_count[name] = df_merge_4_count.loc[:, cols_count].sum(axis=1)
 
     df_new=pd.DataFrame()
-    df_new[group_by_value] = df_merge_4[group_by_value]
-    df_new[name] = df_merge_4[name]
+    df_new[group_by_value] = df_merge_4_sum[group_by_value]
+    df_new[name] = df_merge_4_sum[name]/df_merge_4_count[name]
 
     return df_new
 
@@ -132,9 +146,8 @@ def group_by_sum_2_values(group_by_value,column_name,lambda_val_start,lambda_val
     df_new[column_name] = df_merge_4[column_name]
 
     return df_new
-## TODO: gender
-# def gender():
-values=['siteid','surgid']
+
+values=['siteid','surgid','hospid']
 
 for val in values:
     df_mortality= group_by_sum(val,'mt30stat',2)
@@ -183,6 +196,16 @@ for val in values:
     df_alcohol=group_by_sum(val,'alcohol',1)
     df_merge_14=pd.merge(df_merge_13,df_alcohol,on=val)
 
-    df_merge_14.to_csv(path+val+"_new_data.csv")
+    df_female = group_by_sum(val,'gender', 2)
+    df_merge_15 = pd.merge(df_merge_14, df_female, on=val)
+
+    df_male = group_by_sum(val, 'gender', 1)
+    df_merge_16 = pd.merge(df_merge_15, df_male, on=val)
+
+    df_merge_16['female']=df_merge_16['gender_x']
+    df_merge_16['male']=df_merge_16['gender_y']
+    df_merge_16.drop(['gender_x', 'gender_y'], inplace=True, axis=1)
+
+    df_merge_16.to_csv(path+val+"_new_data.csv")
 
 #surgid
