@@ -92,23 +92,37 @@ def group_by_count(group_by_value,name):
     return df_new
 
 def group_by_mean(group_by_value,column_name,name):
-    df_2010_2011_gb = df_2010_2011.groupby(group_by_value)[column_name].mean().reset_index(name=name)
-    df_2012_2013_gb = df_2012_2013.groupby(group_by_value)[column_name].mean().reset_index(name=name)
-    df_2014_2015_gb = df_2014_2015.groupby(group_by_value)[column_name].mean().reset_index(name=name)
-    df_2016_2017_gb = df_2016_2017.groupby(group_by_value)[column_name].mean().reset_index(name=name)
-    df_2018_2019_gb = df_2018_2019.groupby(group_by_value)[column_name].mean().reset_index(name=name)
+    df_2010_2011_gb_sum = df_2010_2011.groupby(group_by_value)[column_name].sum().reset_index(name=name)
+    df_2010_2011_gb_count = df_2010_2011.groupby(group_by_value)[column_name].count().reset_index(name=name)
+    df_2012_2013_gb_sum = df_2012_2013.groupby(group_by_value)[column_name].sum().reset_index(name=name)
+    df_2012_2013_gb_count = df_2012_2013.groupby(group_by_value)[column_name].count().reset_index(name=name)
+    df_2014_2015_gb_sum = df_2014_2015.groupby(group_by_value)[column_name].sum().reset_index(name=name)
+    df_2014_2015_gb_count = df_2014_2015.groupby(group_by_value)[column_name].count().reset_index(name=name)
+    df_2016_2017_gb_sum = df_2016_2017.groupby(group_by_value)[column_name].sum().reset_index(name=name)
+    df_2016_2017_gb_count = df_2016_2017.groupby(group_by_value)[column_name].count().reset_index(name=name)
+    df_2018_2019_gb_sum = df_2018_2019.groupby(group_by_value)[column_name].sum().reset_index(name=name)
+    df_2018_2019_gb_count = df_2018_2019.groupby(group_by_value)[column_name].count().reset_index(name=name)
 
-    df_merge_1=pd.merge(df_2010_2011_gb,df_2012_2013_gb, on=group_by_value)
-    df_merge_2=pd.merge(df_merge_1,df_2014_2015_gb, on=group_by_value)
-    df_merge_3=pd.merge(df_merge_2,df_2016_2017_gb, on=group_by_value)
-    df_merge_4=pd.merge(df_merge_3,df_2018_2019_gb, on=group_by_value)
+    df_merge_1_sum=pd.merge(df_2010_2011_gb_sum,df_2012_2013_gb_sum, on=group_by_value)
+    df_merge_2_sum=pd.merge(df_merge_1_sum,df_2014_2015_gb_sum, on=group_by_value)
+    df_merge_3_sum=pd.merge(df_merge_2_sum,df_2016_2017_gb_sum, on=group_by_value)
+    df_merge_4_sum=pd.merge(df_merge_3_sum,df_2018_2019_gb_sum, on=group_by_value)
 
-    cols = df_merge_4.columns.difference([group_by_value])
-    df_merge_4[name] = df_merge_4.loc[:,cols].mean(axis=1)
+    df_merge_1_count = pd.merge(df_2010_2011_gb_count, df_2012_2013_gb_count, on=group_by_value)
+    df_merge_2_count = pd.merge(df_merge_1_count, df_2014_2015_gb_count, on=group_by_value)
+    df_merge_3_count = pd.merge(df_merge_2_count, df_2016_2017_gb_count, on=group_by_value)
+    df_merge_4_count = pd.merge(df_merge_3_count, df_2018_2019_gb_count, on=group_by_value)
+
+
+    cols_sum = df_merge_4_sum.columns.difference([group_by_value])
+    df_merge_4_sum[name] = df_merge_4_sum.loc[:,cols_sum].sum(axis=1)
+
+    cols_count = df_merge_4_count.columns.difference([group_by_value])
+    df_merge_4_count[name] = df_merge_4_count.loc[:, cols_count].sum(axis=1)
 
     df_new=pd.DataFrame()
-    df_new[group_by_value] = df_merge_4[group_by_value]
-    df_new[name] = df_merge_4[name]
+    df_new[group_by_value] = df_merge_4_sum[group_by_value]
+    df_new[name] = df_merge_4_sum[name]/df_merge_4_count[name]
 
     return df_new
 
