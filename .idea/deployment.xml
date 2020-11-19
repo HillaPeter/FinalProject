@@ -9,20 +9,6 @@
           </mappings>
         </serverdata>
       </paths>
-      <paths name="hillapet@132.72.64.21:22 (1)">
-        <serverdata>
-          <mappings>
-            <mapping local="$PROJECT_DIR$" web="/" />
-          </mappings>
-        </serverdata>
-      </paths>
-      <paths name="hillapet@132.72.64.21:22 (2)">
-        <serverdata>
-          <mappings>
-            <mapping deploy="/tmp/pycharm_project_91" local="$PROJECT_DIR$" />
-          </mappings>
-        </serverdata>
-      </paths>
     </serverData>
     <option name="myAutoUpload" value="ALWAYS" />
   </component>
