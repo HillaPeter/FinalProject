@@ -12,12 +12,17 @@ df_hospid= pd.read_csv(path+"hospid_new_data.csv")
 
 
 def mortality_total(df,title):
-    df.plot(kind='scatter', x='total', y='mt30stat', title=title)
+    df.plot(kind='scatter', x='total', y='mortal_prec', title=title)
     plt.show()
 
-# mortality_total(df_siteid, " site id: mortality - total ops")
-# mortality_total(df_surgid, " surgeon id: mortality - total ops")
-# mortality_total(df_hospid, " hospital id: mortality - total ops")
+df_siteid['mortal_prec']=(df_siteid['mt30stat']/df_siteid['total']) * 100
+mortality_total(df_siteid, " site id: mortality - total ops")
+
+df_surgid['mortal_prec']=(df_surgid['mt30stat']/df_surgid['total']) * 100
+mortality_total(df_surgid, " surgeon id: mortality - total ops")
+
+df_hospid['mortal_prec']=(df_hospid['mt30stat']/df_hospid['total']) * 100
+mortality_total(df_hospid, " hospital id: mortality - total ops")
 
 
 
