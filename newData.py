@@ -86,7 +86,7 @@ def groupby_siteid():
     df_sum_all_Years['Year_sum'] =df_sum_all_Years.loc[:,cols_sum].sum(axis=1)
     df_sum_all_Years['Year_avg'] = df_sum_all_Years['Year_sum']/df_sum_all_Years['Distinct_years']
     df_sum_all_Years.to_csv("total op sum all years siteid.csv")
-    print(df_sum_all_Years)
+    print("details on site id dist:")
     print ("num of all sites: ", len(df_sum_all_Years))
 
     less_8 =df_sum_all_Years[df_sum_all_Years['Distinct_years'] !=10]
@@ -130,7 +130,9 @@ def groupby_surgid():
     df_sum_all_Years['Year_sum'] =df_sum_all_Years.loc[:,cols_sum].sum(axis=1)
     df_sum_all_Years['Year_avg'] = df_sum_all_Years['Year_sum']/df_sum_all_Years['Distinct_years']
     df_sum_all_Years.to_csv("sum all years surgid.csv")
-    print ("num of all surgid: ", len(df_sum_all_Years))
+    print()
+    print("details of surgid dist:")
+    print("num of all surgid: ", len(df_sum_all_Years))
 
     less_8 =df_sum_all_Years[df_sum_all_Years['Distinct_years'] !=10]
     less_8.to_csv("less 10 years surgid.csv")
@@ -183,8 +185,8 @@ def groupby_hospid():
     print(np.unique(x))
     return df_sum_all_Years
 
-def draw_hist(data,num_of_bins,title,x_title,y_title):
-    plt.hist(data, bins=num_of_bins, color="skyblue")
+def draw_hist(data,num_of_bins,title,x_title,y_title,color):
+    plt.hist(data, bins=num_of_bins, color=color,ec="black")
     plt.title(title)
     plt.xlabel(x_title)
     plt.ylabel(y_title)
@@ -289,8 +291,23 @@ def groupby_siteid_prcab():
 
     x = np.array(less['Distinct_years'])
     print(np.unique(x))
-    avg_siteid['Year_avg_Firstop'] = df_sum_all_Years_total['Year_avg']
-    avg_siteid['Year_avg_reop'] = df_sum_all_Years['Year_avg_reop']
+
+
+    temp_first = pd.DataFrame()
+    temp_first['siteid'] = df_sum_all_Years_total['siteid']
+    temp_first['Year_avg_Firstop'] = df_sum_all_Years_total['Year_avg']
+    temp_reop = pd.DataFrame()
+    temp_reop['siteid'] = df_sum_all_Years['siteid']
+    temp_reop['Year_avg_reop'] = df_sum_all_Years['Year_avg_reop']
+
+    df20 = pd.merge(avg_siteid, temp_first, on='siteid', how='left')
+    total_avg_site_id = pd.merge(df20, temp_reop,on='siteid', how='left' )
+
+    total_avg_site_id['firstop/total'] = (total_avg_site_id['Year_avg_Firstop']/total_avg_site_id['total_year_avg'])*100
+    total_avg_site_id['reop/total'] = (total_avg_site_id['Year_avg_reop']/total_avg_site_id['total_year_avg'])*100
+    total_avg_site_id.to_csv('total_avg_site_id.csv')
+    # avg_siteid['Year_avg_Firstop'] = df_sum_all_Years_total['Year_avg']
+    # avg_siteid['Year_avg_reop'] = df_sum_all_Years['Year_avg_reop']
 
 def groupby_surgid_prcab():
 
@@ -369,15 +386,28 @@ def groupby_surgid_prcab():
 
     x = np.array(less['Distinct_years'])
     print(np.unique(x))
-    avg_surgid['Year_avg_Firstop'] = df_sum_all_Years_total['Year_avg']
-    avg_surgid['Year_avg_reop'] = df_sum_all_Years['Year_avg_reop']
+
+    temp_first = pd.DataFrame()
+    temp_first['surgid'] = df_sum_all_Years_total['surgid']
+    temp_first['Year_avg_Firstop'] = df_sum_all_Years_total['Year_avg']
+    temp_reop = pd.DataFrame()
+    temp_reop['surgid'] = df_sum_all_Years['surgid']
+    temp_reop['Year_avg_reop'] = df_sum_all_Years['Year_avg_reop']
+
+    df20 = pd.merge(avg_surgid, temp_first, on='surgid', how='left')
+    total_avg_surgid = pd.merge(df20, temp_reop, on='surgid', how='left')
 
 
-# groupby_siteid()
-# # groupby_hospid()
-# groupby_siteid_prcab()
-# groupby_surgid()
-# groupby_surgid_prcab()
+    total_avg_surgid['firstop/total'] = (total_avg_surgid['Year_avg_Firstop']/total_avg_surgid['total_year_avg'])*100
+    total_avg_surgid['reop/total'] = (total_avg_surgid['Year_avg_reop']/total_avg_surgid['total_year_avg'])*100
+    total_avg_surgid.to_csv('total_avg_surgid.csv')
+
+
+groupby_siteid()
+# groupby_hospid()
+groupby_siteid_prcab()
+groupby_surgid()
+groupby_surgid_prcab()
 #
 path="/tmp/pycharm_project_723/"
 #
@@ -392,11 +422,23 @@ path="/tmp/pycharm_project_723/"
 # avg_siteid.to_csv('total_avg_site_id.csv')
 # avg_surgid.to_csv('total_avg_surgid.csv')
 
-df_avg_siteid = pd.read_csv(path+"total_avg_site_id.csv")
-df_avg_surgid = pd.read_csv(path+"total_avg_surgid.csv")
+
+df_avg_siteid = pd.read_csv("total_avg_site_id.csv")
+df_avg_surgid = pd.read_csv("total_avg_surgid.csv")
 # # df_sum_hospid= pd.read_csv(path+"sum all years hospid.csv")
 #
 #
-draw_hist(df_avg_siteid['total_year_avg'],40,"siteid Histogram of yearly avg operation",'avg of Operation',"count of siteid")
+draw_hist(df_avg_siteid['total_year_avg'],40,"siteid Histogram of yearly avg operation",'avg of Operation',"count of siteid",'skyblue')
+draw_hist(df_avg_siteid['Year_avg_Firstop'].dropna(),40,"siteid Histogram of yearly avg First operation",'avg of First Operation',"count of siteid",'skyblue')
+draw_hist(df_avg_siteid['Year_avg_reop'].dropna(),40,"siteid Histogram of yearly avg reOperation",'avg of reOperation',"count of siteid",'skyblue')
+
+draw_hist(df_avg_siteid['firstop/total'].dropna(),40,"siteid Histogram of yearly avg First operation/Total operation",'% of First Operation',"count of siteid",'palegreen')
+draw_hist(df_avg_siteid['reop/total'].dropna(),40,"siteid Histogram of yearly avg reOperation/Total operation",'% of reOperation',"count of siteid",'palegreen')
+
 # draw_hist(df_sum_surgid['Year_avg'],20,"surgid Histogram of yearly avg operation",'avg of Operation',"count of surgid")
-# draw_hist(df_sum_hospid['Year_avg'],20,"hospid Histogram of yearly avg operation",'avg of Operation',"count of hospid")
+draw_hist(df_avg_surgid['total_year_avg'],40,"surgid Histogram of yearly avg operation",'avg of Operation',"count of surgid",'plum')
+draw_hist(df_avg_surgid['Year_avg_Firstop'].dropna(),40,"surgid Histogram of yearly avg First operation",'avg of First Operation',"count of surgid",'plum')
+draw_hist(df_avg_surgid['Year_avg_reop'].dropna(),40,"surgid Histogram of yearly avg reOperation",'avg of reOperation',"count of surgid",'plum')
+
+draw_hist(df_avg_surgid['firstop/total'].dropna(),40,"surgid Histogram of yearly avg First operation/Total operation",'% of First Operation',"count of surgid",'bisque')
+draw_hist(df_avg_surgid['reop/total'].dropna(),40,"surgid Histogram of yearly avg reOperation/Total operation",'% of reOperation',"count of surgid",'bisque')
