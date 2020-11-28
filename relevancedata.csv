@@ -1,0 +1,443 @@
+,value,format,values
+0,surgorder,Integer,
+1,datavrsn,Text,
+2,surgyear,Integer,
+3,plos,Integer,
+4,age1,Integer,
+5,siteid,Text (categorical values specified by User),
+6,hospid,Text (categorical values specified by User),
+7,surgtomort,Integer,
+8,payorgov,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+9,payorgovmcare,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+10,payorgovmcareffs,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+11,payorgovmcaid,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+12,payorgovmil,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+13,payorgovstate,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+14,payorgovihs,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+15,payorgovcor,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+16,payorgovoth,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+17,payornonus,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+18,payorns,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+19,age,Integer,
+20,gender,Text (categorical values specified by STS),"{'1': 'Male', '2': 'Female'}"
+21,racedocumented,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No', '3': 'Patient declined to disclose'}"
+22,racecaucasian,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+23,raceblack,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+24,raceasian,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+25,racenativeam,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+26,racnativepacific,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+27,raceother,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+28,ethnicity,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No', '3': 'Not Documented'}"
+29,race,Text (categorical values specified by STS),"{'1': 'Caucasian', '2': 'Black', '3': 'Hispanic', '4': 'Asian', '5': 'Native American', '777': 'Other'}"
+30,heightcm,Real,
+31,weightkg,Real,
+32,fhcad,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No', '3': 'Unknown'}"
+33,tobaccouse,Text (categorical values specified by STS),"{'1': 'Never smoker', '2': 'Current every day smoker', '3': 'Current some day smoker', '4': 'Smoker, current status (frequency) unknown', '5': 'Former smoker', '6': 'Smoking status unknown'}"
+34,cigsmoker,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+35,cigsmokercurr,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+36,smoker,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+37,smokcurr,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+38,diabetes,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No', '3': 'Unknown'}"
+39,diabctrl,Text (categorical values specified by STS),"{'1': ['None', 'No treatment for diabetes.'], '2': ['Diet only', 'Treatment with diet only'], '3': ['Oral', 'Treatment with oral agent (includes oral agent with or without diet treatment)'], '4': ['Insulin', 'Insulin treatment (includes any combination with insulin)'], '6': ['Other subcutaneous medication', 'Other subcutaneous medications (such as GLP-1 agonists; Byetta,Bydureon,Victoza,Symlin)'], '5': ['Other', 'Other adjunctive treatment, non-oral/insulin/diet'], '7': ['Unknown', '']}"
+40,hypertn,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No', '3': 'Unknown'}"
+41,dyslip,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No', '3': 'Unknown'}"
+42,hyprchol,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+43,renfail,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+44,dialysis,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No', '3': 'Unknown'}"
+45,infendo,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+46,infendty,Text (categorical values specified by STS),"{'1': 'Treated', '2': 'Active'}"
+47,chrlungd,Text (categorical values specified by STS),"{'1': 'No', '2': 'Mild', '3': 'Moderate', '4': 'Severe', '5': 'Lung disease documented, severity unknown', '6': 'Unknown'}"
+48,chrlungdtype,Text (categorical values specified by STS),"{'1': 'Obstructive', '2': 'Reactive', '3': 'Interstitial Fibrosis', '7': 'Restrictive', '4': 'Other', '5': 'Multiple', '6': 'Not Documented'}"
+49,hmo2,Text (categorical values specified by STS),"{'3': 'Yes, PRN', '4': 'Yes, oxygen dependent', '2': 'No', '5': 'Unknown'}"
+50,slpapn,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No', '3': 'Unknown'}"
+51,pneumonia,Text (categorical values specified by STS),"{'2': ['Recent', 'Within 1 month of procedure'], '3': ['Remote', 'More than 1 month prior to procedure'], '1': ['No', ''], '4': ['Unknown', '']}"
+52,ivdrugab,Text (categorical values specified by STS),"{'4': ['Recent', 'Within 30 days of procedure'], '5': ['Remote', 'More than 30 days prior to procedure'], '2': ['No', ''], '3': ['Unknown', '']}"
+53,alcohol,Text (categorical values specified by STS),"{'1': '<= 1 drink/week', '2': '2-7 drinks/week', '3': '>= 8 drinks/week', '4': 'None', '5': 'Unknown'}"
+54,liverdis,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No', '3': 'Unknown'}"
+55,immsupp,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No', '3': 'Unknown'}"
+56,mediastrad,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No', '3': 'Unknown'}"
+57,cancer,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No', '3': 'Unknown'}"
+58,pvd,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No', '3': 'Unknown'}"
+59,syncope,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No', '3': 'Unknown'}"
+60,unrespstat,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No', '3': 'Unknown'}"
+61,cvdtype,Text (categorical values specified by STS),"{'1': 'Coma', '2': 'CVA', '3': 'RIND', '4': 'TIA', '5': 'NonInvas >75%', '6': 'Prior Carotid Surgery'}"
+62,cvd,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No', '3': 'Unknown'}"
+63,cva,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No', '3': 'Unknown'}"
+64,cvawhen,Text (categorical values specified by STS),"{'3': '<= 30 days', '4': '> 30 days'}"
+65,cvdtia,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No', '3': 'Unknown'}"
+66,cvdcarsten,Text (categorical values specified by STS),"{'2': 'Right', '3': 'Left', '4': 'Both', '1': 'None', '5': 'Not documented'}"
+67,cvdstenrt,Text (categorical values specified by STS),"{'3': '50% to 79%', '1': '80% to 99%', '2': '100 %', '4': 'Not documented'}"
+68,cvdstenlft,Text (categorical values specified by STS),"{'3': '50% to 79%', '1': '80% to 99%', '2': '100%', '4': 'Not documented'}"
+69,cvdpcarsurg,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+70,cvdcoma,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+71,cvdrind,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+72,cvdninvas,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+73,wbc,Real,
+74,rfhemoglobin,Real,
+75,hct,Real,
+76,platelets,Integer,
+77,creatlst,Real,
+78,totalbumin,Real,
+79,prevmi,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No', '3': 'Unknown'}"
+80,miwhen,Text (categorical values specified by STS),"{'1': '<=6 Hrs', '2': '>6 Hrs but <24 Hrs', '3': '1 to 7 Days', '4': '8 to 21 Days', '5': '>21 Days'}"
+81,mi,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+82,angina,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+83,angtype,Text (categorical values specified by STS),"{'1': 'Stable', '2': 'Unstable'}"
+84,angunstt,Text (categorical values specified by STS),"{'1': 'Rest Angina', '2': 'New Class 3', '3': 'Recent Accel', '4': 'Variant Angina', '5': 'Non-Q MI', '6': 'Post-Infarct Angina'}"
+85,classccs,Text (categorical values specified by STS),"{'1': '0', '2': 'I', '3': 'II', '4': 'III', '5': 'IV'}"
+86,cardsymptimeofadm,Text (categorical values specified by STS),"{'1': ['No Symptoms', 'No Symptoms, no angina.'], '2': ['Stable Angina', 'Angina without a change in frequency or pattern for the prior 6 weeks. Angina is controlled by rest and/or oral or transcutaneous medications.'], '3': ['Unstable Angina', 'There are three principal presentations of unstable angina: 1. Rest angina (occurring at rest and prolonged, usually >20 minutes); 2. New-onset angina (within the past 2 months, of at least Canadian Cardiovascular Society Class III severity); or 3. Increasing angina (previously diagnosed angina that has become distinctly more frequent, longer in duration, or increased by 1 or more Canadian Cardiovascular Society class to at least CCS III severity).'], '4': ['Non-ST Elevation MI (Non- STEMI)', 'The patient was hospitalized for a non-ST elevation myocardial infarction (STEMI) as documented in the medical record. Non- STEMIs are characterized by the presence of both criteria: a. Cardiac biomarkers (creatinine kinase-myocardial band, Troponin T or I) exceed the upper limit of normal according to the individual hospital s laboratory parameters with a clinical presentation which is consistent or suggestive of ischemia. ECG changes and/or ischemic symptoms may or may not be present. b. Absence of ECG changes diagnostic of a STEMI (see STEMI).'], '5': ['ST Elevation MI (STEMI)', 'The patient presented with a ST elevation myocardial infarction (STEMI) or its equivalent as documented in the medical record. STEMIs are characterized by the presence of both criteria: a. ECG evidence of STEMI: New or presumed new ST- segment elevation or new left bundle branch block not documented to be resolved within 20 minutes. ST-segment elevation is defined by new or presumed new sustained ST- segment elevation at the J-point in two contiguous electrocardiogram (ECG) leads with the cut-off points: >=0.2 mV in men or >= 0.15mV in women in leads V2-V3 and/or >= 0.1 mV in other leads and lasting greater than or equal to 20 minutes. If no exact ST-elevation measurement is recorded in the medical chart, physician s written documentation of ST- elevation or Q waves is acceptable. If only one ECG is performed, then the assumption that the ST elevation persisted at least the required 20 minutes is acceptable. Left bundle branch block (LBBB) refers to new or presumed new LBBB on the initial ECG. b. Cardiac biomarkers (creatinine kinase-myocardial band, Troponin T or I) exceed the upper limit of normal according to the individual hospital s laboratory parameters a clinical presentation which is consistent or suggestive of ischemia. Note: For purposes of the Registry, ST elevation in the posterior chest leads (V7 through V9), or ST depression that is maximal in V1-3, without ST-segment elevation in other leads, demonstrating posterobasal myocardial infarction, is considered a STEMI equivalent and qualifies the patient for reperfusion therapy.'], '6': ['Angina equivalent', ''], '7': ['Other', 'Presentation/symptom not listed above.']}"
+87,cardpres,Text (categorical values specified by STS),"{'1': 'No Symptoms, no Angina', '2': 'Symptoms Unlikely to be Ischemia', '3': 'Stable Angina', '4': 'Unstable Angina', '5': 'Non-ST Elevation MI (Non- STEMI)', '6': 'ST Elevation MI (STEMI)'}"
+88,cardsymptimeofsurg,Text (categorical values specified by STS),"{'1': ['No Symptoms', 'No Symptoms, no angina.'], '2': ['Stable Angina', 'Angina without a change in frequency or pattern for the prior 6 weeks. Angina is controlled by rest and/or oral or transcutaneous medications.'], '3': ['Unstable Angina', 'There are three principal presentations of unstable angina: 1. Rest angina (occurring at rest and prolonged, usually >20 minutes); 2. New-onset angina (within the past 2 months, of at least Canadian Cardiovascular Society Class III severity); or 3. Increasing angina (previously diagnosed angina that has become distinctly more frequent, longer in duration, or increased by 1 or more Canadian Cardiovascular Society class to at least CCS III severity).'], '4': ['Non-ST Elevation MI (Non- STEMI)', ""The patient was hospitalized for a non-ST elevation myocardial infarction (STEMI) as documented in the medical record. Non-STEMIs are characterized by the presence of both criteria: a. Cardiac biomarkers (creatinine kinase-myocardial band, Troponin T or I) exceed the upper limit of normal according to the individual hospital's laboratory parameters with a clinical presentation which is consistent or suggestive of ischemia. ECG changes and/or ischemic symptoms may or may not be present. b. Absence of ECG changes diagnostic of a STEMI (see STEMI).""], '5': ['ST Elevation MI (STEMI)', ""The patient presented with a ST elevation myocardial infarction (STEMI) or its equivalent as documented in the medical record. STEMIs are characterized by the presence of both criteria: a. ECG evidence of STEMI: New or presumed new ST- segment elevation or new left bundle branch block not documented to be resolved within 20 minutes. ST-segment elevation is defined by new or presumed new sustained ST- segment elevation at the J-point in two contiguous electrocardiogram (ECG) leads with the cut-off points: >=0.2 mV in men or >= 0.15mV in women in leads V2-V3 and/or >= 0.1 mV in other leads and lasting greater than or equal to 20 minutes. If no exact ST-elevation measurement is recorded in the medical chart, physician's written documentation of ST- elevation or Q waves is acceptable. If only one ECG is performed, then the assumption that the ST elevation persisted at least the required 20 minutes is acceptable. Left bundle branch block (LBBB) refers to new or presumed new LBBB on the initial ECG. b. Cardiac biomarkers (creatinine kinase-myocardial band, Troponin T or I) exceed the upper limit of normal according to the individual hospital's laboratory parameters a clinical presentation which is consistent or suggestive of ischemia. Note: For purposes of the Registry, ST elevation in the posterior chest leads (V7 through V9), or ST depression that is maximal in V1-3, without ST-segment elevation in other leads, demonstrating posterobasal myocardial infarction, is considered a STEMI equivalent and qualifies the patient for reperfusion therapy.""], '6': ['Angina equivalent', ''], '7': ['Other', 'Presentation/symptom not listed above.']}"
+89,anginalclass,Text (categorical values specified by STS),"{'1': ['CCS Class 0', 'The patient has no angina.'], '2': ['CCS Class I', 'Ordinary physical activity does not cause angina; for example walking or climbing stairs, angina occurs with strenuous or rapid or prolonged exertion at work or recreation.'], '3': ['CCS Class II', 'Slight limitation of ordinary activity; for example, angina occurs walking or stair climbing after meals, in cold, in wind, under emotional stress or only during the few hours after awakening, walking more than two blocks on the level or climbing more than one flight of ordinary stairs at a normal pace and in normal conditions.'], '4': ['CCS Class III', 'Marked limitation of ordinary activity; for example, angina occurs walking one or two blocks on the level or climbing one flight of stairs in normal conditions and at a normal pace.'], '5': ['CCS Class IV', 'Inability to carry on any physical activity without discomfort -angina syndrome may be present at rest.']}"
+90,chf,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No', '3': 'Unknown'}"
+91,classnyh,Text (categorical values specified by STS),"{'1': ['Class I', 'Patient has cardiac disease but without resulting limitations of ordinary physical activity. Ordinary physical activity (e.g., walking several blocks or climbing stairs) does not cause undue fatigue, palpitation, or dyspnea.'], '2': ['Class II', 'Patient has cardiac disease resulting in slight limitation of ordinary physical activity. Patient is comfortable at rest. Ordinary physical activity such as walking more than two blocks or climbing more than one flight of stairs results in limiting symptoms (e.g., fatigue, palpitation, or dyspnea).'], '3': ['Class III', 'Patient has cardiac disease resulting in marked limitation of physical activity. Patient is comfortable at rest. Less than ordinary physical activity (e.g., walking one to two level blocks or climbing one flight of stairs) causes fatigue, palpitation, or dyspnea.'], '4': ['Class IV', 'Patient has cardiac disease resulting in inability to perform any physical activity without discomfort. Symptoms may be present even at rest or minimal exertion. If any physical activity is undertaken, discomfort is increased.'], '5': ['Not documented', '']}"
+92,priorhf,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+93,arrhytyp,Text (categorical values specified by STS),"{'1': 'Sust VT/VF', '2': 'Heart Block', '3': 'AFib/Flutter', '9': 'None'}"
+94,arrhyth,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+95,arrhythmia,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+96,arrhythvv,Text (categorical values specified by STS),"{'1': ['None', ''], '2': ['Remote', 'More than 30 days prior to procedure.'], '3': ['Recent', 'Within 30 days of this procedure.']}"
+97,arrhythsss,Text (categorical values specified by STS),"{'1': ['None', ''], '2': ['Remote', 'More than 30 days prior to procedure.'], '3': ['Recent', 'Within 30 days of this procedure.']}"
+98,arrhythaflutter,Text (categorical values specified by STS),"{'1': ['None', ''], '2': ['Remote', 'More than 30 days prior to procedure.'], '3': ['Recent', 'Within 30 days of this procedure.']}"
+99,arrhythsecond,Text (categorical values specified by STS),"{'1': ['None', ''], '2': ['Remote', 'More than 30 days prior to procedure.'], '3': ['Recent', 'Within 30 days of this procedure.']}"
+100,arrhyththird,Text (categorical values specified by STS),"{'1': ['None', ''], '2': ['Remote', 'More than 30 days prior to procedure.'], '3': ['Recent', 'Within 30 days of this procedure.']}"
+101,arrhythppaced,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+102,arrhythafib,Text (categorical values specified by STS),"{'2': 'Paroxysmal', '4': 'Persistent', '5': 'Longstanding Persistent', '6': 'Permanent'}"
+103,arrhythafibdur,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+104,arrhythwhen,Text (categorical values specified by STS),"{'1': 'None', '2': 'Remote', '3': 'Recemt'}"
+105,arrhyvtach,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+106,arrhyvtachhrtblk,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+107,arrhyvtachsicsinsy,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+108,arrhythb,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+109,arrhyafib,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+110,arrhyafibty,Text (categorical values specified by STS),"{'1': 'Paroxysmal', '2': 'Continuous/persistent'}"
+111,prcvint,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No', '3': 'Unknown'}"
+112,prcab,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+113,prcbnum,Integer,
+114,prcnnum,Integer,
+115,prptca,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+116,prptintv,Text (categorical values specified by STS),"{'1': '<=6 Hrs', '2': ' >6 Hrs'}"
+117,prnsstnt,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+118,stntintv,Text (categorical values specified by STS),"{'1': '<=6 Hrs', '2': ' >6 Hrs'}"
+119,prvalve,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+120,prvalveproc1,Text (categorical values specified by STS),"{'2': 'Aortic valve balloon valvotomy/valvuloplasty', '3': 'Aortic valve repair, surgical', '4': 'Aortic valve replacement, surgical', '5': 'Aortic valve replacement, transcatheter', '6': 'Mitral valve balloon valvotomy/valvuloplasty', '7': 'Mitral valve commissurotomy, surgical', '8': 'Mitral valve repair, percutaneous', '9': 'Mitral valve repair, surgical', '10': 'Mitral valve replacement, surgical', '11': 'Mitral valve replacement, transcatheter', '12': 'Tricuspid valve balloon valvotomy/valvuloplasty', '13': 'Tricuspid valve repair, percutaneous', '14': 'Tricuspid valve repair, surgical', '15': 'Tricuspid valve replacement, surgical', '16': 'Tricuspid valve replacement, transcatheter', '17': 'Tricuspid valvectomy', '18': 'Pulmonary valve balloon valvotomy/valvuloplasty', '19': 'Pulmonary valve repair, surgical', '20': 'Pulmonary valve replacement, surgical', '21': 'Pulmonary valve replacement, transcatheter', '22': 'Pulmonary valvectomy', '23': 'Other valve procedure'}"
+121,prvalveproc2,Text (categorical values specified by STS),"{'1': 'No additional valve procedure(s)', '2': 'Aortic valve balloon valvotomy/valvuloplasty', '3': 'Aortic valve repair, surgical', '4': 'Aortic valve replacement, surgical', '5': 'Aortic valve replacement, transcatheter', '6': 'Mitral valve balloon valvotomy/valvuloplasty', '7': 'Mitral valve commissurotomy, surgical', '8': 'Mitral valve repair, percutaneous', '9': 'Mitral valve repair, surgical', '10': 'Mitral valve replacement, surgical', '11': 'Mitral valve replacement, transcatheter', '12': 'Tricuspid valve balloon valvotomy/valvuloplasty', '13': 'Tricuspid valve repair, percutaneous', '14': 'Tricuspid valve repair, surgical', '15': 'Tricuspid valve replacement, surgical', '16': 'Tricuspid valve replacement, transcatheter', '17': 'Tricuspid valvectomy', '18': 'Pulmonary valve balloon valvotomy/valvuloplasty', '19': 'Pulmonary valve repair, surgical', '20': 'Pulmonary valve replacement, surgical', '21': 'Pulmonary valve replacement, transcatheter', '22': 'Pulmonary valvectomy', '23': 'Other valve procedure'}"
+122,prvalveproc3,Text (categorical values specified by STS),"{'1': 'No additional valve procedure(s)', '2': 'Aortic valve balloon valvotomy/valvuloplasty', '3': 'Aortic valve repair, surgical', '4': 'Aortic valve replacement, surgical', '5': 'Aortic valve replacement, transcatheter', '6': 'Mitral valve balloon valvotomy/valvuloplasty', '7': 'Mitral valve commissurotomy, surgical', '8': 'Mitral valve repair, percutaneous', '9': 'Mitral valve repair, surgical', '10': 'Mitral valve replacement, surgical', '11': 'Mitral valve replacement, transcatheter', '12': 'Tricuspid valve balloon valvotomy/valvuloplasty', '13': 'Tricuspid valve repair, percutaneous', '14': 'Tricuspid valve repair, surgical', '15': 'Tricuspid valve replacement, surgical', '16': 'Tricuspid valve replacement, transcatheter', '17': 'Tricuspid valvectomy', '18': 'Pulmonary valve balloon valvotomy/valvuloplasty', '19': 'Pulmonary valve repair, surgical', '20': 'Pulmonary valve replacement, surgical', '21': 'Pulmonary valve replacement, transcatheter', '22': 'Pulmonary valvectomy', '23': 'Other valve procedure'}"
+123,prvalveproc4,Text (categorical values specified by STS),"{'1': 'No additional valve procedure(s)', '2': 'Aortic valve balloon valvotomy/valvuloplasty', '3': 'Aortic valve repair, surgical', '4': 'Aortic valve replacement, surgical', '5': 'Aortic valve replacement, transcatheter', '6': 'Mitral valve balloon valvotomy/valvuloplasty', '7': 'Mitral valve commissurotomy, surgical', '8': 'Mitral valve repair, percutaneous', '9': 'Mitral valve repair, surgical', '10': 'Mitral valve replacement, surgical', '11': 'Mitral valve replacement, transcatheter', '12': 'Tricuspid valve balloon valvotomy/valvuloplasty', '13': 'Tricuspid valve repair, percutaneous', '14': 'Tricuspid valve repair, surgical', '15': 'Tricuspid valve replacement, surgical', '16': 'Tricuspid valve replacement, transcatheter', '17': 'Tricuspid valvectomy', '18': 'Pulmonary valve balloon valvotomy/valvuloplasty', '19': 'Pulmonary valve repair, surgical', '20': 'Pulmonary valve replacement, surgical', '21': 'Pulmonary valve replacement, transcatheter', '22': 'Pulmonary valvectomy', '23': 'Other valve procedure'}"
+124,prvalveproc5,Text (categorical values specified by STS),"{'1': 'No additional valve procedure(s)', '2': 'Aortic valve balloon valvotomy/valvuloplasty', '3': 'Aortic valve repair, surgical', '4': 'Aortic valve replacement, surgical', '5': 'Aortic valve replacement, transcatheter', '6': 'Mitral valve balloon valvotomy/valvuloplasty', '7': 'Mitral valve commissurotomy, surgical', '8': 'Mitral valve repair, percutaneous', '9': 'Mitral valve repair, surgical', '10': 'Mitral valve replacement, surgical', '11': 'Mitral valve replacement, transcatheter', '12': 'Tricuspid valve balloon valvotomy/valvuloplasty', '13': 'Tricuspid valve repair, percutaneous', '14': 'Tricuspid valve repair, surgical', '15': 'Tricuspid valve replacement, surgical', '16': 'Tricuspid valve replacement, transcatheter', '17': 'Tricuspid valvectomy', '18': 'Pulmonary valve balloon valvotomy/valvuloplasty', '19': 'Pulmonary valve repair, surgical', '20': 'Pulmonary valve replacement, surgical', '21': 'Pulmonary valve replacement, transcatheter', '22': 'Pulmonary valvectomy', '23': 'Other valve procedure'}"
+125,pocpci,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+126,pocpciwhen,Text (categorical values specified by STS),"{'1': 'Yes, at this facility', '2': 'Yes, at some other acute care facility', '3': 'No'}"
+127,pocpcindsurg,Text (categorical values specified by STS),"{'1': ['PCI Complication', 'Complication during PCI necessitating surgical interventionsuch as dissection or acute occlusion'], '5': ['PCI Failure with Clinical Deterioration', 'PCI failed to yield expected and/or desired results, patient condition deteriorated.'], '4': ['PCI for STEMI, Multivessel disease', 'STEMI with primary PCI (of culprit lesion) and multivessel disease requiring CABG.'], '2': ['PCI Failure without Clinical Deterioration', 'PCI failed to yield expected and/or desired results, patient condition did not deteriorate.'], '3': ['PCI/Surgery Staged Procedure (not STEMI)', 'PCI and surgical procedures performed in a staged fashion in a patient not experiencing STEMI'], '9': ['Other', 'Other indication for surgery not described above']}"
+128,pocpcist,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+129,pocpcistty,Text (categorical values specified by STS),"{'1': 'Bare metal', '2': 'Drug-eluting', '4': 'Bioresorbable', '5': 'Multiple types', '3': 'Unknown'}"
+130,pocpciin,Text (categorical values specified by STS),"{'1': '<= 6 Hours', '2': '> 6 Hours'}"
+131,poc,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+132,pocint1,Text (categorical values specified by STS),"{'2': 'Ablation, catheter, atrial fibrillation', '3': 'Ablation, catheter, other or unknown', '4': 'Ablation, catheter, ventricular', '5': 'Ablation, surgical, atrial fibrillation', '6': 'Ablation, surgical, other or unknown', '7': 'Aneurysmectomy, LV', '8': 'Aortic procedure, arch', '9': 'Aortic procedure, ascending', '10': 'Aortic procedure, descending', '11': 'Aortic procedure, root', '12': 'Aortic procedure, thoracoabdominal', '13': 'Aortic Procedure, TEVAR', '14': 'Aortic root procedure, valve sparing', '15': 'Atrial appendage obliteration, Left, surgical', '16': 'Atrial appendage obliteration, Left, transcatheter', '19': 'Cardiac Tumor', '20': 'Cardioversion(s)', '21': 'Closure device, atrial septal defect', '22': 'Closure device, ventricular septal defect', '23': 'Congenital cardiac repair, surgical', '37': 'ECMO', '24': 'Implantable Cardioverter Defibrillator (ICD) with or without pacer', '25': 'Pacemaker', '38': 'Pericardial window / Pericardiocentesis', '26': 'Pericardiectomy', '27': 'Pulmonary Thromboembolectomy', '28': 'Total Artificial Heart (TAH)', '29': 'Transmyocardial Laser Revascularization (TMR)', '30': 'Transplant heart & lung', '31': 'Transplant, heart', '32': 'Transplant, lung(s)', '33': 'Ventricular Assist Device (VAD), BiVAD', '34': 'Ventricular Assist Device (VAD), left', '35': 'Ventricular Assist Device (VAD), right', '36': 'Other Cardiac Intervention (not listed)'}"
+133,pocint2,Text (categorical values specified by STS),"{'1': 'No additional interventions', '2': 'Ablation, catheter, atrial fibrillation', '3': 'Ablation, catheter, other or unknown', '4': 'Ablation, catheter, ventricular', '5': 'Ablation, surgical, atrial fibrillation', '6': 'Ablation, surgical, other or unknown', '7': 'Aneurysmectomy, LV', '8': 'Aortic procedure, arch', '9': 'Aortic procedure, ascending', '10': 'Aortic procedure, descending', '11': 'Aortic procedure, root', '12': 'Aortic procedure, thoracoabdominal', '13': 'Aortic Procedure, TEVAR', '14': 'Aortic root procedure, valve sparing', '15': 'Atrial appendage obliteration, Left, surgical', '16': 'Atrial appendage obliteration, Left, transcatheter', '19': 'Cardiac Tumor', '20': 'Cardioversion(s)', '21': 'Closure device, atrial septal defect', '22': 'Closure device, ventricular septal defect', '23': 'Congenital cardiac repair, surgical', '37': 'ECMO', '24': 'Implantable Cardioverter Defibrillator (ICD) with or without pacer', '25': 'Pacemaker', '38': 'Pericardial window / Pericardiocentesis', '26': 'Pericardiectomy', '27': 'Pulmonary Thromboembolectomy', '28': 'Total Artificial Heart (TAH)', '29': 'Transmyocardial Laser Revascularization (TMR)', '30': 'Transplant heart & lung', '31': 'Transplant, heart', '32': 'Transplant, lung(s)', '33': 'Ventricular Assist Device (VAD), BiVAD', '34': 'Ventricular Assist Device (VAD), left', '35': 'Ventricular Assist Device (VAD), right', '36': 'Other Cardiac Intervention (not listed)'}"
+134,pocint3,Text (categorical values specified by STS),"{'1': 'No additional interventions', '2': 'Ablation, catheter, atrial fibrillation', '3': 'Ablation, catheter, other or unknown', '4': 'Ablation, catheter, ventricular', '5': 'Ablation, surgical, atrial fibrillation', '6': 'Ablation, surgical, other or unknown', '7': 'Aneurysmectomy, LV', '8': 'Aortic procedure, arch', '9': 'Aortic procedure, ascending', '10': 'Aortic procedure, descending', '11': 'Aortic procedure, root', '12': 'Aortic procedure, thoracoabdominal', '13': 'Aortic Procedure, TEVAR', '14': 'Aortic root procedure, valve sparing', '15': 'Atrial appendage obliteration, Left, surgical', '16': 'Atrial appendage obliteration, Left, transcatheter', '19': 'Cardiac Tumor', '20': 'Cardioversion(s)', '21': 'Closure device, atrial septal defect', '22': 'Closure device, ventricular septal defect', '23': 'Congenital cardiac repair, surgical', '37': 'ECMO', '24': 'Implantable Cardioverter Defibrillator (ICD) with or without pacer', '25': 'Pacemaker', '38': 'Pericardial window / Pericardiocentesis', '26': 'Pericardiectomy', '27': 'Pulmonary Thromboembolectomy', '28': 'Total Artificial Heart (TAH)', '29': 'Transmyocardial Laser Revascularization (TMR)', '30': 'Transplant heart & lung', '31': 'Transplant, heart', '32': 'Transplant, lung(s)', '33': 'Ventricular Assist Device (VAD), BiVAD', '34': 'Ventricular Assist Device (VAD), left', '35': 'Ventricular Assist Device (VAD), right', '36': 'Other Cardiac Intervention (not listed)'}"
+135,pocint4,Text (categorical values specified by STS),"{'1': 'No additional interventions', '2': 'Ablation, catheter, atrial fibrillation', '3': 'Ablation, catheter, other or unknown', '4': 'Ablation, catheter, ventricular', '5': 'Ablation, surgical, atrial fibrillation', '6': 'Ablation, surgical, other or unknown', '7': 'Aneurysmectomy, LV', '8': 'Aortic procedure, arch', '9': 'Aortic procedure, ascending', '10': 'Aortic procedure, descending', '11': 'Aortic procedure, root', '12': 'Aortic procedure, thoracoabdominal', '13': 'Aortic Procedure, TEVAR', '14': 'Aortic root procedure, valve sparing', '15': 'Atrial appendage obliteration, Left, surgical', '16': 'Atrial appendage obliteration, Left, transcatheter', '19': 'Cardiac Tumor', '20': 'Cardioversion(s)', '21': 'Closure device, atrial septal defect', '22': 'Closure device, ventricular septal defect', '23': 'Congenital cardiac repair, surgical', '37': 'ECMO', '24': 'Implantable Cardioverter Defibrillator (ICD) with or without pacer', '25': 'Pacemaker', '38': 'Pericardial window / Pericardiocentesis', '26': 'Pericardiectomy', '27': 'Pulmonary Thromboembolectomy', '28': 'Total Artificial Heart (TAH)', '29': 'Transmyocardial Laser Revascularization (TMR)', '30': 'Transplant heart & lung', '31': 'Transplant, heart', '32': 'Transplant, lung(s)', '33': 'Ventricular Assist Device (VAD), BiVAD', '34': 'Ventricular Assist Device (VAD), left', '35': 'Ventricular Assist Device (VAD), right', '36': 'Other Cardiac Intervention (not listed)'}"
+136,pocint5,Text (categorical values specified by STS),"{'1': 'No additional interventions', '2': 'Ablation, catheter, atrial fibrillation', '3': 'Ablation, catheter, other or unknown', '4': 'Ablation, catheter, ventricular', '5': 'Ablation, surgical, atrial fibrillation', '6': 'Ablation, surgical, other or unknown', '7': 'Aneurysmectomy, LV', '8': 'Aortic procedure, arch', '9': 'Aortic procedure, ascending', '10': 'Aortic procedure, descending', '11': 'Aortic procedure, root', '12': 'Aortic procedure, thoracoabdominal', '13': 'Aortic Procedure, TEVAR', '14': 'Aortic root procedure, valve sparing', '15': 'Atrial appendage obliteration, Left, surgical', '16': 'Atrial appendage obliteration, Left, transcatheter', '19': 'Cardiac Tumor', '20': 'Cardioversion(s)', '21': 'Closure device, atrial septal defect', '22': 'Closure device, ventricular septal defect', '23': 'Congenital cardiac repair, surgical', '37': 'ECMO', '24': 'Implantable Cardioverter Defibrillator (ICD) with or without pacer', '25': 'Pacemaker', '38': 'Pericardial window / Pericardiocentesis', '26': 'Pericardiectomy', '27': 'Pulmonary Thromboembolectomy', '28': 'Total Artificial Heart (TAH)', '29': 'Transmyocardial Laser Revascularization (TMR)', '30': 'Transplant heart & lung', '31': 'Transplant, heart', '32': 'Transplant, lung(s)', '33': 'Ventricular Assist Device (VAD), BiVAD', '34': 'Ventricular Assist Device (VAD), left', '35': 'Ventricular Assist Device (VAD), right', '36': 'Other Cardiac Intervention (not listed)'}"
+137,pocint6,Text (categorical values specified by STS),"{'1': 'No additional interventions', '2': 'Ablation, catheter, atrial fibrillation', '3': 'Ablation, catheter, other or unknown', '4': 'Ablation, catheter, ventricular', '5': 'Ablation, surgical, atrial fibrillation', '6': 'Ablation, surgical, other or unknown', '7': 'Aneurysmectomy, LV', '8': 'Aortic procedure, arch', '9': 'Aortic procedure, ascending', '10': 'Aortic procedure, descending', '11': 'Aortic procedure, root', '12': 'Aortic procedure, thoracoabdominal', '13': 'Aortic Procedure, TEVAR', '14': 'Aortic root procedure, valve sparing', '15': 'Atrial appendage obliteration, Left, surgical', '16': 'Atrial appendage obliteration, Left, transcatheter', '19': 'Cardiac Tumor', '20': 'Cardioversion(s)', '21': 'Closure device, atrial septal defect', '22': 'Closure device, ventricular septal defect', '23': 'Congenital cardiac repair, surgical', '37': 'ECMO', '24': 'Implantable Cardioverter Defibrillator (ICD) with or without pacer', '25': 'Pacemaker', '38': 'Pericardial window / Pericardiocentesis', '26': 'Pericardiectomy', '27': 'Pulmonary Thromboembolectomy', '28': 'Total Artificial Heart (TAH)', '29': 'Transmyocardial Laser Revascularization (TMR)', '30': 'Transplant heart & lung', '31': 'Transplant, heart', '32': 'Transplant, lung(s)', '33': 'Ventricular Assist Device (VAD), BiVAD', '34': 'Ventricular Assist Device (VAD), left', '35': 'Ventricular Assist Device (VAD), right', '36': 'Other Cardiac Intervention (not listed)'}"
+138,pocint7,Text (categorical values specified by STS),"{'1': 'No additional interventions', '2': 'Ablation, catheter, atrial fibrillation', '3': 'Ablation, catheter, other or unknown', '4': 'Ablation, catheter, ventricular', '5': 'Ablation, surgical, atrial fibrillation', '6': 'Ablation, surgical, other or unknown', '7': 'Aneurysmectomy, LV', '8': 'Aortic procedure, arch', '9': 'Aortic procedure, ascending', '10': 'Aortic procedure, descending', '11': 'Aortic procedure, root', '12': 'Aortic procedure, thoracoabdominal', '13': 'Aortic Procedure, TEVAR', '14': 'Aortic root procedure, valve sparing', '15': 'Atrial appendage obliteration, Left, surgical', '16': 'Atrial appendage obliteration, Left, transcatheter', '19': 'Cardiac Tumor', '20': 'Cardioversion(s)', '21': 'Closure device, atrial septal defect', '22': 'Closure device, ventricular septal defect', '23': 'Congenital cardiac repair, surgical', '37': 'ECMO', '24': 'Implantable Cardioverter Defibrillator (ICD) with or without pacer', '25': 'Pacemaker', '38': 'Pericardial window / Pericardiocentesis', '26': 'Pericardiectomy', '27': 'Pulmonary Thromboembolectomy', '28': 'Total Artificial Heart (TAH)', '29': 'Transmyocardial Laser Revascularization (TMR)', '30': 'Transplant heart & lung', '31': 'Transplant, heart', '32': 'Transplant, lung(s)', '33': 'Ventricular Assist Device (VAD), BiVAD', '34': 'Ventricular Assist Device (VAD), left', '35': 'Ventricular Assist Device (VAD), right', '36': 'Other Cardiac Intervention (not listed)'}"
+139,prevprocavreplace,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+140,prevprocavrepair,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+141,prevprocmvreplace,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+142,prevprocmvrepair,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+143,prevproctvreplace,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+144,prevproctvrepair,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+145,prevprocpv,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+146,prevprocavball,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+147,prevprocmvball,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+148,prevproctcvrep,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+149,prevprocpercvrepai,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+150,prothcar,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+151,poarr,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+152,prothcongen,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+153,procaicd,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+154,poco,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+155,medaarrhy,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+156,medacei48,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No', '3': 'Contraindicated', '4': 'Unknown'}"
+157,medacei,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No', '3': 'Contraindicated / Not Indicated'}"
+158,medadp5days,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No', '3': 'Contraindicated', '4': 'Unknown'}"
+159,medamiodarone,Text (categorical values specified by STS),"{'1': 'Yes, on home therapy', '2': 'Yes, therapy started this admission', '3': 'No', '4': 'Unknown'}"
+160,medacoag,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+161,medacmn,Text (categorical values specified by STS),"{'1': ['Heparin (Unfractionated)', ''], '2': ['Heparin (Low Molecular)', ''], '4': ['Both', 'Both unractionated and low molecular heparin.'], '9': ['Other', '']}"
+162,medaplt5days,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+163,medasa,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No', '3': 'Contraindicated', '4': 'Unknown'}"
+164,medbeta,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No', '3': 'Contraindicated'}"
+165,medbetather,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No', '3': 'Contraindicated', '4': 'Unknown'}"
+166,medcoum,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+167,medxainhibitors,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No', '3': 'Unknown'}"
+168,medgp,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+169,medgpmn,Text (categorical values specified by STS),"{'1': 'Abciximab (ReoPro)', '2': 'Eptifibatide (Integrilin)', '3': 'Tirofiban (Aggrastat)', '4': 'Other'}"
+170,medinotr,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+171,mednitiv,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+172,medster,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No', '3': 'Contraindicated', '4': 'Unknown'}"
+173,medthrombinin,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No', '3': 'Contraindicated', '4': 'Uknown'}"
+174,medthrom,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+175,medadpi,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+176,medaplt,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+177,meddiur,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+178,numdisv,Text (categorical values specified by STS),"{'1': ['None', 'No significant coronary obstructive disease.'], '2': ['One', ''], '3': ['Two', ''], '4': ['Three', '']}"
+179,pctstenknown,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+180,graftsprsnt,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+181,stentprsnt,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+182,pctstenlmain,Integer,
+183,lmaindis,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+184,grftstenlmain,Text (categorical values specified by STS),"{'1': 'Patent', '2': 'Stenosis >=50%', '3': '100% occlusion', '4': 'Not documented'}"
+185,stntstenlmain,Text (categorical values specified by STS),"{'1': 'Patent', '2': 'Stenosis >=50%', '3': 'Not documented'}"
+186,pctstenproxlad,Integer,
+187,proxlad,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+188,grftstenproxlad,Text (categorical values specified by STS),"{'1': 'Patent', '2': 'Stenosis >=50%', '3': '100% occlusion', '4': 'Not documented'}"
+189,stntstenproxlad,Text (categorical values specified by STS),"{'1': 'Patent', '2': 'Stenosis >=50%', '3': 'Not documented'}"
+190,pctstencircflx,Integer,
+191,grftstencircflx,Text (categorical values specified by STS),"{'1': 'Patent', '2': 'Stenosis >=50%', '3': '100% occlusion', '4': 'Not documented'}"
+192,stntstencircflx,Text (categorical values specified by STS),"{'1': 'Patent', '2': 'Stenosis >=50%', '3': 'Not documented'}"
+193,pctstenom1,Integer,
+194,grftstenom1,Text (categorical values specified by STS),"{'1': 'Patent', '2': 'Stenosis >=50%', '3': '100% occlusion', '4': 'Not documented'}"
+195,stntstenom1,Text (categorical values specified by STS),"{'1': 'Patent', '2': 'Stenosis >=50%', '3': 'Not documented'}"
+196,pctstenom2,Integer,
+197,grftstenom2,Text (categorical values specified by STS),"{'1': 'Patent', '2': 'Stenosis >=50%', '3': '100% occlusion', '4': 'Not documented'}"
+198,stntstenom2,Text (categorical values specified by STS),"{'1': 'Patent', '2': 'Stenosis >=50%', '3': 'Not documented'}"
+199,pctstenom3,Integer,
+200,grftstenom3,Text (categorical values specified by STS),"{'1': 'Patent', '2': 'Stenosis >=50%', '3': '100% occlusion', '4': 'Not documented'}"
+201,stntstenom3,Text (categorical values specified by STS),"{'1': 'Patent', '2': 'Stenosis >=50%', '3': 'Not documented'}"
+202,pctstenramus,Integer,
+203,grftstenramus,Text (categorical values specified by STS),"{'1': 'Patent', '2': 'Stenosis >=50%', '3': '100% occlusion', '4': 'Not documented'}"
+204,stntstenramus,Text (categorical values specified by STS),"{'1': 'Patent', '2': 'Stenosis >=50%', '3': 'Not documented'}"
+205,pctstenrca,Integer,
+206,grftstenrca,Text (categorical values specified by STS),"{'1': 'Patent', '2': 'Stenosis >=50%', '3': '100% occlusion', '4': 'Not documented'}"
+207,stntstenrca,Text (categorical values specified by STS),"{'1': 'Patent', '2': 'Stenosis >=50%', '3': 'Not documented'}"
+208,pctstenpda,Integer,
+209,grftstenpda,Text (categorical values specified by STS),"{'1': 'Patent', '2': 'Stenosis >=50%', '3': '100% occlusion', '4': 'Not documented'}"
+210,stntstenpda,Text (categorical values specified by STS),"{'1': 'Patent', '2': 'Stenosis >=50%', '3': 'Not documented'}"
+211,pctstenplb,Integer,
+212,grftstenplb,Text (categorical values specified by STS),"{'1': 'Patent', '2': 'Stenosis >=50%', '3': '100% occlusion', '4': 'Not documented'}"
+213,stntstenplb,Text (categorical values specified by STS),"{'1': 'Patent', '2': 'Stenosis >=50%', '3': 'Not documented'}"
+214,syntaxscr,Real,
+215,hdef,Real,
+216,vdinsufa,Text (categorical values specified by STS),"{'0': 'None', '1': 'Trivial/Trace', '2': 'Mild', '3': 'Moderate', '4': 'Severe', '5': 'Not documented'}"
+217,vdaort,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+218,vdstena,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+219,vdendab,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+220,vdinsufm,Text (categorical values specified by STS),"{'0': 'None', '1': 'Trivial/Trace', '2': 'Mild', '3': 'Moderate', '4': 'Severe', '5': 'Not documented'}"
+221,vdmit,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+222,vdstenm,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+223,vdinsuft,Text (categorical values specified by STS),"{'0': 'None', '1': 'Trivial/Trace', '2': 'Mild', '3': 'Moderate', '4': 'Severe', '5': 'Not documented'}"
+224,vdtr,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+225,vdstent,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+226,status,Text (categorical values specified by STS),"{'1': ['Elective', 'The patient cardiac function has been stable in the days or weeks prior to the operation. The procedure could be deferred without increased risk of compromised cardiac outcome.'], '2': ['Urgent', 'Procedure required during same hospitalization in order to minimize chance of further clinical deterioration.Examples include but are not limited to: Worsening, sudden chest pain, CHF, acute myocardial infarction (AMI), anatomy, IABP, unstable angina (USA) with intravenous (IV) nitroglycerin (NTG) or rest angina.'], '3': ['Emergent', 'Patients requiring emergency operations will have ongoing, refractory (difficult, complicated, and/or unmanageable) unrelenting cardiac compromise, with or without hemodynamic instability, and not responsive to any form of therapy except cardiac surgery. An emergency operation is one in which there should be no delay in providing operative intervention.'], '4': ['Emergent Salvage', 'The patient is undergoing CPR en route to the OR or prior toanesthesia induction or has ongoing ECMO to maintain life.']}"
+227,urgemergrsn,Text (categorical values specified by STS),"{'1': 'AMI', '2': 'Anatomy', '3': 'Aortic Aneurysm', '4': 'Aortic Dissection', '5': 'CHF', '6': 'Device Failure', '7': 'Diagnostic/Interventional Procedure Complication', '8': 'Endocarditis', '28': 'Failed Transcatheter Valve Therapy - Acute, annular disruption', '29': 'Failed Transcatheter Valve Therapy - Acute, device malposition', '30': 'Failed Transcatheter Valve Therapy - Subacute, device dysfuction', '10': 'IABP', '11': 'Infected Device', '12': 'Intracardiac mass or thrombus', '13': 'Ongoing Ischemia', '14': 'PCI Incomplete without clinical deterioration', '15': 'PCI or attempted PCI with Clinical Deterioration', '16': 'Pulmonary Edema', '17': 'Pulmonary Embolus', '18': 'Rest Angina', '19': 'Shock Circulatory Support', '20': 'Shock No Circulatory Support', '21': 'Syncope', '22': 'Transplant', '23': 'Trauma', '24': 'USA', '25': 'Valve Dysfunction', '26': 'Worsening CP', '27': 'Other'}"
+228,urgntrsn,Text (categorical values specified by STS),"{'1': 'AMI', '2': 'IABP', '3': 'W orsening CP', '4': 'CHF', '5': 'Anatomy', '6': 'USA (unstable angina)', '7': 'Rest Angina', '8': 'Valve Dysfunction', '9': 'Aortic Dissection', '10': 'Angiographic Accident', '11': 'Cardiac Trauma', '12': 'Infected Device', '13': 'Syncope', '14': 'PCI/CABG Hybrid', '15': 'PCI Failure without clinical deterioration'}"
+229,opcab,Text (categorical values specified by STS),"{'3': 'Yes, planned', '4': 'Yes, unplanned due to surgical complication', '5': 'Yes, unplanned due to unsuspected disease or anatomy', '2': 'No'}"
+230,cpbutil,Text (categorical values specified by STS),"{'1': ['None', 'No CPB or coronary perfusion used during the procedure.'], '2': ['Combination', 'With or without CPB and/or with or without coronary perfusion at any time during the procedure (capture conversions from off- pump to on-pump only):At start of procedure: No CPB/No Coronary Perfusion -> conversion to -> CPBAt start of procedure: No CPB/No Coronary Perfusion -> conversion to -> Coronary perfusionAt start of procedure: No CPB/No Coronary Perfusion -> conversion to -> Coronary perfusion -> conversion to -> CPB'], '3': ['Full', 'CPB or coronary perfusion was used for the entire procedure']}"
+231,cplegia,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+232,perfustm,Integer,
+233,aortoccl,Text (categorical values specified by STS),"{'5': 'None - beating heart', '6': 'None - fibrillating heart', '2': 'Aortic Crossclamp', '3': 'Balloon Occlusion'}"
+234,xclamptm,Integer,
+235,cpbused,Integer,"{'1': 'Yes', '2': 'No'}"
+236,convcpb,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+237,cplegiadeliv,Text (categorical values specified by STS),"{'1': 'None', '2': 'Antegrade', '3': 'Retrograde', '4': 'Both'}"
+238,cplegiatype,Text (categorical values specified by STS),"{'1': 'Blood', '2': 'Crystalloid', '3': 'Both', '4': 'Other'}"
+239,ibldprod,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+240,ibdrbcu,Integer,
+241,ibdffpu,Integer,
+242,ibdplatu,Integer,
+243,ibdcryou,Integer,
+244,distart,Integer,
+245,distvein,Integer,
+246,imaartus,Text (categorical values specified by STS),"{'1': 'Left IMA', '2': 'Right IMA', '3': 'Both IMAs', '4': 'NoIMA'}"
+247,numimada,Integer,
+248,numradartus,Integer,
+249,numradda,Integer,
+250,radartus,Integer,
+251,cabdisloc01,Text (categorical values specified by STS),"{'1': 'Left Main', '2': 'Proximal LAD', '3': 'Mid LAD', '4': 'Distal LAD', '5': 'Diagonal 1', '6': 'Diagonal 2', '7': 'Circumflex', '8': 'OM1', '9': 'OM2', '10': 'OM3', '11': 'RCA', '12': 'PDA', '13': 'PLB', '14': 'AM branches 15 Ramus'}"
+252,cabpctsten01,Integer,
+253,cabprevcon01,Text (categorical values specified by STS),"{'1': 'Yes - Diseased', '2': 'Yes - No disease', '3': 'No previous conduit'} "
+254,cabproxtech01,Text (categorical values specified by STS),"{'5': 'In Situ Mammary', '1': 'Running', '2': 'Interrupted', '3': 'Anastomotic Device', '4': 'Anastomotic Assist Device'}"
+255,cabdisloc02,Text (categorical values specified by STS),"{'1': 'Left Main', '2': 'Proximal LAD', '3': 'Mid LAD', '4': 'Distal LAD', '5': 'Diagonal 1', '6': 'Diagonal 2', '7': 'Circumflex', '8': 'OM1', '9': 'OM2', '10': 'OM3', '11': 'RCA', '12': 'PDA', '13': 'PLB', '14': 'AM branches', '15': 'Ramus'}"
+256,cabpctsten02,Integer,
+257,cabprevcon02,Text (categorical values specified by STS),"{'1': 'Yes - Diseased', '2': 'Yes - No disease', '3': 'No previous conduit'}"
+258,cabdisloc03,Text (categorical values specified by STS),"{'1': 'Left Main', '2': 'Proximal LAD', '3': 'Mid LAD', '4': 'Distal LAD', '5': 'Diagonal 1', '6': 'Diagonal 2', '7': 'Circumflex 8 OM1', '9': 'OM2', '10': 'OM3', '11': 'RCA', '12': 'PDA', '13': 'PLB', '14': 'AM branches 15 Ramus'}"
+259,cabpctsten03,Integer,
+260,cabprevcon03,Text (categorical values specified by STS),"{'1': 'Yes - Diseased', '2': 'Yes - No disease', '3': 'No previous conduit'}"
+261,cabdisloc04,Text (categorical values specified by STS),"{'1': 'Left Main', '2': 'Proximal LAD', '3': 'Mid LAD', '4': 'Distal LAD', '5': 'Diagonal 1', '6': 'Diagonal 2', '7': 'Circumflex 8 OM1', '9': 'OM2', '10': 'OM3', '11': 'RCA', '12': 'PDA', '13': 'PLB', '14': 'AM branches 15 Ramus'}"
+262,cabpctsten04,Integer,
+263,cabprevcon04,Text (categorical values specified by STS),"{'1': 'Yes - Diseased', '2': 'Yes - No disease', '3': 'No previous conduit'}"
+264,cabdisloc05,Text (categorical values specified by STS),"{'1': 'Left Main', '2': 'Proximal LAD', '3': 'Mid LAD', '4': 'Distal LAD', '5': 'Diagonal 1', '6': 'Diagonal 2', '7': 'Circumflex 8 OM1', '9': 'OM2', '10': 'OM3', '11': 'RCA', '12': 'PDA', '13': 'PLB', '14': 'AM branches 15 Ramus'}"
+265,cabpctsten05,Integer,
+266,cabprevcon05,Text (categorical values specified by STS),"{'1': 'Yes - Diseased', '2': 'Yes - No disease', '3': 'No previous conduit'}"
+267,cabdisloc06,Text (categorical values specified by STS),"{'1': 'Left Main', '2': 'Proximal LAD', '3': 'Mid LAD', '4': 'Distal LAD', '5': 'Diagonal 1', '6': 'Diagonal 2', '7': 'Circumflex 8 OM1', '9': 'OM2', '10': 'OM3', '11': 'RCA', '12': 'PDA', '13': 'PLB', '14': 'AM branches 15 Ramus'}"
+268,cabpctsten06,Integer,
+269,cabprevcon06,Text (categorical values specified by STS),"{'1': 'Yes - Diseased', '2': 'Yes - No disease', '3': 'No previous conduit'}"
+270,cabdisloc07,Text (categorical values specified by STS),"{'1': 'Left Main', '2': 'Proximal LAD', '3': 'Mid LAD', '4': 'Distal LAD', '5': 'Diagonal 1', '6': 'Diagonal 2', '7': 'Circumflex 8 OM1', '9': 'OM2', '10': 'OM3', '11': 'RCA', '12': 'PDA', '13': 'PLB', '14': 'AM branches 15 Ramus'}"
+271,cabpctsten07,Integer,
+272,cabprevcon07,Text (categorical values specified by STS),"{'1': 'Yes - Diseased', '2': 'Yes - No disease', '3': 'No previous conduit'}"
+273,cabdisloc08,Text (categorical values specified by STS),"{'1': 'Left Main', '2': 'Proximal LAD', '3': 'Mid LAD', '4': 'Distal LAD', '5': 'Diagonal 1', '6': 'Diagonal 2', '7': 'Circumflex 8 OM1', '9': 'OM2', '10': 'OM3', '11': 'RCA', '12': 'PDA', '13': 'PLB', '14': 'AM branches 15 Ramus'}"
+274,cabpctsten08,Integer,
+275,cabprevcon08,Text (categorical values specified by STS),"{'1': 'Yes - Diseased', '2': 'Yes - No disease', '3': 'No previous conduit'}"
+276,cabdisloc09,Text (categorical values specified by STS),"{'1': 'Left Main', '2': 'Proximal LAD', '3': 'Mid LAD', '4': 'Distal LAD', '5': 'Diagonal 1', '6': 'Diagonal 2', '7': 'Circumflex 8 OM1', '9': 'OM2', '10': 'OM3', '11': 'RCA', '12': 'PDA', '13': 'PLB', '14': 'AM branches 15 Ramus'}"
+277,cabpctsten09,Integer,
+278,cabprevcon09,Text (categorical values specified by STS),"{'1': 'Yes - Diseased', '2': 'Yes - No disease', '3': 'No previous conduit'}"
+279,cabdisloc10,Text (categorical values specified by STS),"{'1': 'Left Main', '2': 'Proximal LAD', '3': 'Mid LAD', '4': 'Distal LAD', '5': 'Diagonal 1', '6': 'Diagonal 2', '7': 'Circumflex 8 OM1', '9': 'OM2', '10': 'OM3', '11': 'RCA', '12': 'PDA', '13': 'PLB', '14': 'AM branches 15 Ramus'}"
+280,cabpctsten10,Integer,
+281,cabprevcon10,Text (categorical values specified by STS),"{'1': 'Yes - Diseased', '2': 'Yes - No disease', '3': 'No previous conduit'}"
+282,iabp,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+283,iabpwhen,Text (categorical values specified by STS),"{'1': 'Preop', '2': 'Intraop', '3': 'Postop'}"
+284,iabpind,Text (categorical values specified by STS),"{'1': 'Hemodyn Instability', '2': 'Procedural Support', '3': 'Unstable Angina', '4': 'Cardiopulmonary Bypass (CPB) Weaning Failure', '5': 'Prophylactic', '6': 'Other'}"
+285,bldprod,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+286,bdrbcu,Integer,
+287,bdffpu,Integer,
+288,bdcryou,Integer,
+289,bdplatu,Integer,
+290,venthrstot,Real,
+291,venthrs,Real,
+292,icuinhrs,Real,
+293,icuadhrs,Real,
+294,tothricu,Real,
+295,complics,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+296,sursinf,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+297,csternalsupinf,Text (categorical values specified by STS),"{'3': 'Yes, within 30 days of procedure', '4': 'Yes, >30 days after procedure but during hospitalization for surgery', '2': 'No'}"
+298,deepsterninf,Text (categorical values specified by STS),"{'3': 'Yes, within 30 days of procedure', '4': 'Yes, >30 days after procedure but during hospitalization for surgery', '2': 'No'}"
+299,cistdeep,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+300,csternalmedia,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+301,coprebld,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+302,cnstrokp,Text (categorical values specified by STS),"{'3': 'Yes, hemorrhagic', '4': 'Yes, ischemic', '5': 'Yes, undetermined type', '2': 'No'}"
+303,cnstrokttia,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+304,cnstrokt,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+305,cncomaenceph,Text (categorical values specified by STS),"{'1': 'None', '2': 'Anoxic', '3': 'Embolic', '4': 'Drug', '5': 'Metabolic', '6': 'Intracranial Bleeding', '7': 'Other'}"
+306,cnparal,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+307,cnparalty,Text (categorical values specified by STS),"{'1': 'Transient', '2': 'Permanent'}"
+308,cnstroktrind,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+309,cncoma,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+310,cpvntlng,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+311,crenfail,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+312,crendial,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+313,coppermi,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+314,cotafib,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+315,mortalty,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+316,mtdcstat,Text (categorical values specified by STS),"{'1': 'Alive', '2': 'Dead'}"
+317,mt30stat,Text (categorical values specified by STS),"{'1': 'Alive', '2': 'Dead', '3': 'Unknown'}"
+318,mt30statmeth,Text (categorical values specified by STS),"{'1': 'Phone call to patient or family', '2': 'Letter from medical provider', '3': 'Evidence of life or death in medical record (lab tests, cardiac rehab visits, etc.)', '4': 'Office visit on or after 30 days after procedure', '5': 'Social Security Death Master File / NDI', '6': 'Other'}"
+319,mtopd,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+320,mtcause,Text (categorical values specified by STS),"{'1': 'Cardiac', '2': 'Neurologic', '3': 'Renal', '4': 'Vascular', '5': 'Infection', '6': 'Pulmonary 700\tUnknown 777\tOther'}"
+321,predmort,"Real number, at least 0.3 digits (3 decimal places)",
+322,preddeep,"Real number, at least 0.3 digits (3 decimal places)",
+323,predreop,"Real number, at least 0.3 digits (3 decimal places)",
+324,predstro,"Real number, at least 0.3 digits (3 decimal places)",
+325,predvent,"Real number, at least 0.3 digits (3 decimal places)",
+326,predrenf,"Real number, at least 0.3 digits (3 decimal places)",
+327,predmm,"Real number, at least 0.3 digits (3 decimal places)",
+328,pred6d,"Real number, at least 0.3 digits (3 decimal places)",
+329,pred14d,"Real number, at least 0.3 digits (3 decimal places)",
+330,predcoefvrsn,Text (categorical values specified by User),
+331,bsa,Real,
+332,venthrsi,Integer,
+333,payorprim,Text (categorical values specified by STS),"{'1': 'None / self', '2': 'Medicare', '3': 'Medicaid', '4': 'Military Health', '5': 'Indian Health Service', '6': 'Correctional Facility', '7': 'State Specific Plan', '8': 'Other Government Insurance', '9': 'Commercial Health Insurance', '10': 'Health Maintenance Organization', '11': 'Non-U.S. Plan', '12': 'Charitable Care/Foundation Funding'}"
+334,primmcareffs,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+335,payorsecond,Text (categorical values specified by STS),"{'1': 'None / self', '2': 'Medicare', '3': 'Medicaid', '4': 'Military Health', '5': 'Indian Health Service', '6': 'Correctional Facility', '7': 'State Specific Plan', '8': 'Other Government Insurance', '9': 'Commercial Health Insurance', '10': 'Health Maintenance Organization', '11': 'Non-U.S. Plan', '12': 'Charitable Care/Foundation Funding'}"
+336,secondmcareffs,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+337,infendcult,Text (categorical values specified by STS),"{'1': 'Culture negative', '3': 'Streptococcus species', '11': 'Methicillian resistant staphylococcus aureus (MRSA)', '12': 'Methicillian sensitive staphylococcus aureus (MSSA)', '4': 'Coagulase negative staphylococcus', '5': 'Enterococcus species', '9': 'Gram negative species', '10': 'Polymicrobial', '13': 'Mycobacterium (chimera)', '6': 'Fungal', '7': 'Other', '8': 'Unknown'}"
+338,pft,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+339,fev1,Integer,
+340,dlco,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+341,dlcopred,Integer,
+342,abg,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+343,pco2,Real,
+344,po2,Real,
+345,bdtx,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No', '3': 'Unknown'}"
+346,depression,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No', '3': 'Unknown'}"
+347,liverchildpugh,Text (categorical values specified by STS),"{'1': 'A', '2': 'B', '3': 'C', '4': 'Unknown'}"
+348,livertranslist,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+349,liverstatuspost,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+350,heartfail,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No', '3': 'Unknown'}"
+351,heartfailtmg,Text (categorical values specified by STS),"{'1': ['Acute', 'New onset or worsening heart failure within 2 weeks prior to this procedure'], '2': ['Chronic', 'More than 2 weeks prior to this procedure'], '3': ['Both', 'Worsening heart failure within 2 weeks in a patient with a known history of heart failure']}"
+352,heartfailtype,Text (categorical values specified by STS),"{'1': 'Systolic', '2': 'Diastolic', '3': 'Both', '4': 'Unavailable'}"
+353,arrhythatrfib,Text (categorical values specified by STS),"{'1': ['None', ''], '2': ['Remote', 'More than 30 days prior to procedure.'], '3': ['Recent', 'Within 30 days of this procedure.']}"
+354,medothantiang,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No', '3': 'Contraindicated', '4': 'Unknown'}"
+355,medadpidis,Integer,
+356,medasaonce,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+357,medcoum5days,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No', '3': 'Unknown'}"
+358,medcoum5dis,Integer,
+359,medxa5days,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No', '3': 'Unknown'}"
+360,medxa5ddis,Integer,
+361,mednoac5days,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No', '3': 'Unknown'}"
+362,mednoacdisc,Integer,
+363,medthromin5days,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No', '3': 'Unknown'}"
+364,medthromindisc,Integer,
+365,pctstenmidlad,Integer,
+366,grftstenmidlad,Text (categorical values specified by STS),"{'1': 'Patent', '2': 'Stenosis >=50%', '3': '100% occlusion', '4': 'Not documented'}"
+367,stntstenmidlad,Text (categorical values specified by STS),"{'1': 'Patent', '2': 'Stenosis >=50%', '3': 'Not documented'}"
+368,pctstendistlad,Integer,
+369,grftstendistlad,Text (categorical values specified by STS),"{'1': 'Patent', '2': 'Stenosis >=50%', '3': '100% occlusion', '4': 'Not documented'}"
+370,stntstendistlad,Text (categorical values specified by STS),"{'1': 'Patent', '2': 'Stenosis >=50%', '3': 'Not documented'}"
+371,pctstendiag1,Integer,
+372,grftstendiag1,Text (categorical values specified by STS),"{'1': 'Patent', '2': 'Stenosis >=50%', '3': '100% occlusion', '4': 'Not documented'}"
+373,stntstendiag1,Text (categorical values specified by STS),"{'1': 'Patent', '2': 'Stenosis >=50%', '3': 'Not documented'}"
+374,pctstendiag2,Integer,
+375,grftstendiag2,Text (categorical values specified by STS),"{'1': 'Patent', '2': 'Stenosis >=50%', '3': '100% occlusion', '4': 'Not documented'}"
+376,stntstendiag2,Text (categorical values specified by STS),"{'1': 'Patent', '2': 'Stenosis >=50%', '3': 'Not documented'}"
+377,pctstendiag3,Integer,
+378,grftstendiag3,Text (categorical values specified by STS),"{'1': 'Patent', '2': 'Stenosis >=50%', '3': '100% occlusion', '4': 'Not documented'}"
+379,stntstendiag3,Text (categorical values specified by STS),"{'1': 'Patent', '2': 'Stenosis >=50%', '3': 'Not documented'}"
+380,pctstenam,Integer,
+381,grftstenam,Text (categorical values specified by STS),"{'1': 'Patent', '2': 'Stenosis >=50%', '3': '100% occlusion', '4': 'Not documented'}"
+382,stntstenam,Text (categorical values specified by STS),"{'1': 'Patent', '2': 'Stenosis >=50%', '3': 'Not documented'}"
+383,incidenc,Text (categorical values specified by STS),"{'1': 'First cardiovascular surgery', '2': 'First re-op cardiovascular surgery', '3': 'Second re-op cardiovascular surgery', '4': 'Third re-op cardiovascular surgery', '5': 'Fourth or more re-op cardiovascular surgery', '6': 'NA - Not a cardiovascular surgery'}"
+384,intraopprocomcon,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+385,imedeaca,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+386,imedtran,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+387,imaused,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+388,leftima,Text (categorical values specified by STS),"{'1': 'Yes, pedicle', '2': 'Yes, skeletonized', '3': 'No'}"
+389,rightima,Text (categorical values specified by STS),"{'1': 'Yes, pedicle', '2': 'Yes, skeltonized', '3': 'No'}"
+390,radialartused,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+391,venouscondused,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+392,proxtech,Text (categorical values specified by STS),"{'1': 'Single Cross Clamp', '2': 'Partial Occlusion Clamp', '3': 'Anastomotic Assist Device', '4': 'None (Isolated in situ mammary)'}"
+393,cabdistsite01,Text (categorical values specified by STS),"{'15': ['Left Main', 'Left Main'], '5': ['Prox LAD', 'Proximal Left Anterior Descending'], '6': ['Mid LAD', 'Middle Left Anterior Descending'], '7': ['Distal LAD', 'Distal Left Anterior Descending'], '8': ['Diagonal 1', 'First Diagonal'], '9': ['Diagonal 2', 'Second Diagonal'], '16': ['Diagonal 3', 'Third Diagonal'], '17': ['Circumflex', 'Circumflex'], '11': ['Obtuse Marginal 1', 'First Obtuse Marginal'], '12': ['Obtuse Marginal 2', 'Second Obtuse Marginal'], '13': ['Obtuse Marginal 3', 'Third Obtuse Marginal'], '10': ['Ramus', 'Ramus Intermedius'], '1': ['RCA', 'Right Coronary Artery'], '2': ['Acute Marginal (AM)', 'Acute Marginal'], '3': ['Posterior Descending (PDA)', 'Posterior Descending Artery'], '4': ['Posterolateral (PLB)', 'Posterolateral Branch'], '14': ['Other', 'Any other site']}"
+394,cabproximalsite01,Text (categorical values specified by STS),"{'1': 'In Situ Mammary', '2': 'Ascending aorta', '3': 'Descending aorta', '4': 'Subclavian artery', '5': 'Innominate artery', '6': 'T-graft off SVG', '7': 'T-graft off Radial', '8': 'T-graft off LIMA', '9': 'T-graft off RIMA', '10': 'Natural Y vein graft', '11': 'Other'}"
+395,cabconduit01,Text (categorical values specified by STS),"{'1': 'Vein graft', '2': 'In Situ LIMA', '3': 'In Situ RIMA', '4': 'Free IMA', '8': 'Composite artery-vein', '5': 'Radial artery', '6': 'Other arteries, homograft', '7': 'Synthetic graft'}"
+396,cab02,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+397,cabdistsite02,Text (categorical values specified by STS),"{'15': ['Left Main', 'Left Main'], '5': ['Prox LAD', 'Proximal Left Anterior Descending'], '6': ['Mid LAD', 'Middle Left Anterior Descending'], '7': ['Distal LAD', 'Distal Left Anterior Descending'], '8': ['Diagonal 1', 'First Diagonal'], '9': ['Diagonal 2', 'Second Diagonal'], '16': ['Diagonal 3', 'Third Diagonal'], '17': ['Circumflex', 'Circumflex'], '11': ['Obtuse Marginal 1', 'First Obtuse Marginal'], '12': ['Obtuse Marginal 2', 'Second Obtuse Marginal'], '13': ['Obtuse Marginal 3', 'Third Obtuse Marginal'], '10': ['Ramus', 'Ramus Intermedius'], '1': ['RCA', 'Right Coronary Artery'], '2': ['Acute Marginal (AM)', 'Acute Marginal'], '3': ['Posterior Descending (PDA)', 'Posterior Descending Artery'], '4': ['Posterolateral (PLB)', 'Posterolateral Branch'], '14': ['Other', 'Any other site']}"
+398,cabproximalsite02,Text (categorical values specified by STS),"{'1': 'In Situ Mammary', '2': 'Ascending aorta', '3': 'Descending aorta', '4': 'Subclavian artery', '5': 'Innominate artery', '6': 'T-graft off SVG', '7': 'T-graft off Radial', '8': 'T-graft off LIMA', '9': 'T-graft off RIMA', '10': 'Natural Y vein graft', '11': 'Other'}"
+399,cabconduit02,Text (categorical values specified by STS),"{'1': 'Vein graft', '2': 'In Situ LIMA', '3': 'In Situ RIMA', '4': 'Free IMA', '8': 'Composite artery-vein', '5': 'Radial artery', '6': 'Other arteries, homograft', '7': 'Synthetic graft'}"
+400,cab03,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+401,cabdistsite03,Text (categorical values specified by STS),"{'15': ['Left Main', 'Left Main'], '5': ['Prox LAD', 'Proximal Left Anterior Descending'], '6': ['Mid LAD', 'Middle Left Anterior Descending'], '7': ['Distal LAD', 'Distal Left Anterior Descending'], '8': ['Diagonal 1', 'First Diagonal'], '9': ['Diagonal 2', 'Second Diagonal'], '16': ['Diagonal 3', 'Third Diagonal'], '17': ['Circumflex', 'Circumflex'], '11': ['Obtuse Marginal 1', 'First Obtuse Marginal'], '12': ['Obtuse Marginal 2', 'Second Obtuse Marginal'], '13': ['Obtuse Marginal 3', 'Third Obtuse Marginal'], '10': ['Ramus', 'Ramus Intermedius'], '1': ['RCA', 'Right Coronary Artery'], '2': ['Acute Marginal (AM)', 'Acute Marginal'], '3': ['Posterior Descending (PDA)', 'Posterior Descending Artery'], '4': ['Posterolateral (PLB)', 'Posterolateral Branch'], '14': ['Other', 'Any other site']}"
+402,cabproximalsite03,Text (categorical values specified by STS),"{'1': 'In Situ Mammary', '2': 'Ascending aorta', '3': 'Descending aorta', '4': 'Subclavian artery', '5': 'Innominate artery', '6': 'T-graft off SVG', '7': 'T-graft off Radial', '8': 'T-graft off LIMA', '9': 'T-graft off RIMA', '10': 'Natural Y vein graft', '11': 'Other'}"
+403,cabconduit03,Text (categorical values specified by STS),"{'1': 'Vein graft', '2': 'In Situ LIMA', '3': 'In Situ RIMA', '4': 'Free IMA', '8': 'Composite artery-vein', '5': 'Radial artery', '6': 'Other arteries, homograft', '7': 'Synthetic graft'}"
+404,cab04,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+405,cabdistsite04,Text (categorical values specified by STS),"{'15': ['Left Main', 'Left Main'], '5': ['Prox LAD', 'Proximal Left Anterior Descending'], '6': ['Mid LAD', 'Middle Left Anterior Descending'], '7': ['Distal LAD', 'Distal Left Anterior Descending'], '8': ['Diagonal 1', 'First Diagonal'], '9': ['Diagonal 2', 'Second Diagonal'], '16': ['Diagonal 3', 'Third Diagonal'], '17': ['Circumflex', 'Circumflex'], '11': ['Obtuse Marginal 1', 'First Obtuse Marginal'], '12': ['Obtuse Marginal 2', 'Second Obtuse Marginal'], '13': ['Obtuse Marginal 3', 'Third Obtuse Marginal'], '10': ['Ramus', 'Ramus Intermedius'], '1': ['RCA', 'Right Coronary Artery'], '2': ['Acute Marginal (AM)', 'Acute Marginal'], '3': ['Posterior Descending (PDA)', 'Posterior Descending Artery'], '4': ['Posterolateral (PLB)', 'Posterolateral Branch'], '14': ['Other', 'Any other site']}"
+406,cabproximalsite04,Text (categorical values specified by STS),"{'1': 'In Situ Mammary', '2': 'Ascending aorta', '3': 'Descending aorta', '4': 'Subclavian artery', '5': 'Innominate artery', '6': 'T-graft off SVG', '7': 'T-graft off Radial', '8': 'T-graft off LIMA', '9': 'T-graft off RIMA', '10': 'Natural Y vein graft', '11': 'Other'}"
+407,cabconduit04,Text (categorical values specified by STS),"{'1': 'Vein graft', '2': 'In Situ LIMA', '3': 'In Situ RIMA', '4': 'Free IMA', '8': 'Composite artery-vein', '5': 'Radial artery', '6': 'Other arteries, homograft', '7': 'Synthetic graft'}"
+408,cab05,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+409,cabdistsite05,Text (categorical values specified by STS),"{'15': ['Left Main', 'Left Main'], '5': ['Prox LAD', 'Proximal Left Anterior Descending'], '6': ['Mid LAD', 'Middle Left Anterior Descending'], '7': ['Distal LAD', 'Distal Left Anterior Descending'], '8': ['Diagonal 1', 'First Diagonal'], '9': ['Diagonal 2', 'Second Diagonal'], '16': ['Diagonal 3', 'Third Diagonal'], '17': ['Circumflex', 'Circumflex'], '11': ['Obtuse Marginal 1', 'First Obtuse Marginal'], '12': ['Obtuse Marginal 2', 'Second Obtuse Marginal'], '13': ['Obtuse Marginal 3', 'Third Obtuse Marginal'], '10': ['Ramus', 'Ramus Intermedius'], '1': ['RCA', 'Right Coronary Artery'], '2': ['Acute Marginal (AM)', 'Acute Marginal'], '3': ['Posterior Descending (PDA)', 'Posterior Descending Artery'], '4': ['Posterolateral (PLB)', 'Posterolateral Branch'], '14': ['Other', 'Any other site']}"
+410,cabproximalsite05,Text (categorical values specified by STS),"{'1': 'In Situ Mammary', '2': 'Ascending aorta', '3': 'Descending aorta', '4': 'Subclavian artery', '5': 'Innominate artery', '6': 'T-graft off SVG', '7': 'T-graft off Radial', '8': 'T-graft off LIMA', '9': 'T-graft off RIMA', '10': 'Natural Y vein graft', '11': 'Other'}"
+411,cabconduit05,Text (categorical values specified by STS),"{'1': 'Vein graft', '2': 'In Situ LIMA', '3': 'In Situ RIMA', '4': 'Free IMA', '8': 'Composite artery-vein', '5': 'Radial artery', '6': 'Other arteries, homograft', '7': 'Synthetic graft'}"
+412,cab06,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+413,cabdistsite06,Text (categorical values specified by STS),"{'15': ['Left Main', 'Left Main'], '5': ['Prox LAD', 'Proximal Left Anterior Descending'], '6': ['Mid LAD', 'Middle Left Anterior Descending'], '7': ['Distal LAD', 'Distal Left Anterior Descending'], '8': ['Diagonal 1', 'First Diagonal'], '9': ['Diagonal 2', 'Second Diagonal'], '16': ['Diagonal 3', 'Third Diagonal'], '17': ['Circumflex', 'Circumflex'], '11': ['Obtuse Marginal 1', 'First Obtuse Marginal'], '12': ['Obtuse Marginal 2', 'Second Obtuse Marginal'], '13': ['Obtuse Marginal 3', 'Third Obtuse Marginal'], '10': ['Ramus', 'Ramus Intermedius'], '1': ['RCA', 'Right Coronary Artery'], '2': ['Acute Marginal (AM)', 'Acute Marginal'], '3': ['Posterior Descending (PDA)', 'Posterior Descending Artery'], '4': ['Posterolateral (PLB)', 'Posterolateral Branch'], '14': ['Other', 'Any other site']}"
+414,cabproximalsite06,Text (categorical values specified by STS),"{'1': 'In Situ Mammary', '2': 'Ascending aorta', '3': 'Descending aorta', '4': 'Subclavian artery', '5': 'Innominate artery', '6': 'T-graft off SVG', '7': 'T-graft off Radial', '8': 'T-graft off LIMA', '9': 'T-graft off RIMA', '10': 'Natural Y vein graft', '11': 'Other'}"
+415,cabconduit06,Text (categorical values specified by STS),"{'1': 'Vein graft', '2': 'In Situ LIMA', '3': 'In Situ RIMA', '4': 'Free IMA', '8': 'Composite artery-vein', '5': 'Radial artery', '6': 'Other arteries, homograft', '7': 'Synthetic graft'}"
+416,cab07,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+417,cabdistsite07,Text (categorical values specified by STS),"{'15': ['Left Main', 'Left Main'], '5': ['Prox LAD', 'Proximal Left Anterior Descending'], '6': ['Mid LAD', 'Middle Left Anterior Descending'], '7': ['Distal LAD', 'Distal Left Anterior Descending'], '8': ['Diagonal 1', 'First Diagonal'], '9': ['Diagonal 2', 'Second Diagonal'], '16': ['Diagonal 3', 'Third Diagonal'], '17': ['Circumflex', 'Circumflex'], '11': ['Obtuse Marginal 1', 'First Obtuse Marginal'], '12': ['Obtuse Marginal 2', 'Second Obtuse Marginal'], '13': ['Obtuse Marginal 3', 'Third Obtuse Marginal'], '10': ['Ramus', 'Ramus Intermedius'], '1': ['RCA', 'Right Coronary Artery'], '2': ['Acute Marginal (AM)', 'Acute Marginal'], '3': ['Posterior Descending (PDA)', 'Posterior Descending Artery'], '4': ['Posterolateral (PLB)', 'Posterolateral Branch'], '14': ['Other', 'Any other site']}"
+418,cabproximalsite07,Text (categorical values specified by STS),"{'1': 'In Situ Mammary', '2': 'Ascending aorta', '3': 'Descending aorta', '4': 'Subclavian artery', '5': 'Innominate artery', '6': 'T-graft off SVG', '7': 'T-graft off Radial', '8': 'T-graft off LIMA', '9': 'T-graft off RIMA', '10': 'Natural Y vein graft', '11': 'Other'}"
+419,cabconduit07,Text (categorical values specified by STS),"{'1': 'Vein graft', '2': 'In Situ LIMA', '3': 'In Situ RIMA', '4': 'Free IMA', '8': 'Composite artery-vein', '5': 'Radial artery', '6': 'Other arteries, homograft', '7': 'Synthetic graft'}"
+420,cab08,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+421,cabdistsite08,Text (categorical values specified by STS),"{'15': ['Left Main', 'Left Main'], '5': ['Prox LAD', 'Proximal Left Anterior Descending'], '6': ['Mid LAD', 'Middle Left Anterior Descending'], '7': ['Distal LAD', 'Distal Left Anterior Descending'], '8': ['Diagonal 1', 'First Diagonal'], '9': ['Diagonal 2', 'Second Diagonal'], '16': ['Diagonal 3', 'Third Diagonal'], '17': ['Circumflex', 'Circumflex'], '11': ['Obtuse Marginal 1', 'First Obtuse Marginal'], '12': ['Obtuse Marginal 2', 'Second Obtuse Marginal'], '13': ['Obtuse Marginal 3', 'Third Obtuse Marginal'], '10': ['Ramus', 'Ramus Intermedius'], '1': ['RCA', 'Right Coronary Artery'], '2': ['Acute Marginal (AM)', 'Acute Marginal'], '3': ['Posterior Descending (PDA)', 'Posterior Descending Artery'], '4': ['Posterolateral (PLB)', 'Posterolateral Branch'], '14': ['Other', 'Any other site']}"
+422,cabproximalsite08,Text (categorical values specified by STS),"{'1': 'In Situ Mammary', '2': 'Ascending aorta', '3': 'Descending aorta', '4': 'Subclavian artery', '5': 'Innominate artery', '6': 'T-graft off SVG', '7': 'T-graft off Radial', '8': 'T-graft off LIMA', '9': 'T-graft off RIMA', '10': 'Natural Y vein graft', '11': 'Other'}"
+423,cabconduit08,Text (categorical values specified by STS),"{'1': 'Vein graft', '2': 'In Situ LIMA', '3': 'In Situ RIMA', '4': 'Free IMA', '8': 'Composite artery-vein', '5': 'Radial artery', '6': 'Other arteries, homograft', '7': 'Synthetic graft'}"
+424,cab09,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+425,cabdistsite09,Text (categorical values specified by STS),"{'15': ['Left Main', 'Left Main'], '5': ['Prox LAD', 'Proximal Left Anterior Descending'], '6': ['Mid LAD', 'Middle Left Anterior Descending'], '7': ['Distal LAD', 'Distal Left Anterior Descending'], '8': ['Diagonal 1', 'First Diagonal'], '9': ['Diagonal 2', 'Second Diagonal'], '16': ['Diagonal 3', 'Third Diagonal'], '17': ['Circumflex', 'Circumflex'], '11': ['Obtuse Marginal 1', 'First Obtuse Marginal'], '12': ['Obtuse Marginal 2', 'Second Obtuse Marginal'], '13': ['Obtuse Marginal 3', 'Third Obtuse Marginal'], '10': ['Ramus', 'Ramus Intermedius'], '1': ['RCA', 'Right Coronary Artery'], '2': ['Acute Marginal (AM)', 'Acute Marginal'], '3': ['Posterior Descending (PDA)', 'Posterior Descending Artery'], '4': ['Posterolateral (PLB)', 'Posterolateral Branch'], '14': ['Other', 'Any other site']}"
+426,cabproximalsite09,Text (categorical values specified by STS),"{'1': 'In Situ Mammary', '2': 'Ascending aorta', '3': 'Descending aorta', '4': 'Subclavian artery', '5': 'Innominate artery', '6': 'T-graft off SVG', '7': 'T-graft off Radial', '8': 'T-graft off LIMA', '9': 'T-graft off RIMA', '10': 'Natural Y vein graft', '11': 'Other'}"
+427,cabconduit09,Text (categorical values specified by STS),"{'1': 'Vein graft', '2': 'In Situ LIMA', '3': 'In Situ RIMA', '4': 'Free IMA', '8': 'Composite artery-vein', '5': 'Radial artery', '6': 'Other arteries, homograft', '7': 'Synthetic graft'}"
+428,cab10,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+429,cabdistsite10,Text (categorical values specified by STS),"{'15': ['Left Main', 'Left Main'], '5': ['Prox LAD', 'Proximal Left Anterior Descending'], '6': ['Mid LAD', 'Middle Left Anterior Descending'], '7': ['Distal LAD', 'Distal Left Anterior Descending'], '8': ['Diagonal 1', 'First Diagonal'], '9': ['Diagonal 2', 'Second Diagonal'], '16': ['Diagonal 3', 'Third Diagonal'], '17': ['Circumflex', 'Circumflex'], '11': ['Obtuse Marginal 1', 'First Obtuse Marginal'], '12': ['Obtuse Marginal 2', 'Second Obtuse Marginal'], '13': ['Obtuse Marginal 3', 'Third Obtuse Marginal'], '10': ['Ramus', 'Ramus Intermedius'], '1': ['RCA', 'Right Coronary Artery'], '2': ['Acute Marginal (AM)', 'Acute Marginal'], '3': ['Posterior Descending (PDA)', 'Posterior Descending Artery'], '4': ['Posterolateral (PLB)', 'Posterolateral Branch'], '14': ['Other', 'Any other site']}"
+430,cabproximalsite10,Text (categorical values specified by STS),"{'1': 'In Situ Mammary', '2': 'Ascending aorta', '3': 'Descending aorta', '4': 'Subclavian artery', '5': 'Innominate artery', '6': 'T-graft off SVG', '7': 'T-graft off Radial', '8': 'T-graft off LIMA', '9': 'T-graft off RIMA', '10': 'Natural Y vein graft', '11': 'Other'}"
+431,cabconduit10,Text (categorical values specified by STS),"{'1': 'Vein graft', '2': 'In Situ LIMA', '3': 'In Situ RIMA', '4': 'Free IMA', '8': 'Composite artery-vein', '5': 'Radial artery', '6': 'Other arteries, homograft', '7': 'Synthetic graft'}"
+432,icuvisit,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+433,icureadm,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+434,creintmi,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+435,creintmives,Text (categorical values specified by STS),"{'1': 'Native coronary', '2': 'Graft', '3': 'Both'}"
+436,creintmiintty,Text (categorical values specified by STS),"{'1': 'Surgery', '2': 'PCI', '3': 'Both'}"
+437,copreoth,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+438,cnenceph,Text (categorical values specified by STS),"{'1': 'None', '2': 'Anoxic', '3': 'Drug', '4': 'Metabolic', '5': 'Mixed', '6': 'Unknown'}"
+439,cnparesis,Text (categorical values specified by STS),"{'1': 'Yes', '2': 'No'}"
+440,cnparesisty,Text (categorical values specified by STS),"{'1': 'Transient', '2': 'Permanent'}"
+441,dischmortstat,Text (categorical values specified by STS),"{'1': 'In hospital, alive', '2': 'Died in hospital', '3': 'Discharged alive, last know status is alive', '4': 'Discharged alive, died after discharge'}"

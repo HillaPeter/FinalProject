@@ -409,7 +409,7 @@ groupby_siteid_prcab()
 groupby_surgid()
 groupby_surgid_prcab()
 #
-path="/tmp/pycharm_project_723/"
+path="/tmp/pycharm_project_355/"
 #
 #
 # avg_surgid['firstop/total'] = (avg_surgid['Year_avg_Firstop']/avg_surgid['total_year_avg'])*100
