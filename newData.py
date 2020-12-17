@@ -9,6 +9,14 @@ df_2014_2015 = pd.read_csv("/mnt/nadavrap-students/STS/data/data_Shapira_2020091
 df_2016_2017 = pd.read_csv("/mnt/nadavrap-students/STS/data/data_Shapira_20200911_2016_2017.csv")
 df_2018_2019 = pd.read_csv("/mnt/nadavrap-students/STS/data/data_Shapira_20200911_2018_2019.csv")
 
+df_2010_2011['prcab'].fillna(0)
+df_2012_2013['prcab'].fillna(0)
+df_2014_2015['prcab'].fillna(0)
+df_2016_2017['prcab'].fillna(0)
+df_2018_2019['prcab'].fillna(0)
+
+print(df_2018_2019['prcab'])
+
 mask = df_2010_2011['surgyear'] != 2010
 df_2011 = df_2010_2011[mask]
 df_2010 = df_2010_2011[~mask]
@@ -253,16 +261,17 @@ def groupby_siteid_prcab():
     x = np.array(less_8['Distinct_years_reop'])
     print(np.unique(x))
 
-    df_10 = df_2010.groupby('siteid')['prcab'].apply(lambda x: (x == 2).sum()).reset_index(name='2010_Firstop')
-    df_11 = df_2011.groupby('siteid')['prcab'].apply(lambda x: (x == 2).sum()).reset_index(name='2011_Firstop')
-    df_12 = df_2012.groupby('siteid')['prcab'].apply(lambda x: (x == 2).sum()).reset_index(name='2012_Firstop')
-    df_13 = df_2013.groupby('siteid')['prcab'].apply(lambda x: (x == 2).sum()).reset_index(name='2013_Firstop')
-    df_14 = df_2014.groupby('siteid')['prcab'].apply(lambda x: (x == 2).sum()).reset_index(name='2014_Firstop')
-    df_15 = df_2015.groupby('siteid')['prcab'].apply(lambda x: (x == 2).sum()).reset_index(name='2015_Firstop')
-    df_16 = df_2016.groupby('siteid')['prcab'].apply(lambda x: (x == 2).sum()).reset_index(name='2016_Firstop')
-    df_17 = df_2017.groupby('siteid')['prcab'].apply(lambda x: (x == 2).sum()).reset_index(name='2017_Firstop')
-    df_18 = df_2018.groupby('siteid')['prcab'].apply(lambda x: (x == 2).sum()).reset_index(name='2018_Firstop')
-    df_19 = df_2019.groupby('siteid')['prcab'].apply(lambda x: (x == 2).sum()).reset_index(name='2019_Firstop')
+
+    df_10 = df_2010.groupby('siteid')['prcab'].apply(lambda x:((x==2) | (x==0)).sum()).reset_index(name='2010_Firstop')
+    df_11 = df_2011.groupby('siteid')['prcab'].apply(lambda x:((x==2) | (x==0)).sum()).reset_index(name='2011_Firstop')
+    df_12 = df_2012.groupby('siteid')['prcab'].apply(lambda x:((x==2) | (x==0)).sum()).reset_index(name='2012_Firstop')
+    df_13 = df_2013.groupby('siteid')['prcab'].apply(lambda x:((x==2) | (x==0)).sum()).reset_index(name='2013_Firstop')
+    df_14 = df_2014.groupby('siteid')['prcab'].apply(lambda x:((x==2) | (x==0)).sum()).reset_index(name='2014_Firstop')
+    df_15 = df_2015.groupby('siteid')['prcab'].apply(lambda x:((x==2) | (x==0)).sum()).reset_index(name='2015_Firstop')
+    df_16 = df_2016.groupby('siteid')['prcab'].apply(lambda x:((x==2) | (x==0)).sum()).reset_index(name='2016_Firstop')
+    df_17 = df_2017.groupby('siteid')['prcab'].apply(lambda x:((x==2) | (x==0)).sum()).reset_index(name='2017_Firstop')
+    df_18 = df_2018.groupby('siteid')['prcab'].apply(lambda x:((x==2) | (x==0)).sum()).reset_index(name='2018_Firstop')
+    df_19 = df_2019.groupby('siteid')['prcab'].apply(lambda x:((x==2) | (x==0)).sum()).reset_index(name='2019_Firstop')
 
     d1 = pd.merge(df_10, df_11, on='siteid')
     d2 = pd.merge(d1, df_12, on='siteid')
@@ -348,17 +357,17 @@ def groupby_surgid_prcab():
     x = np.array(less_8['Distinct_years_reop'])
     print(np.unique(x))
 
-    df_10 = df_2010.groupby('surgid')['prcab'].apply(lambda x: (x == 2).sum()).reset_index(name='2010_Firstop')
-    df_11 = df_2011.groupby('surgid')['prcab'].apply(lambda x: (x == 2).sum()).reset_index(name='2011_Firstop')
-    df_12 = df_2012.groupby('surgid')['prcab'].apply(lambda x: (x == 2).sum()).reset_index(name='2012_Firstop')
-    df_13 = df_2013.groupby('surgid')['prcab'].apply(lambda x: (x == 2).sum()).reset_index(name='2013_Firstop')
-    df_14 = df_2014.groupby('surgid')['prcab'].apply(lambda x: (x == 2).sum()).reset_index(name='2014_Firstop')
-    df_15 = df_2015.groupby('surgid')['prcab'].apply(lambda x: (x == 2).sum()).reset_index(name='2015_Firstop')
-    df_16 = df_2016.groupby('surgid')['prcab'].apply(lambda x: (x == 2).sum()).reset_index(name='2016_Firstop')
-    df_17 = df_2017.groupby('surgid')['prcab'].apply(lambda x: (x == 2).sum()).reset_index(name='2017_Firstop')
-    df_18 = df_2018.groupby('surgid')['prcab'].apply(lambda x: (x == 2).sum()).reset_index(name='2018_Firstop')
-    df_19 = df_2019.groupby('surgid')['prcab'].apply(lambda x: (x == 2).sum()).reset_index(name='2019_Firstop')
-
+    df_10 = df_2010.groupby('surgid')['prcab'].apply(lambda x: ((x==2) | (x==0)).sum()).reset_index(name='2010_Firstop')
+    df_11 = df_2011.groupby('surgid')['prcab'].apply(lambda x: ((x==2) | (x==0)).sum()).reset_index(name='2011_Firstop')
+    df_12 = df_2012.groupby('surgid')['prcab'].apply(lambda x: ((x==2) | (x==0)).sum()).reset_index(name='2012_Firstop')
+    df_13 = df_2013.groupby('surgid')['prcab'].apply(lambda x: ((x==2) | (x==0)).sum()).reset_index(name='2013_Firstop')
+    df_14 = df_2014.groupby('surgid')['prcab'].apply(lambda x: ((x==2) | (x==0)).sum()).reset_index(name='2014_Firstop')
+    df_15 = df_2015.groupby('surgid')['prcab'].apply(lambda x: ((x==2) | (x==0)).sum()).reset_index(name='2015_Firstop')
+    df_16 = df_2016.groupby('surgid')['prcab'].apply(lambda x: ((x==2) | (x==0)).sum()).reset_index(name='2016_Firstop')
+    df_17 = df_2017.groupby('surgid')['prcab'].apply(lambda x: ((x==2) | (x==0)).sum()).reset_index(name='2017_Firstop')
+    df_18 = df_2018.groupby('surgid')['prcab'].apply(lambda x: ((x==2) | (x==0)).sum()).reset_index(name='2018_Firstop')
+    df_19 = df_2019.groupby('surgid')['prcab'].apply(lambda x: ((x==2) | (x==0)).sum()).reset_index(name='2019_Firstop')
+    print(df_18)
     d1 = pd.merge(df_10, df_11, on='surgid')
     d2 = pd.merge(d1, df_12, on='surgid')
     d3 = pd.merge(d2, df_13, on='surgid')
