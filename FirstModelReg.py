@@ -1,13 +1,14 @@
 import pandas as pd
-import matplotlib.pyplot as plt
-import numpy as np
+from sklearn import linear_model
+import statsmodels.api as sm
+from scipy import stats
 
 
 df_all = pd.read_csv("/mnt/nadavrap-students/STS/data/clean_data2.csv")
 
-print(df_all.head())
+# print(df_all.head())
 
-print(df_all.columns.tolist())
+# print(df_all.columns.tolist())
 
 
 mask = df_all['surgyear'] == 2010
@@ -34,6 +35,8 @@ df_2019 = df_all[mask]
 
 avg_siteid = pd.DataFrame()
 avg_surgid = pd.DataFrame()
+df_siteid_reg = pd.DataFrame()
+df_surgid_reg = pd.DataFrame()
 
 def groupby_siteid():
     df2010 = df_2010.groupby('SiteID')['SiteID'].count().reset_index(name='2010_total')
@@ -158,12 +161,18 @@ def groupby_siteid_reop():
     temp_reop['Year_sum_reop'] = df_sum_all_Years['Year_sum_reop']
 
     df20 = pd.merge(avg_siteid, temp_first, on='SiteID', how='outer')
-    total_avg_site_id = pd.merge(df20, temp_reop, on='SiteID', how='outer')
+    df_mort = groupby_mortality_siteid()
+    temp_merge = pd.merge(df20, temp_reop, on='SiteID', how='outer')
+    total_avg_site_id = pd.merge(temp_merge, df_mort, on='SiteID', how='outer')
 
-    total_avg_site_id['firstop/total'] = (total_avg_site_id['Year_sum_Firstop'] / total_avg_site_id['total_year_sum']) * 100
+    total_avg_site_id['firstop/total'] = (total_avg_site_id['Year_sum_Firstop'] / total_avg_site_id['total_year_sum']) *100
     total_avg_site_id['reop/total'] = (total_avg_site_id['Year_sum_reop'] / total_avg_site_id['total_year_sum']) * 100
+    total_avg_site_id['mortalty_rate'] = (total_avg_site_id['Mortality'] / total_avg_site_id['total_year_sum'])*100
     total_avg_site_id.fillna(0, inplace=True)
     total_avg_site_id.to_csv('total_avg_site_id.csv')
+
+    df_siteid_reg['SiteID'] =total_avg_site_id['SiteID']
+    df_siteid_reg['total_year_avg'] = total_avg_site_id['total_year_avg']
 
 def groupby_surgid():
     df2010 = df_2010.groupby('surgid')['surgid'].count().reset_index(name='2010_total')
@@ -286,16 +295,81 @@ def groupby_surgid_reop():
     temp_reop['Year_sum_reop'] = df_sum_all_Years['Year_sum_reop']
 
     df20 = pd.merge(avg_surgid, temp_first, on='surgid', how='outer')
-    total_avg_surgid = pd.merge(df20, temp_reop, on='surgid', how='outer')
+    df_mort = groupby_mortality_surgid()
+    temp_merge = pd.merge(df20, temp_reop, on='surgid', how='outer')
+    total_avg_surgid = pd.merge(df_mort, temp_merge, on='surgid', how='outer')
 
     total_avg_surgid['firstop/total'] = (total_avg_surgid['Year_sum_Firstop'] / total_avg_surgid['total_year_count']) * 100
     total_avg_surgid['reop/total'] = (total_avg_surgid['Year_sum_reop'] / total_avg_surgid['total_year_count']) * 100
+    total_avg_surgid['mortalty_rate'] = (total_avg_surgid['Mortality'] / total_avg_surgid['total_year_count']) * 100
     total_avg_surgid.fillna(0, inplace=True)
     total_avg_surgid.to_csv('total_avg_surgid.csv')
 
+def groupby_mortality_siteid():
+    dfmort = df_all.groupby('SiteID')['MtDCStat'].apply(lambda x: (x == 'Dead').sum()).reset_index(name='Mortality')
+    dfmort.to_csv("/tmp/pycharm_project_723/files/mortality siteid.csv")
+    return dfmort
+
+def groupby_mortality_surgid():
+    dfmort = df_all.groupby('surgid')['MtDCStat'].apply(lambda x: (x == 'Dead').sum()).reset_index(name='Mortality')
+    dfmort.to_csv("/tmp/pycharm_project_723/files/mortality surgid.csv")
+    return dfmort
+
+def launch_reg_siteid():
+    df_sites = pd.read_csv("total_avg_site_id.csv")
+
+    print("---------------------site id reg:--------------------------")
+    print()
+    X = df_sites[['total_year_avg', 'Year_avg_Firstop', 'Year_avg_reop', 'reop/total']]  # here we have 2 variables for multiple regression. If you just want to use one variable for simple linear regression, then use X = df['Interest_Rate'] for example.Alternatively, you may add additional variables within the brackets
+    Y = df_sites['mortalty_rate']
+
+    # with sklearn
+    regr = linear_model.LinearRegression()
+    regr.fit(X, Y)
+
+    print('Intercept: \n', regr.intercept_)
+    print('Coefficients: \n', regr.coef_)
+
+       # with statsmodels
+    X = sm.add_constant(X)  # adding a constant
+
+    model = sm.OLS(Y, X).fit()
+    predictions = model.predict(X)
+
+    print_model = model.summary()
+    print(print_model)
+    print()
+    print()
+
+def launch_reg_surgid():
+    df_sites = pd.read_csv("total_avg_surgid.csv")
+
+    print("------------------------ surg id reg:-------------------------------")
+    print()
+    X = df_sites[['total_year_avg', 'Year_avg_Firstop', 'Year_avg_reop','reop/total']]  # here we have 2 variables for multiple regression. If you just want to use one variable for simple linear regression, then use X = df['Interest_Rate'] for example.Alternatively, you may add additional variables within the brackets
+    Y = df_sites['mortalty_rate']
+
+    # with sklearn
+    regr = linear_model.LinearRegression()
+    regr.fit(X, Y)
+
+    print('Intercept: \n', regr.intercept_)
+    print('Coefficients: \n', regr.coef_)
+
+    # with statsmodels
+    X = sm.add_constant(X)  # adding a constant
+
+    model = sm.OLS(Y, X).fit()
+    predictions = model.predict(X)
+
+    print_model = model.summary()
+    print(print_model)
 
 groupby_siteid()
 groupby_siteid_reop()
-
+#
 groupby_surgid()
 groupby_surgid_reop()
+
+launch_reg_siteid()
+launch_reg_surgid()
