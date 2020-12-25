@@ -1,15 +1,21 @@
 import pandas as pd
 from sklearn import linear_model
 import statsmodels.api as sm
+import numpy as np
 from scipy import stats
 
 
-df_all = pd.read_csv("/mnt/nadavrap-students/STS/data/clean_data2.csv")
+df_all = pd.read_csv("/mnt/nadavrap-students/STS/data/imputed_data2.csv")
 
-# print(df_all.head())
+print(df_all.head())
 
-# print(df_all.columns.tolist())
+print(df_all.columns.tolist())
 
+df_all = df_all.replace({'MtOpD':{False:0, True:1}})
+df_all = df_all.replace({'Complics':{False:0, True:1}})
+
+mask_reop = df_all['Reoperation'] == 'Reoperation'
+df_reop = df_all[mask_reop]
 
 mask = df_all['surgyear'] == 2010
 df_2010 = df_all[mask]
@@ -31,6 +37,7 @@ mask = df_all['surgyear'] == 2018
 df_2018 = df_all[mask]
 mask = df_all['surgyear'] == 2019
 df_2019 = df_all[mask]
+
 
 
 avg_siteid = pd.DataFrame()
@@ -160,14 +167,21 @@ def groupby_siteid_reop():
     temp_reop['Year_avg_reop'] = df_sum_all_Years['Year_avg_reop']
     temp_reop['Year_sum_reop'] = df_sum_all_Years['Year_sum_reop']
 
-    df20 = pd.merge(avg_siteid, temp_first, on='SiteID', how='outer')
     df_mort = groupby_mortality_siteid()
+    df_reop_mort = groupby_mortality_siteid_reop()
+    df_reop_complics = groupby_complics_siteid()
+
+    df20 = pd.merge(avg_siteid, temp_first, on='SiteID', how='outer')
     temp_merge = pd.merge(df20, temp_reop, on='SiteID', how='outer')
-    total_avg_site_id = pd.merge(temp_merge, df_mort, on='SiteID', how='outer')
+    temp_merge2 = pd.merge(temp_merge, df_mort, on='SiteID', how='outer')
+    temp_merge3 = pd.merge(temp_merge2,df_reop_mort, on='SiteID', how='outer')
+    total_avg_site_id = pd.merge(temp_merge3, df_reop_complics, on='SiteID', how='outer')
 
     total_avg_site_id['firstop/total'] = (total_avg_site_id['Year_sum_Firstop'] / total_avg_site_id['total_year_sum']) *100
     total_avg_site_id['reop/total'] = (total_avg_site_id['Year_sum_reop'] / total_avg_site_id['total_year_sum']) * 100
     total_avg_site_id['mortalty_rate'] = (total_avg_site_id['Mortality'] / total_avg_site_id['total_year_sum'])*100
+    total_avg_site_id['mortalty_reop_rate'] = (total_avg_site_id['Mortality_reop'] / total_avg_site_id['Mortality']) * 100
+    total_avg_site_id['Complics_reop_rate'] = (total_avg_site_id['Complics_reop'] / total_avg_site_id['Complics']) * 100
     total_avg_site_id.fillna(0, inplace=True)
     total_avg_site_id.to_csv('total_avg_site_id.csv')
 
@@ -294,26 +308,59 @@ def groupby_surgid_reop():
     temp_reop['Year_avg_reop'] = df_sum_all_Years['Year_avg_reop']
     temp_reop['Year_sum_reop'] = df_sum_all_Years['Year_sum_reop']
 
-    df20 = pd.merge(avg_surgid, temp_first, on='surgid', how='outer')
+
     df_mort = groupby_mortality_surgid()
+    df_reop_mort = groupby_mortality_surgid_reop()
+    df_reop_complics = groupby_complics_surgid()
+
+    df20 = pd.merge(avg_surgid, temp_first, on='surgid', how='outer')
     temp_merge = pd.merge(df20, temp_reop, on='surgid', how='outer')
-    total_avg_surgid = pd.merge(df_mort, temp_merge, on='surgid', how='outer')
+    temp_merge2 = pd.merge(temp_merge, df_mort, on='surgid', how='outer')
+    temp_merge3 = pd.merge(temp_merge2,df_reop_mort, on='surgid', how='outer')
+    total_avg_surgid = pd.merge(temp_merge3, df_reop_complics, on='surgid', how='outer')
+
 
     total_avg_surgid['firstop/total'] = (total_avg_surgid['Year_sum_Firstop'] / total_avg_surgid['total_year_count']) * 100
     total_avg_surgid['reop/total'] = (total_avg_surgid['Year_sum_reop'] / total_avg_surgid['total_year_count']) * 100
     total_avg_surgid['mortalty_rate'] = (total_avg_surgid['Mortality'] / total_avg_surgid['total_year_count']) * 100
+    total_avg_surgid['mortalty_reop_rate'] = (total_avg_surgid['Mortality_reop'] / total_avg_surgid['Mortality']) * 100
+    total_avg_surgid['Complics_reop_rate'] = (total_avg_surgid['Complics_reop'] / total_avg_surgid['Complics']) * 100
     total_avg_surgid.fillna(0, inplace=True)
     total_avg_surgid.to_csv('total_avg_surgid.csv')
 
 def groupby_mortality_siteid():
-    dfmort = df_all.groupby('SiteID')['MtDCStat'].apply(lambda x: (x == 'Dead').sum()).reset_index(name='Mortality')
+    dfmort = df_all.groupby('SiteID')['MtOpD'].apply(lambda x: (x == 1).sum()).reset_index(name='Mortality')
     dfmort.to_csv("/tmp/pycharm_project_723/files/mortality siteid.csv")
     return dfmort
 
+def groupby_mortality_siteid_reop():
+    dfmort = df_reop.groupby('SiteID')['MtOpD'].apply(lambda x: (x == 1).sum()).reset_index(name='Mortality_reop')
+    dfmort.to_csv("/tmp/pycharm_project_723/files/mortality siteid reop.csv")
+    return dfmort
+
+def groupby_complics_siteid():
+    df_comp = df_all.groupby('SiteID')['Complics'].apply(lambda x: (x == 1).sum()).reset_index(name='Complics')
+    dfmort = df_reop.groupby('SiteID')['Complics'].apply(lambda x: (x == 1).sum()).reset_index(name='Complics_reop')
+    df20 = pd.merge(df_comp, dfmort, on='SiteID', how='outer')
+    df20.to_csv("/tmp/pycharm_project_723/files/Complics siteid.csv")
+    return df20
+
 def groupby_mortality_surgid():
-    dfmort = df_all.groupby('surgid')['MtDCStat'].apply(lambda x: (x == 'Dead').sum()).reset_index(name='Mortality')
+    dfmort = df_all.groupby('surgid')['MtOpD'].apply(lambda x: (x == 1).sum()).reset_index(name='Mortality')
     dfmort.to_csv("/tmp/pycharm_project_723/files/mortality surgid.csv")
     return dfmort
+
+def groupby_mortality_surgid_reop():
+    dfmort = df_reop.groupby('surgid')['MtOpD'].apply(lambda x: (x == 1).sum()).reset_index(name='Mortality_reop')
+    dfmort.to_csv("/tmp/pycharm_project_723/files/mortality surgid reop.csv")
+    return dfmort
+
+def groupby_complics_surgid():
+    df_comp = df_all.groupby('surgid')['Complics'].apply(lambda x: (x == 1).sum()).reset_index(name='Complics')
+    dfmort = df_reop.groupby('surgid')['Complics'].apply(lambda x: (x == 1).sum()).reset_index(name='Complics_reop')
+    df20 = pd.merge(df_comp, dfmort, on='surgid', how='outer')
+    df20.to_csv("/tmp/pycharm_project_723/files/Complics surgid.csv")
+    return df20
 
 def launch_reg_siteid():
     df_sites = pd.read_csv("total_avg_site_id.csv")
@@ -367,7 +414,7 @@ def launch_reg_surgid():
 
 groupby_siteid()
 groupby_siteid_reop()
-#
+
 groupby_surgid()
 groupby_surgid_reop()
 
