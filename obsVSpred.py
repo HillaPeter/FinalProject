@@ -478,6 +478,116 @@ def mortality_reop_surgid_obs_vs_expec_boxplot():
     plt.ylabel("mortality reop surgid observe vs expected")
     plt.show()
 
+def Complications_reop_surgid_obs_vs_expec_boxplot():
+    mask = df_complics_surgid['count_Reop'] == 0
+    df_reop = df_complics_surgid[~mask]
+    # total_year_sum
+    new_df=pd.DataFrame(data=df_reop,columns=['log_Reoperation','total_year_avg'])
+
+    new_df['bins'] = pd.qcut(new_df['total_year_avg'], 3, labels=['low', 'mid', 'high'])
+    print(new_df)
+    new_df.to_csv("box_surgid_reop_obs_ vs expected.csv")
+    mask = new_df['bins'] == 'low'
+    df_low = new_df[mask]
+    mask = new_df['bins'] == 'mid'
+    df_mid = new_df[mask]
+    mask = new_df['bins'] == 'high'
+    df_high = new_df[mask]
+
+    data = [df_low['log_Reoperation'],df_mid['log_Reoperation'],df_high['log_Reoperation']]
+    print (df_low.describe())
+    print(df_mid.describe())
+    print(df_high.describe())
+    text = f" low\n ${df_low['total_year_avg'].min(): 0.2f} - ${df_low['total_year_avg'].max(): 0.2f}\n Mean = ${df_low['log_Reoperation'].mean():0.6f} $"
+    text2 = f"mid\n ${df_mid['total_year_avg'].min(): 0.2f} - ${df_mid['total_year_avg'].max(): 0.2f}\n  Mean = ${df_mid['log_Reoperation'].mean():0.6f} $"
+    text3 =f"high\n${df_high['total_year_avg'].min(): 0.2f} - ${df_high['total_year_avg'].max(): 0.2f}\n Mean = ${df_high['log_Reoperation'].mean():0.6f} $"
+    # ax = plt.gca()
+    # ax = sns.boxplot(x="day", y="total_bill", data=df_mid['mortalty_reop_rate'])
+    # show plot
+    labels = [text,text2,text3]
+    #
+    # ${df_low['log_Reoperation'].min(): 0.2f} - ${df_low['log_Reoperation'].max(): 0.2f}
+    # ${df_mid['log_Reoperation'].min(): 0.2f} - ${df_mid['log_Reoperation'].max(): 0.2f}
+    # ${df_high['log_Reoperation'].min(): 0.2f} - ${df_high['log_Reoperation'].max(): 0.2f}
+    data = [df_low['log_Reoperation'],df_mid['log_Reoperation'],df_high['log_Reoperation']]
+    r,p = scipy.stats.kruskal(df_low['total_year_avg'], df_low['log_Reoperation'])
+    text = f" low:  p-value : {p:0.6f}"
+    print(text)
+    r, p = scipy.stats.kruskal(df_mid['total_year_avg'], df_mid['log_Reoperation'])
+    text = f" mid:  p-value : {p:0.6f}"
+    print(text)
+    r, p = scipy.stats.kruskal(df_high['total_year_avg'], df_high['log_Reoperation'])
+    text = f" high:  p-value : {p:0.6f}"
+    print(text)
+    fig1, ax1 = plt.subplots()
+    ax1.set_title('Complications reop surgid observe vs expected ')
+    bp = ax1.boxplot(data, patch_artist=True, labels=labels)
+    colors = ['pink', 'lightblue', 'palegreen']
+    for patch, color in zip(bp['boxes'], colors):
+            patch.set_facecolor(color)
+
+    f = lambda c: plt.plot([], color=c, ls="", marker="o")[0]
+    plt.legend(handles=[f("pink"), f("lightblue"), f("palegreen")],
+               labels=['low', 'mid', 'high'])
+    plt.ylabel("Complications reop surgid observe vs expected")
+    plt.show()
+
+
+def Complications_reop_siteid_obs_vs_expec_boxplot():
+    mask = df_complics_siteid['count_Reop'] == 0
+    df_reop = df_complics_siteid[~mask]
+    # total_year_sum
+    new_df=pd.DataFrame(data=df_reop,columns=['log_Reoperation','total_year_avg'])
+
+    new_df['bins'] = pd.qcut(new_df['total_year_avg'], 3, labels=['low', 'mid', 'high'])
+    print(new_df)
+    new_df.to_csv("box_surgid_reop_obs_ vs expected.csv")
+    mask = new_df['bins'] == 'low'
+    df_low = new_df[mask]
+    mask = new_df['bins'] == 'mid'
+    df_mid = new_df[mask]
+    mask = new_df['bins'] == 'high'
+    df_high = new_df[mask]
+
+    data = [df_low['log_Reoperation'],df_mid['log_Reoperation'],df_high['log_Reoperation']]
+    print (df_low.describe())
+    print(df_mid.describe())
+    print(df_high.describe())
+    text = f" low\n ${df_low['total_year_avg'].min(): 0.2f} - ${df_low['total_year_avg'].max(): 0.2f}\n Mean = ${df_low['log_Reoperation'].mean():0.6f} $"
+    text2 = f"mid\n ${df_mid['total_year_avg'].min(): 0.2f} - ${df_mid['total_year_avg'].max(): 0.2f}\n  Mean = ${df_mid['log_Reoperation'].mean():0.6f} $"
+    text3 =f"high\n${df_high['total_year_avg'].min(): 0.2f} - ${df_high['total_year_avg'].max(): 0.2f}\n Mean = ${df_high['log_Reoperation'].mean():0.6f} $"
+    # ax = plt.gca()
+    # ax = sns.boxplot(x="day", y="total_bill", data=df_mid['mortalty_reop_rate'])
+    # show plot
+    labels = [text,text2,text3]
+    #
+    # ${df_low['log_Reoperation'].min(): 0.2f} - ${df_low['log_Reoperation'].max(): 0.2f}
+    # ${df_mid['log_Reoperation'].min(): 0.2f} - ${df_mid['log_Reoperation'].max(): 0.2f}
+    # ${df_high['log_Reoperation'].min(): 0.2f} - ${df_high['log_Reoperation'].max(): 0.2f}
+    data = [df_low['log_Reoperation'],df_mid['log_Reoperation'],df_high['log_Reoperation']]
+    r,p = scipy.stats.kruskal(df_low['total_year_avg'], df_low['log_Reoperation'])
+    text = f" low:  p-value : {p:0.6f}"
+    print(text)
+    r, p = scipy.stats.kruskal(df_mid['total_year_avg'], df_mid['log_Reoperation'])
+    text = f" mid:  p-value : {p:0.6f}"
+    print(text)
+    r, p = scipy.stats.kruskal(df_high['total_year_avg'], df_high['log_Reoperation'])
+    text = f" high:  p-value : {p:0.6f}"
+    print(text)
+    fig1, ax1 = plt.subplots()
+    ax1.set_title('Complications reop Siteid observe vs expected ')
+    bp = ax1.boxplot(data, patch_artist=True, labels=labels)
+    colors = ['pink', 'lightblue', 'palegreen']
+    for patch, color in zip(bp['boxes'], colors):
+            patch.set_facecolor(color)
+
+    f = lambda c: plt.plot([], color=c, ls="", marker="o")[0]
+    plt.legend(handles=[f("pink"), f("lightblue"), f("palegreen")],
+               labels=['low', 'mid', 'high'])
+    plt.ylabel("Complications reop siteid observe vs expected")
+    plt.show()
+
+
 def mortality_reop_siteid_obs_vs_expec_boxplot():
     mask = df_mort_siteid['count_Reop'] == 0
     df_reop = df_mort_siteid[~mask]
@@ -533,3 +643,6 @@ def mortality_reop_siteid_obs_vs_expec_boxplot():
 
 mortality_reop_surgid_obs_vs_expec_boxplot()
 mortality_reop_siteid_obs_vs_expec_boxplot()
+
+Complications_reop_siteid_obs_vs_expec_boxplot()
+Complications_reop_surgid_obs_vs_expec_boxplot()
