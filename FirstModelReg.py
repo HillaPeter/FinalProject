@@ -7,9 +7,9 @@ from scipy import stats
 
 df_all = pd.read_csv("/mnt/nadavrap-students/STS/data/imputed_data2.csv")
 
-print(df_all.head())
-
-print(df_all.columns.tolist())
+# print(df_all.head())
+#
+# print(df_all.columns.tolist())
 
 df_all = df_all.replace({'MtOpD':{False:0, True:1}})
 df_all = df_all.replace({'Complics':{False:0, True:1}})
@@ -180,8 +180,8 @@ def groupby_siteid_reop():
     total_avg_site_id['firstop/total'] = (total_avg_site_id['Year_sum_Firstop'] / total_avg_site_id['total_year_sum']) *100
     total_avg_site_id['reop/total'] = (total_avg_site_id['Year_sum_reop'] / total_avg_site_id['total_year_sum']) * 100
     total_avg_site_id['mortalty_rate'] = (total_avg_site_id['Mortality'] / total_avg_site_id['total_year_sum'])*100
-    total_avg_site_id['mortalty_reop_rate'] = (total_avg_site_id['Mortality_reop'] / total_avg_site_id['Mortality']) * 100
-    total_avg_site_id['Complics_reop_rate'] = (total_avg_site_id['Complics_reop'] / total_avg_site_id['Complics']) * 100
+    total_avg_site_id['mortalty_reop_rate'] = (total_avg_site_id['Mortality_reop'] / total_avg_site_id['Year_sum_reop']) * 100
+    total_avg_site_id['Complics_reop_rate'] = (total_avg_site_id['Complics_reop'] / total_avg_site_id['Year_sum_reop']) * 100
     total_avg_site_id.fillna(0, inplace=True)
     total_avg_site_id.to_csv('total_avg_site_id.csv')
 
@@ -323,8 +323,8 @@ def groupby_surgid_reop():
     total_avg_surgid['firstop/total'] = (total_avg_surgid['Year_sum_Firstop'] / total_avg_surgid['total_year_count']) * 100
     total_avg_surgid['reop/total'] = (total_avg_surgid['Year_sum_reop'] / total_avg_surgid['total_year_count']) * 100
     total_avg_surgid['mortalty_rate'] = (total_avg_surgid['Mortality'] / total_avg_surgid['total_year_count']) * 100
-    total_avg_surgid['mortalty_reop_rate'] = (total_avg_surgid['Mortality_reop'] / total_avg_surgid['Mortality']) * 100
-    total_avg_surgid['Complics_reop_rate'] = (total_avg_surgid['Complics_reop'] / total_avg_surgid['Complics']) * 100
+    total_avg_surgid['mortalty_reop_rate'] = (total_avg_surgid['Mortality_reop'] / total_avg_surgid['Year_sum_reop']) * 100
+    total_avg_surgid['Complics_reop_rate'] = (total_avg_surgid['Complics_reop'] / total_avg_surgid['Year_sum_reop']) * 100
     total_avg_surgid.fillna(0, inplace=True)
     total_avg_surgid.to_csv('total_avg_surgid.csv')
 
@@ -387,6 +387,8 @@ def launch_reg_siteid():
     print(print_model)
     print()
     print()
+
+
 
 def launch_reg_surgid():
     df_sites = pd.read_csv("total_avg_surgid.csv")
