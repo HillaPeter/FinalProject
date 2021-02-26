@@ -9,8 +9,9 @@ df_all = pd.read_csv("/mnt/nadavrap-students/STS/data/imputed_data2.csv")
 
 # print(df_all.head())
 #
-# print(df_all.columns.tolist())
 
+print(df_all.columns.tolist())
+print (df_all.info())
 df_all = df_all.replace({'MtOpD':{False:0, True:1}})
 df_all = df_all.replace({'Complics':{False:0, True:1}})
 
@@ -420,5 +421,5 @@ groupby_siteid_reop()
 groupby_surgid()
 groupby_surgid_reop()
 
-launch_reg_siteid()
-launch_reg_surgid()
+# launch_reg_siteid()
+# launch_reg_surgid()
