@@ -7,19 +7,83 @@ from scipy import stats
 
 df_all = pd.read_csv("/mnt/nadavrap-students/STS/data/imputed_data2.csv")
 
+# df_all = pd.read_csv("/tmp/pycharm_project_723/new data sum info surg and Hosp numeric values.csv")
 
 
-# print(df_all.columns.tolist())
-# print (df_all.count())
-# print (df_all['Mortalty'].isnull().sum())
-# print (df_all['Mortalty'].value_counts())
-df_all = df_all.replace({'MtOpD':{False:0, True:1}})
+
+# # print(df_all.columns.tolist())
+# # print (df_all.count())
+# # print (df_all['Mortalty'].isnull().sum())
+# # print (df_all['Mortalty'].value_counts())
+# def refactor_categorical_values_to_numeric_values(df, col_names):
+#     # df = df.filter(col_names, axis=1)
+#     for col in col_names:
+#         try:
+#             df = df.replace({col: {False: 0, True: 1}})
+#             df = df.replace({col: {"No": 0, "Yes": 1}})
+#             df = df.replace({col: {"Male": 0, "Female": 1}})
+#             df = df.replace({col: {"Elective": 0, "Urgent": 1}})
+#             df = df.replace({col: {"Non-Hispanic": 0, "Hispanic": 1}})
+#             df = df.replace({col: {"Previous Non-CAB": 0, "Previous CAB": 1}})
+#             df = df.replace({col: {"None/Trivial/Trace/Mild": 0, "Moderate/Severe": 1}})
+#             df = df.replace({col: {"Unknown": 1, "Alive": 1, "Dead": 0}})
+#             df = df.replace({col: {"First cardiovascular surgery": 0, "NA - Not a cardiovascular surgery": 0,
+#                                    "First re-op cardiovascular surgery": 0, "Second re-op cardiovascular surgery": 1,
+#                                    "Third re-op cardiovascular surgery": 1,
+#                                    "Fourth or more re-op cardiovascular surgery": 1}})
+#             df = df.replace({col: {"Never smoker": 0, "Smoker": 1}})
+#             df = df.replace({col: {"I/II": 0, "III/IV": 1}})
+#             df = df.replace({col: {"None": 0, "One": 1, "Two": 2, "Three": 3}})
+#         except:
+#             x = "none"
+#     print(df.shape)
+#     df.to_csv("/tmp/pycharm_project_723/new data sum info surg and Hosp numeric values.csv")
+#
+df_all = df_all.replace({'STSRCHOSPD':{False:0, True:1}})
 df_all = df_all.replace({'Complics':{False:0, True:1}})
 df_all = df_all.replace({'Mortality':{False:0, True:1}})
-df_all = df_all.replace({'Mortalty':{False:0, True:1}})
-mask_reop = df_all['Reoperation'] == 'Reoperation'
-df_reop = df_all[mask_reop]
+df_all = df_all.replace({'STSRCMM':{False:0, True:1}})
 
+
+print (df_all['STSRCMM'].unique())
+print (df_all['STSRCMM'].isna().sum())
+df_all[:50].to_csv("all 50.csv")# def intersection(lst1, lst2):
+#     return list(set(lst1) & set(lst2))
+#
+#
+# # list_vals = [ "Reoperation", "BMI", "Age", "Gender", "RaceCaucasian", "RaceBlack", "Ethnicity",
+# #                  "RaceOther", "FHCAD", "Diabetes", "InsulinDiab", "Dyslip", "Dialysis", "Hypertn", "InfEndo",
+# #                  "SmokingStatus", "ChrLungD", "ModSevereLungDis", "ImmSupp", "PVD", "DualAntiPlat", 'RenFail',
+# #                  "CreatLst", 'PreCVAorTIAorCVD', "POCPCI", "PrevMI", "Angina", "UnstableAngina", "HeartFail",
+# #                  "ClassNYHGroup", "Arrhythmia", "ArrhythAtrFibFlutter", "ArrhythOther", "MedACEI", "MedBeta",
+# #                  "MedNitIV", "MedASA", "MedAntiplateltNoASA", "AntiCoag", "MedInotr", "MedSter", "HDEF", "EF<=35%",
+# #                  "NumDisV", 'NumDisV_ordinal', "LeftMain", "VDInsufA", "VDStenA", "VDInsufM", "VDStenM", "VDInsufT",
+# #                  "VDStenT", "Status", 'MedHeparin', 'Mortality', 'PrCVInt']
+# #     # list_val = ['PrCVInt']
+# #
+# #
+# # # print (intersection(list2,list_vals))
+# # test = df_all[:50]
+# # refactor_categorical_values_to_numeric_values(test, list_vals)
+# # test.rename(columns={"EF<=35%": "EF_less_equal_35"}, inplace=True)
+# list2 =  [ 'STSRCHOSPD', 'STSRCOM', 'STSRCDSWI', 'STSRCMM', 'STSRCPermStroke', 'STSRCProlvent', 'STSRcRenFail', 'STSRCreop',
+#            'PLOS', 'PredMort', 'PredDeep', 'PredReop', 'PredStro', 'PredVent', 'PredRenF', 'PredMM', 'Pred6D', 'Pred14D'
+#            'Age', 'Gender', 'RaceCaucasian', 'RaceBlack', 'RaceOther', 'Ethnicity', 'FHCAD', 'Diabetes', 'Hypertn',
+#            'Dyslip', 'Dialysis', 'InfEndo', 'ChrLungD', 'ImmSupp', 'PVD', 'CreatLst', 'PrevMI', 'Arrhythmia', 'PrCVInt', 'prcab',
+#            'prvalve', 'POCPCI', 'ProthCar', 'MedACEI', 'MedASA', 'MedBeta', 'MedInotr', 'MedNitIV', 'MedSter', 'NumDisV', 'HDEF',
+#            'VDInsufA', 'VDStenA', 'VDInsufM', 'VDStenM', 'VDInsufT', 'VDStenT', 'Status', 'PerfusTm', 'XClampTm', 'DistVein', 'NumIMADA',
+#            'NumRadDA', 'IABP', 'VentHrsTot', 'Complics', 'COpReBld', 'CPVntLng', 'CRenFail', 'HeartFail', 'Incidenc', 'Reoperation',
+#            'SmokingStatus', 'InsulinDiab', 'ModSevereLungDis', 'PreCVAorTIAorCVD', 'RenFail', 'Angina', 'UnstableAngina', 'ClassNYHGroup',
+#            'ArrhythAtrFibFlutter', 'ArrhythOther', 'DualAntiPlat', 'MedHeparin', 'AntiCoag', 'MedAntiplateltNoASA', 'NumDisV_ordinal', 'EF<=35%',
+#            'CPBUse', 'RadArtUsed', 'IMAGraftUsed', 'DistVeinDone', 'TotalNumberOfGrafts', 'LeftMain', 'CompleteRevas', 'MajorComps', 'PLOS14',
+#            'postCVAorTIA', 'IntraPostBloodTrans', 'ICUHrsTotal', 'BMI']
+# # list2.to_csv("test for numeric draft model.csv")
+# refactor_categorical_values_to_numeric_values(df_all,list2)
+
+
+# mask_reop = df_all['Reoperation'] == 'Reoperation'
+# df_reop = df_all[mask_reop]
+# df_all = df_all.replace({'Reoperation':{'First Time':0, 'Reoperation':1}})
 mask = df_all['surgyear'] == 2010
 df_2010 = df_all[mask]
 mask = df_all['surgyear'] == 2011
@@ -107,6 +171,7 @@ def create_2019_df(df):
     d12.to_csv("oneyear_expec_hospid.csv")
 
 
+
 def create_df():
     df1 = df_all.groupby(['HospID','surgyear'])['HospID'].count().reset_index(name='total')
     df2 = df_all.groupby(['HospID','surgyear'])['Reoperation'].apply(lambda x: (x == 'Reoperation').sum()).reset_index(name='Reop')
@@ -117,9 +182,9 @@ def create_df():
     df_reop = df_all[mask_reop]
     df_op = df_all[~mask_reop]
 
-    dfmort = df_all.groupby(['HospID','surgyear'])['Mortalty'].apply(lambda x: (x == 1).sum()).reset_index(name='Mortality_all')
-    dfmortf = df_op.groupby(['HospID','surgyear'])['Mortalty'].apply(lambda x: (x == 1).sum()).reset_index(name='Mortality_first')
-    dfmortr = df_reop.groupby(['HospID','surgyear'])['Mortalty'].apply(lambda x: (x == 1).sum()).reset_index(name='Mortality_reop')
+    dfmort = df_all.groupby(['HospID','surgyear'])['STSRCMM'].apply(lambda x: (x == 1).sum()).reset_index(name='Mortality_all')
+    dfmortf = df_op.groupby(['HospID','surgyear'])['STSRCMM'].apply(lambda x: (x == 1).sum()).reset_index(name='Mortality_first')
+    dfmortr = df_reop.groupby(['HospID','surgyear'])['STSRCMM'].apply(lambda x: (x == 1).sum()).reset_index(name='Mortality_reop')
 
     df_comp = df_all.groupby(['HospID','surgyear'])['Complics'].apply(lambda x: (x == 1).sum()).reset_index(name='Complics_all')
     df_compr = df_reop.groupby(['HospID','surgyear'])['Complics'].apply(lambda x: (x == 1).sum()).reset_index(name='Complics_reop')
@@ -175,10 +240,11 @@ def create_df():
     d12[['log_All_Comp','log_First_Comp', 'log_Reoperation_Comp']] = np.log2(
         d12[['Comp_observe/expected_All','Comp_observe/expected_First', 'Comp_observe/expected_Reop']].replace(0, np.nan))
     d12.fillna(0, inplace=True)
-    d12.to_csv("hospid_allyears_expec_hospid.csv")
+    d12.to_csv("hospid_allyears_expec_hospid_STSRCMM.csv")
 
     print(d12.info())
     print(d12.columns.tolist())
+
 
 
 # create_df()
@@ -190,7 +256,7 @@ def create_df():
 #     row_index = df_all_surg[df_all_surg['Hospital ID'] == hospid].index.item()
 #     print (row_index)
 #     return df_all_surg.loc[row_index,year]
-data = []
+# data = []
 def create_aggr_df():
     df_all_surg = pd.read_csv("AggregateAllSurg.csv")
     # print(df_all_surg.columns.tolist())
@@ -219,13 +285,14 @@ def create_aggr_df():
     print (data)
     # data_transposed = zip(data)
     # df = pd.DataFrame(data_transposed, columns=["HospID", "surgyear", "count"])
-    df = pd.DataFrame(data,columns=["HospID", "surgyear", "total cardiac surgery"])
+    df = pd.DataFrame(data,columns=["hospid", "surgyear", "total cardiac surgery"])
     df.to_csv("aggregate_csv.csv")
+
 
 
 def add_Summary_Data_To_ImputedData(df):
     df1 = df.groupby(['HospID', 'surgyear'])['HospID'].count().reset_index(name='HospID_total_CABG')
-    df2 = df.groupby(['HospID', 'surgyear'])['Reoperation'].apply(lambda x: (x == 'Reoperation').sum()).reset_index(name='HospID_Reop_CABG')
+    df2 = df.groupby(['HospID', 'surgyear'])['Reoperation'].apply(lambda x: (x == 1).sum()).reset_index(name='HospID_Reop_CABG')
 
     df_aggr = pd.read_csv("aggregate_csv.csv")
     df3 = pd.merge(df1, df, left_on=['HospID','surgyear'], right_on=['HospID','surgyear'], how='outer')
@@ -236,7 +303,7 @@ def add_Summary_Data_To_ImputedData(df):
     # print(df5.columns.tolist())
 
     df_1 = df.groupby(['surgid', 'surgyear'])['surgid'].count().reset_index(name='surgid_total_CABG')
-    df_2 = df.groupby(['surgid', 'surgyear'])['Reoperation'].apply(lambda x: (x == 'Reoperation').sum()).reset_index(
+    df_2 = df.groupby(['surgid', 'surgyear'])['Reoperation'].apply(lambda x: (x == 1).sum()).reset_index(
         name='surgid_Reop_CABG')
 
     df_aggrsurg = pd.read_csv("/tmp/pycharm_project_723/aggregate_surgid_csv.csv")
@@ -244,7 +311,7 @@ def add_Summary_Data_To_ImputedData(df):
 
     df6 = pd.merge(df_1, df_2, left_on=['surgid', 'surgyear'], right_on=['surgid', 'surgyear'], how='outer')
     df7 = pd.merge(df6,df_aggrsurg,left_on=['surgid','surgyear'], right_on=['surgid','surgyear'], how='inner')
-    print ("=======================================")
+
     del df7["Unnamed: 0"]
     # print(df7.info())
     # print(df7.columns.tolist())
@@ -255,13 +322,15 @@ def add_Summary_Data_To_ImputedData(df):
     # print(df8.info())
     # print(df8.columns.tolist())
     df8.rename(columns={"total surgery count": "HospID_total_cardiac_surgery"}, inplace=True)
-    df8.to_csv("/tmp/pycharm_project_723/imputed data sum info surg and Hosp.csv")
-    # df8.to_csv("/mnt/nadavrap-students/STS/data/imputed data sum info surg and Hosp.csv")
+
+    df8.to_csv("/tmp/pycharm_project_723/new data sum info surg and Hosp.csv")
+    print (df8.columns.tolist())
     return df8
 
 
-df_with_sum = add_Summary_Data_To_ImputedData(df_all)
-print(df_with_sum.shape)
+
+# df_with_sum = add_Summary_Data_To_ImputedData(df_all)
+# print(df_with_sum.shape)
 # create_aggr_df()
 
 def create_aggr_surgid_df():
@@ -329,11 +398,11 @@ def create_surgid_df():
     df_reop = df_all[mask_reop]
     df_op = df_all[~mask_reop]
 
-    dfmort = df_all.groupby(['surgid', 'surgyear'])['Mortalty'].apply(lambda x: (x == 1).sum()).reset_index(
+    dfmort = df_all.groupby(['surgid', 'surgyear'])['STSRCMM'].apply(lambda x: (x == 1).sum()).reset_index(
         name='Mortality_all')
-    dfmortf = df_op.groupby(['surgid', 'surgyear'])['Mortalty'].apply(lambda x: (x == 1).sum()).reset_index(
+    dfmortf = df_op.groupby(['surgid', 'surgyear'])['STSRCMM'].apply(lambda x: (x == 1).sum()).reset_index(
         name='Mortality_first')
-    dfmortr = df_reop.groupby(['surgid', 'surgyear'])['Mortalty'].apply(lambda x: (x == 1).sum()).reset_index(
+    dfmortr = df_reop.groupby(['surgid', 'surgyear'])['STSRCMM'].apply(lambda x: (x == 1).sum()).reset_index(
         name='Mortality_reop')
 
     df_comp = df_all.groupby(['surgid', 'surgyear'])['Complics'].apply(lambda x: (x == 1).sum()).reset_index(
@@ -396,13 +465,13 @@ def create_surgid_df():
         d12[['Comp_observe/expected_All', 'Comp_observe/expected_First', 'Comp_observe/expected_Reop']].replace(0,
                                                                                                                 np.nan))
     d12.fillna(0, inplace=True)
-    d12.to_csv("surgid_allyears_expec_surgid.csv")
+    d12.to_csv("surgid_allyears_expec_surgid_STSRCMM.csv")
 
     print(d12.info())
     print(d12.columns.tolist())
 
-
-# create_surgid_df()
+create_df()
+create_surgid_df()
 # df = pd.read_csv("/tmp/pycharm_project_723/test_all.csv")
 # df.to_csv("/mnt/nadavrap-students/STS/data/imputed data with sum info.csv")
 
