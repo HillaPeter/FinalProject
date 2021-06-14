@@ -241,12 +241,12 @@ def SHAP_underSmapling( target,title,max_depth,n_esti,withexperience = False, co
     return matrics,title
 
 
-print ("yaara")
-matrics_xgb,title = SHAP_underSmapling('STSRCOM', 'STSRCOM under sampling with experience',2,200)
-matrics_xgb_df = pd.DataFrame(matrics_xgb)
-# matrics_xgb_df.loc['Mean'] = matrics_xgb_df.mean()
-# matrics_xgb_df.loc['Std'] = matrics_xgb_df.std()
-print(matrics_xgb_df)
+# print ("yaara")
+# matrics_xgb,title = SHAP_underSmapling('STSRCOM', 'STSRCOM under sampling with experience',2,200)
+# matrics_xgb_df = pd.DataFrame(matrics_xgb)
+# # matrics_xgb_df.loc['Mean'] = matrics_xgb_df.mean()
+# # matrics_xgb_df.loc['Std'] = matrics_xgb_df.std()
+# print(matrics_xgb_df)
 # matrics_xgb_df.to_csv("/tmp/pycharm_project_723/model_outputs/STSRCOM under sampling with experience.csv")
 # #
 # matrics_xgb = SHAP_underSmapling('STSRCOM', 'STSRCOM under sampling without experience',2,500,True)
@@ -334,7 +334,7 @@ def SHAP_Iterates_scalePosW( target,title,withexperience = False, color='YlGnBu'
         i = i + 1
     return matrics,title
 
-# matrics_xgb,title = SHAP_Iterates_scalePosW('STSRCOM', 'STSRCOM scale_pos_weight with experience')
+matrics_xgb,title = SHAP_Iterates_scalePosW('STSRCOM', 'STSRCOM scale_pos_weight with experience')
 # matrics_xgb_df = pd.DataFrame(matrics_xgb)
 # print(title)
 # print(matrics_xgb_df)
