@@ -32,7 +32,8 @@ from sklearn.metrics import roc_auc_score, roc_curve
 import warnings
 warnings.filterwarnings("ignore")
 
-
+df_2018_2019 = pd.read_csv("/mnt/nadavrap-students/STS/data/2018_2019.csv")
+print(df_2018_2019)
 # df_all2 = pd.read_csv("/mnt/nadavrap-students/STS/data/imputed_data2.csv")
 # df_all = pd.read_csv("/tmp/pycharm_project_723/imputed_data_with_numerical_values.csv")
 df_all = pd.read_csv("/tmp/pycharm_project_723/imputed_data_with_float_values_glmm.csv")
@@ -254,7 +255,7 @@ def make_roc_auc_curve(y_test,probas, title):
     roc_auc = auc(fpr, tpr)
     # PLOT ROC curve
     plt.figure(dpi=150)
-    plt.plot(fpr, tpr, lw=1, color='blue', label=f'AUC = {roc_auc:.3f}')
+    plt.plot(fpr, tpr, lw=1, color='green', label=f'AUC = {roc_auc:.3f}')
     plt.plot([0, 1], [0, 1], 'r--')
     plt.title(title)
     plt.xlabel('False Positive Rate')
@@ -458,7 +459,9 @@ def Make_Confusion_Matrix(cf,
                           sum_stats=True,
                           figsize=None,
                           cmap='Pastel1',
-                          title=None):
+                          title=None,
+                          y_pred=None,
+                          y_test=None):
 
     # CODE TO GENERATE TEXT INSIDE EACH SQUARE
     blanks = ['' for i in range(cf.size)]
@@ -489,12 +492,12 @@ def Make_Confusion_Matrix(cf,
         # if it is a binary confusion matrix, show some more stats
         if len(cf) == 2:
             # Metrics for Binary Confusion Matrices
+            tn, fp, fn, tp = confusion_matrix(y_test, y_pred).ravel()
+            specificity = tn / (tn+fp)
             precision = cf[1, 1] / sum(cf[:, 1])
             recall = cf[1, 1] / sum(cf[1, :])
-            f1_score = 2 * precision * recall / (precision + recall)
-            x = cf[1,1] / (cf[1,1] + cf[0,1])
-            specificity = 1 - x
-            stats_text = "\n\nAccuracy={:0.3f}\nPrecision={:0.3f}\nSensitivity={:0.3f}\nF1 Score={:0.3f}\nSpecificity={:0.3f}".format(accuracy, precision, recall, f1_score , specificity)
+            f1_score_test = f1_score(y_test, y_pred,average='macro')
+            stats_text = "\n\nAccuracy={:0.3f}\nPrecision={:0.3f}\nSensitivity={:0.3f}\nF1 Score={:0.3f}\nSpecificity={:0.3f}".format(accuracy, precision, recall, f1_score_test , specificity)
         else:
             stats_text = "\n\nAccuracy={:0.3f}".format(accuracy)
     else:
@@ -515,7 +518,8 @@ def Make_Confusion_Matrix(cf,
         plt.title(title)
 
     plt.show()
-    return {'F1 Score': f1_score, 'Accuracy': accuracy, 'Sensitivity': recall, 'Specificity': specificity}
+    return {'F1 Score': f1_score_test, 'Accuracy': accuracy, 'Sensitivity': recall, 'Specificity': specificity}
+
 
 def K_Fold_Split(g_search_model, model_name,  df, Y,color='YlGnBu',n=5):
     stratified_kfold = StratifiedKFold(n_splits=n, shuffle=True, random_state=4)
@@ -612,9 +616,11 @@ def cvUnderSamplingByYears():
 # cvUnderSamplingByYears()
 
 def trainmodelcvundersampling():
-    X = df_train.drop(
+    mask = df_model_draft['surgyear'] == 2015
+    df_2011 = df_model_draft[mask]
+    X = df_2011.drop(
         ['HospID', 'SiteID', 'surgid', 'Complics', 'Mortality'], axis=1)
-    y = df_train['Mortality']  # Labels # Labels
+    y = df_2011['Mortality']  # Labels # Labels
 
     print(X.shape)
     print(y.shape)
@@ -651,12 +657,14 @@ def trainmodelcvundersampling():
     # print("==========================================================================================================")
     # print('K-Fold  ROC score {}'.format( roc))
     # print("==========================================================================================================")
-
-    undersample = RandomUnderSampler(sampling_strategy='majority')
+    print(Counter(y))
+    undersample = RandomUnderSampler(sampling_strategy=0.35) #'majority'
     # fit and apply the transform
     X_over, y_over = undersample.fit_resample(X, y)
     # summarize class distribution
+    print ("after under sampling")
     print(Counter(y_over))
+
     # X_train, X_test, y_train, y_test = train_test_split(X_over, y_over, test_size=0.2)
     xgb_model = xgb.XGBClassifier(objective='binary:logistic', eval_metric='logloss', learning_rate=0.1)
     xgb_model.fit(X_over, y_over)
@@ -671,14 +679,17 @@ def trainmodelcvundersampling():
     print(f"The accuracy of the model is {round(accuracy_score(y_test, y_pred), 5) * 100} %")
 
     cm = confusion_matrix(y_test, y_pred)
-    labels = ['TN', 'FP', 'FN', 'TP']
-    categories = ['Alive', 'Dead']
-    plt = make_confusion_matrix(cm, categories=categories, cmap='RdPu',
-                    title='Confusion Metrics Mortality:', group_names=labels)
-    plt.show()
-    feature_importance(xgb_model, df_model_draft, X_test, y_test, 'pink', 'RdPu')
-    make_roc_auc_curve(y_test, preds, 'ROC Curve for XGBoost with Experience')
+    print (classification_report(y_test, y_pred))
+    print (roc_auc_score(y_test,preds[:, 1]))
+    # labels = ['TN', 'FP', 'FN', 'TP']
+    # categories = ['Alive', 'Dead']
+    # plt = make_confusion_matrix(cm, categories=categories, cmap='RdPu',
+    #                 title='Confusion Metrics Mortality:', group_names=labels)
+    # plt.show()
+    # feature_importance(xgb_model, df_model_draft, X_test, y_test, 'pink', 'RdPu')
+    # make_roc_auc_curve(y_test, preds, 'ROC Curve for XGBoost with Experience')
 
+trainmodelcvundersampling()
 
 # trainmodelcvundersampling()
 
@@ -717,7 +728,7 @@ def trainmodelSmoteSampling():
     feature_importance(xgb_model, df_model_draft, X_test, y_test, 'pink', 'RdPu')
     make_roc_auc_curve(y_test, preds, 'ROC Curve for XGBoost with Experience')
 
-trainmodelSmoteSampling()
+# trainmodelSmoteSampling()
 
 
 def gridsearch():
