@@ -13,6 +13,9 @@
 #### RetrainModels.py -  Retrain model for Mortality models.
 #### SHAP output.py -  Run the final models and generates confusion matrix and SHAP plots.
 #### SelectedYears.py -  generates summaries tables of the experience of selected target variable.  
+#### tables.py - create six tables with analysis. each type of mortality : 'total_surgery_count', 'total_CABG', 'Reop' 
+####                with each outcome: 'Mortalty', 'Complics'. The data for creating the tables is in Tables directory.
+####                and its name is HospID/surgid+'_allyears_expec_surgid_STSRCOM.csv'
 
 ### <br />
 ### Directories:

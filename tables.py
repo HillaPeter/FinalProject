@@ -3,6 +3,7 @@ from collections import OrderedDict
 import pandas as pd
 import scipy.stats
 
+
 def bins(row, col):
     if row[col] < 100:
         val = 1
@@ -109,7 +110,7 @@ def convert_dict_to_df(total_hospitals, total_patients, dict_number_of_hospitals
                        mort_minmax, mort_first_minmax, mort_reop_minmax, mort_std, mort_first_std, mort_reop_std,
                        mort_ove_median, mort_ove_first_median, mort_ove_reop_median,
                        mort_ove_minmax, mort_ove_first_minmax, mort_ove_reop_minmax, mort_ove_std, mort_ove_first_std,
-                       mort_ove_reop_std, is_mort, columns_names, exp, exp_col):
+                       mort_ove_reop_std, is_mort, columns_names, exp, exp_col, type_of_mort):
     if is_mort:
         outcome_col_name = 'Mortality'
     else:
@@ -142,11 +143,11 @@ def convert_dict_to_df(total_hospitals, total_patients, dict_number_of_hospitals
                       outcome_col_name + ' OBS/EXP First [25%,75%]', outcome_col_name + ' OBS/EXP First Std',
                       outcome_col_name + ' OBS/EXP Reop', outcome_col_name + ' OBS/EXP Reop [25%,75%]',
                       outcome_col_name + ' OBS/EXP Reop Std']
-    df_final.to_csv(exp + ' Volume Category ' + outcome + '- ' + exp_col + ' Volume STSRCOM.csv')
+    df_final.to_csv(f'{exp} Volume Category {outcome} - {exp_col} Volume {type_of_mort}.csv')
     return df_final
 
 
-def info_of_bins_reop(outcome_col, experience_of, exp_col):
+def info_of_bins_reop(outcome_col, experience_of, exp_col, type_of_mort):
     mask = df_all_years['bin_total'] == 1
     df1 = df_all_years[mask]
     mask = df_all_years['bin_total'] == 2
@@ -285,7 +286,7 @@ def info_of_bins_reop(outcome_col, experience_of, exp_col):
     p_outcome_ove = statistic_test_reop(df1, df2, df3, df4, outcome_col + '_observe/expected_All')
     p_outcome_ove_first = statistic_test_reop(df1, df2, df3, df4, outcome_col + '_observe/expected_First')
     p_outcome_ove_reop = statistic_test_reop(df1_reop, df2_reop, df3_reop, df4_reop,
-                                          outcome_col + '_observe/expected_Reop')
+                                             outcome_col + '_observe/expected_Reop')
 
     outcome_mean.append(p_outcome_all)
     outcome_first_mean.append(p_outcome_first)
@@ -337,10 +338,10 @@ def info_of_bins_reop(outcome_col, experience_of, exp_col):
                                 outcome_ove_mean, outcome_ove_first_mean, outcome_ove_reop_mean,
                                 outcome_ove_25_75, outcome_ove_first_25_75, outcome_ove_reop_25_75, outcome_ove_std,
                                 outcome_ove_first_std,
-                                outcome_ove_reop_std, mort, columns_names, experience_of, exp_col)
+                                outcome_ove_reop_std, mort, columns_names, experience_of, exp_col, type_of_mort)
 
 
-def info_of_bins(outcome_col, experience_of, exp_col):
+def info_of_bins(outcome_col, experience_of, exp_col, type_of_mort):
     mask = df_all_years['bin_total'] == 1
     df1 = df_all_years[mask]
     mask = df_all_years['bin_total'] == 2
@@ -528,11 +529,12 @@ def info_of_bins(outcome_col, experience_of, exp_col):
     # STATISTIC TEST
     p_outcome_all = statistic_test(df1, df2, df3, df4, df5, df6, outcome_col + '_rate_All')
     p_outcome_first = statistic_test(df1, df2, df3, df4, df5, df6, outcome_col + '_First_rate')
-    p_outcome_reop = statistic_test(df1_reop, df2_reop, df3_reop, df4_reop, df5_reop, df6_reop, outcome_col + '_Reop_rate')
+    p_outcome_reop = statistic_test(df1_reop, df2_reop, df3_reop, df4_reop, df5_reop, df6_reop,
+                                    outcome_col + '_Reop_rate')
     p_outcome_ove = statistic_test(df1, df2, df3, df4, df5, df6, outcome_col + '_observe/expected_All')
     p_outcome_ove_first = statistic_test(df1, df2, df3, df4, df5, df6, outcome_col + '_observe/expected_First')
     p_outcome_ove_reop = statistic_test(df1_reop, df2_reop, df3_reop, df4_reop, df5_reop, df6_reop,
-                                     outcome_col + '_observe/expected_Reop')
+                                        outcome_col + '_observe/expected_Reop')
 
     outcome_mean.append(p_outcome_all)
     outcome_first_mean.append(p_outcome_first)
@@ -580,13 +582,16 @@ def info_of_bins(outcome_col, experience_of, exp_col):
                                 outcome_ove_mean, outcome_ove_first_mean, outcome_ove_reop_mean,
                                 outcome_ove_25_75, outcome_ove_first_25_75, outcome_ove_reop_25_75, outcome_ove_std,
                                 outcome_ove_first_std,
-                                outcome_ove_reop_std, mort, columns_names, experience_of, exp_col)
+                                outcome_ove_reop_std, mort, columns_names, experience_of, exp_col, type_of_mort)
+
 
 def rename_columns_names(df_to_rename, path):
     df_to_rename.rename(columns={"total surgery count": "total_surgery_count", "total": "total_CABG",
                                  "Mortality_all": "Mortalty_all", "mort_rate_All": "Mortalty_rate_All",
-                                 "Mortality_First_rate": "Mortalty_First_rate", "Mortality_Reop_rate": "Mortalty_Reop_rate",
-                                 "Mort_observe/expected_All": "Mortalty_observe/expected_All", "Mortalty_observe/expected_First": "",
+                                 "Mortality_First_rate": "Mortalty_First_rate",
+                                 "Mortality_Reop_rate": "Mortalty_Reop_rate",
+                                 "Mort_observe/expected_All": "Mortalty_observe/expected_All",
+                                 "Mortalty_observe/expected_First": "",
                                  "Mort_observe/expected_Reop": "Mortalty_observe/expected_Reop",
                                  "Mort_observe/expected_Reop": "Mortalty_observe/expected_Reop",
                                  "Comp_observe/expected_All": "Complics_observe/expected_All",
@@ -595,12 +600,27 @@ def rename_columns_names(df_to_rename, path):
     df_to_rename.to_csv(path)
 
 
+'''
+path_str: the path of the file
+return - hosp_or_surg : "surgid" or "HospID"
+         type : STSRCOM, STRCHospD, STSRCMM
+'''
+
+
+def get_types(path_str):
+    arr_path = path_str.split("/")
+    splitted_name_of_file = arr_path[-1].split("_")
+    hosp_or_surg = splitted_name_of_file[0]
+    type = splitted_name_of_file[-1].split('.')[0]
+    return hosp_or_surg, type
+
+
 if __name__ == "__main__":
     path = f'/tmp/pycharm_project_957/surgid_allyears_expec_surgid_STSRCOM.csv'
     df_all_years = pd.read_csv(path)
     # rename_columns_names(df_all_years, path)
 
-    hosp_or_surge = "surgid"  # "surgid" or "HospID"
+    hosp_or_surge, type_of_mortality = get_types(path)
     # df_all_years['total_surgery_count'] = df_all_years.apply(str_to_int, col='total_surgery_count', axis=1) # convert all col values to int
     # df_all_years.to_csv('/tmp/pycharm_project_957/hospid_allyears_expec_hospid_stsrcom.csv')
     '''create 'bin total' col and classify each row to a bin number'''
@@ -647,7 +667,7 @@ if __name__ == "__main__":
                 experience_of = 'Surgeries'
             if exp.__contains__("Reop"):
                 df_all_years['bin_total'] = classify_each_row_to_bin_number(df_all_years, bins_reop, col=exp)
-                info_of_bins_reop(outcome, experience_of, exp)
+                info_of_bins_reop(outcome, experience_of, exp, type_of_mortality)
             else:
                 df_all_years['bin_total'] = classify_each_row_to_bin_number(df_all_years, bins, col=exp)
-                info_of_bins(outcome, experience_of, exp)
+                info_of_bins(outcome, experience_of, exp, type_of_mortality)
